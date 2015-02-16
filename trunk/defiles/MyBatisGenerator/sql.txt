@@ -1,0 +1,16 @@
+CREATE SCHEMA `fmarket` DEFAULT CHARACTER SET utf8 ;
+CREATE  TABLE `fmarket`.`user` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(30) NOT NULL ,
+  `status` TINYINT NOT NULL ,
+  `type` TINYINT NOT NULL ,
+  `gmt_create` TIMESTAMP NOT NULL ,
+  `gmt_modify` TIMESTAMP NOT NULL ,
+  PRIMARY KEY (`id`) );
+
+ALTER TABLE `fmarket`.`user` ADD COLUMN `email` VARCHAR(45) NOT NULL  AFTER `name` , ADD COLUMN `gmt_last_login` TIMESTAMP NULL  AFTER `type` , ADD COLUMN `login_name` VARCHAR(45) NOT NULL  AFTER `gmt_modify` , ADD COLUMN `activation_code` VARCHAR(10) NULL  AFTER `login_name` ;
+
+ALTER TABLE `fmarket`.`user` CHANGE COLUMN `status` `status` INT NOT NULL  , CHANGE COLUMN `type` `type` INT NOT NULL  ;
+
+ALTER TABLE `fmarket`.`user` ADD COLUMN `wrong_time` INT(1) NULL  AFTER `activation_code` , ADD COLUMN `passwd_shadow` VARCHAR(255) NOT NULL  AFTER `wrong_time` ;
+

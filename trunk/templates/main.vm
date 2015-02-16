@@ -1,0 +1,94 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/adminjquery.min.js"></script>
+<link rel="stylesheet" href="css/admindefault.css">
+<link rel="stylesheet" href="css/adminmain.css">
+<link rel="stylesheet" type="text/css" href="css/adminstyle.css">
+<title>西安德宝质量和职业健康安全体系文件管理系统</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+#if(!$SYSTEM_USER)
+	window.location.href="login.html";
+#end
+
+  $(function(){
+     $("#nav_51 span a").click(function(){
+	    $(this).parent().css("background","#E2E9EA");
+		$("#nav_53").find("span").css("background","#F7FBFC");
+	 });
+	 $("#nav_53  span a").click(function(){
+	    $(this).parent().css("background","#E2E9EA");
+		$("#nav_51").find("span").css("background","#F7FBFC");
+	 });
+  });
+
+</script>
+</head>
+<body>
+<div id="header" class="header">
+  <div class="logo" style="padding-bottom:10px"><img src="img/logo.png"/></div>
+  <div class="topmenu">
+    <ul>
+	  <li id="menu_0"><span><a href="javascript:void(0);" onClick="sethighlight(0);">文件中心</a></span></li>
+	  <li id="menu_5"><span><a href="javascript:void(0);" onClick="sethighlight(0);">视频中心</a></span></li>	  
+	  <li id="menu_4"><span><a href="javascript:void(0);" onClick="sethighlight(0);">CAPA</a></span></li>	  
+	  #if($!SYSTEM_USER.roleid == 1)
+      <li id="menu_1"><span><a href="javascript:void(0);" onClick="sethighlight(1);">资料上传</a></span></li>
+      <li id="menu_2"><span><a href="javascript:void(0);" onClick="sethighlight(2);">类别管理</a></span></li>
+      #end
+      <li id="menu_3"><span><a href="javascript:void(0);" onClick="sethighlight(3);">用户中心</a></span></li>
+    </ul>
+  </div>
+  <div class="nav f_r">&nbsp;&nbsp;&nbsp;&nbsp;欢迎你！$!SYSTEM_USER.username <i>|</i> [#if($!SYSTEM_USER.roleid == 1) 管理员 #else 访客  #end] <i>|</i> [<a href="logout.html" target="_top">退出</a>] <i>|</i> <a href="http://www.xian-thiebaut.com/">浏览站点</a> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+  <div class="header_footer"></div>
+</div>
+<div id="Main_content">
+  <div id="MainBox">
+    <div class="main_box">
+      <iframe name="main" id="Main" src="index.html" frameborder="false" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+    </div>
+  </div>
+  <div id="leftMenuBox">
+    <div id="leftMenu">
+      <div class="leftMenuson">
+	    <dl id="nav_0">
+          <dt>文件中心</dt>
+          #foreach($cat in $categories)
+          <dd id="nav_90$cat.categoryid" class="on"><a href="filelist.html?categoryid=$cat.categoryid" target="main"><span onClick="javascript:gourl('90$cat.categoryid')">$cat.categoryname</span></a></dd>
+          #end
+          
+        </dl>
+        <dl id="nav_1">
+          <dt>资料上传</dt>
+          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传文件</span></a></dd>
+          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传视频</span></a></dd>
+          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA</span></a></dd>		            
+        </dl>
+        <dl id="nav_2">
+          <dt>类别管理</dt>
+          <dd id="nav_103"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('103')">类别列表</span></a></dd>
+          <dd id="nav_104"><a href="category.html" target="main"><span onClick="javascript:gourl('104')">添加类别</span></a></dd>
+        </dl>
+        <dl id="nav_3">
+          <dt>用户中心</dt>
+          <dd id="nav_17"><a href="userinfo.html" target="main"><span onClick="javascript:gourl('17')">个人信息</span></a></dd>
+          <dd id="nav_18"><a href="resetpassword.html" target="main"><span onClick="javascript:gourl('18')">修改密码</span></a></dd>
+          #if($!SYSTEM_USER.roleid == 1)
+          <dd id="nav_20"><a href="userlist.html?roleid=2" target="main"><span onClick="javascript:gourl('20')">访客列表</span></a></dd>
+          <dd id="nav_26"><a href="changeuser.html?roleid=2" target="main"><span onClick="javascript:gourl('26')">添加访客</span></a></dd>
+          <dd id="nav_27"><a href="userlist.html?roleid=1" target="main"><span onClick="javascript:gourl('27')">管理员列表</span></a></dd>
+          <dd id="nav_28"><a href="changeuser.html?roleid=1" target="main"><span onClick="javascript:gourl('28')">添加管理员</span></a></dd>
+          #end
+        </dl>
+        
+      </div>
+    </div>
+    <div id="Main_drop"> <img src="img/admin/admin_barclose.gif"></div>
+  </div>
+</div>
+<div id="footer" class="footer"><span id="run"></span></div>
+<script type="text/javascript" src="js/adminmain.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.UserVOMapper" >
+	<update id="deleteUser" parameterType="map">
+		update user
+		set deleted = #{deleted,jdbcType=BIT}
+		where userid = #{id,jdbcType=INTEGER} and deleted = 0
+	</update>
+	<select id="selectByFilter" resultMap="BaseResultMap"
+		parameterType="com.debao.defiles.vo.UserVO">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where deleted = 0
+		<if test="userid != null and userid >0">
+			and userid = #{userid,jdbcType=INTEGER}
+		</if>
+		<if test="roleid != null and roleid >0">
+			and roleid = #{roleid,jdbcType=INTEGER}
+		</if>
+		<if test="username != null">
+			and username = #{username,jdbcType=VARCHAR}
+		</if>
+		<if test="password != null">
+			and password = #{password,jdbcType=VARCHAR}
+		</if>
+		<if test="email != null">
+			and email = #{email,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+</mapper>

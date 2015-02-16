@@ -1,0 +1,75 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>西安德宝体系文件管理系统</title>
+<link rel="stylesheet" type="text/css" href="css/adminstyle.css">
+<link rel="stylesheet" type="text/css" href="css/adminlogin.css" />
+<script type="text/javascript" src="js/adminjquery.min.js"></script>
+<script type="text/javascript" src="js/adminlogin.js"></script>
+<!--[if IE 6]>
+		<script src="js/png.js"  type="text/javascript" ></script>
+		<script type="text/javascript">
+		DD_belatedPNG.fix(' .login_box ');
+		</script>
+<![endif]--> 
+
+<script type="text/javascript">
+if (self.frameElement && self.frameElement.tagName=="IFRAME") {
+	parent.window.location.href="login.html";
+}
+	
+	
+/* $(document).ready(function() {
+	
+	$("#_checkcodeImg").click(function() {
+		$(this).attr("src", "/checkcode");
+	});
+}); */
+</script>
+
+</head>
+<body  id="loginbg" >
+<form method='post' name="login" id="form1" action="processLogin.html">
+
+  <div class="login_box">
+    <div class="login_title">
+    	<img style="vertical-align: middle" src="../img/logo.png"/>&nbsp;西安德宝体系文件管理系统
+   	</div>
+    <div class="login_right">
+      <div class="msg">
+            #if($error_msg)
+			<p class="error_msg">$error_msg</p>
+			#end
+        <div id="result" >
+        </div>
+      </div>
+      <div class="login_form">
+        <ul>
+          <li>
+            <label>帐&nbsp;&nbsp; 号:</label>
+            <input type="text" id="username" class="input-text" name="username" size="22"/><span id="msg11sss"></span>
+		  </li>
+          <li>
+		   
+            <label>密&nbsp;&nbsp; 码:</label>
+            <input type="password"  class="input-text" name="password" size="22" id="password">
+          </li>		  
+          <!-- <li>
+            <label>验证码:</label>
+            <input name="checkcode" class="input-text"  class="inputbox" id="verifyCode"  size="10" value="" />   
+            <img src="checkcode" onClick="resetVerifyCode();" class="checkcode" align="absmiddle"  title="点击刷新验证码" id="_checkcodeImg"/>&nbsp;&nbsp;		
+		 </li> -->
+		 <li style="height:20px;">&nbsp;</li>
+         <li>
+            <label></label>
+            <input type="submit" name="login" value="登录" class="button" id="login" />
+            <input type="reset" name="cancel" value="取消" class="button" id="cancel" />
+          </li>
+        </ul>
+		
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

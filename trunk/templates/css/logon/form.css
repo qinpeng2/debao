@@ -1,0 +1,105 @@
+TEXT {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+FILE {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+TEXTAREA {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+SELECT {
+	BACKGROUND-COLOR: #eeeeee; FONT-SIZE: 13px
+}
+FIELDSET {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+LABEL {
+	COLOR: #000066; FONT-SIZE: 13px
+}
+OPTION {
+	COLOR: #000066; FONT-SIZE: 13px
+}
+OPTGROUP {
+	COLOR: #000066; FONT-SIZE: 13px
+}
+LEGEND {
+	COLOR: #000066; FONT-SIZE: 13px; FONT-WEIGHT: bold
+}
+FORM {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: block; COLOR: #000066; FONT-SIZE: 13px; PADDING-TOP: 0px
+}
+INPUT {
+	COLOR: #000066; FONT-SIZE: 13px
+}
+A:link {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #0f378a; FONT-SIZE: 12px; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #0f378a; FONT-SIZE: 12px; TEXT-DECORATION: none
+}
+.tablelinke:active {
+	COLOR: #0f378a; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.tablelinke:link {
+	COLOR: #000000; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.tablelinke:visited {
+	COLOR: #000000; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.tablelinke:hover {
+	COLOR: #0f378a; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.titlelinke:active {
+	COLOR: blue; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.titlelinke:link {
+	COLOR: #4f4f4f; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.titlelinke:visited {
+	COLOR: #4f4f4f; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.titlelinke:hover {
+	COLOR: blue; FONT-SIZE: 13px; TEXT-DECORATION: none
+}
+.input1 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+.textarea1 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid
+}
+.textarea2 {
+	BACKGROUND-COLOR: #eeeeee; WIDTH: 100%; HEIGHT: 100%
+}
+.select1 {
+	WIDTH: 100%
+}
+.numberClass {
+	COLOR: #ff0000; FONT-SIZE: 16px
+}
+.calendar {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/calendar.htc)
+}
+.calculator {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/calculator.htc)
+}
+.count1 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/count1.htc)
+}
+.count2 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/count2.htc)
+}
+.count5 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/count5.htc)
+}
+.count7 {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/count7.htc)
+}
+.equipEfficiency {
+	BORDER-BOTTOM: #142794 1px solid; BORDER-LEFT: #142794 1px solid; BACKGROUND-COLOR: #eeeeee; HEIGHT: 19px; COLOR: #000066; FONT-SIZE: 13px; BORDER-TOP: #142794 1px solid; BORDER-RIGHT: #142794 1px solid; BEHAVIOR: url(../common/schedule.htc)
+}

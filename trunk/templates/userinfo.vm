@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
+<link rel="stylesheet" href="../css/admindefault.css">
+<style type="text/css">
+.txtFull{height:27px;width:290px; border-radius:3px;}
+.txtName{height:27px;width:130px; border-radius:3px;}
+.txtBetween{height:27px;width:80px; border-radius:3px;}
+</style>
+<script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+});
+
+function checkform() {
+	
+	if ($('#realname').val() == "") {
+		alert("请输入真实姓名！");
+		return false;
+	}
+	
+	if ($('#cellphonenumber').val() == "") {
+		alert("请输入手机号码！");
+		return false;
+	}
+	
+	if ($("#email").val() == "") {
+		alert("请输入邮箱地址！");
+		return false;
+	}
+	
+	return true;
+}
+
+</script>
+
+</head>
+<body>
+<!-- 
+==============================添加产品==============================
+ -->	
+ 
+<div class="mainbox">
+
+#if($info_msg)
+<p class="info_msg">$info_msg</p>
+#end
+
+  <table class="search_table" width="100%">
+    <tbody>
+      <tr>
+        <td>
+          <div id="AddBox">
+            <form name="myform" id="myform" action="changeuserinfo.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()" >
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;登录名称:</strong>
+              <input type="hidden" name="userid"/>
+              $!user.username
+            </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;用户角色:</strong>
+              	#if($!user.roleid == 1 || $!roleid == 1) 
+              	管理员
+              	#elseif($!user.roleid == 2 || $!roleid == 2) 
+              	访客
+              	#end
+            </div>
+            <div class="row"> <strong class="caption">*真实姓名:</strong>
+            	<input type="text" class="txtFull" name="realname" id="realname" value="$!user.realname" placeholder="真实姓名" />
+            </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;电话号码:</strong>
+            	<input type="text" class="txtFull" name="phonenumber" value="$!user.phonenumber" placeholder="电话号码" />
+            </div>
+            <div class="row"> <strong class="caption">*手机号码:</strong>
+				<input type="text" class="txtFull" name="cellphonenumber" id="cellphonenumber" value="$!user.cellphonenumber" placeholder="手机号码" />
+            </div>
+            <div class="row"> <strong class="caption">*邮箱地址:</strong>
+              <input type="text" class="txtFull" name="email" id="email" value="$!user.email" placeholder="邮箱地址" />
+            </div>
+            <div class="row" style=" text-align:left; padding-left:135px;">
+            	<input type="submit" class="button add" id="btnAdd" value="确认修改"/>
+           	</div>
+            </form>
+          </div>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

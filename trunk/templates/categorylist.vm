@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
+<link rel="stylesheet" href="../css/admindefault.css">
+<style type="text/css">
+.txtFull{height:27px;width:290px; border-radius:3px;}
+.txtName{height:27px;width:130px; border-radius:3px;}
+.txtBetween{height:27px;width:80px; border-radius:3px;}
+</style>
+<script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+});
+
+</script>
+
+</head>
+<body>
+<!-- 
+==============================产品列表==============================
+-->	
+    <div class="table-list" >
+      <table cellspacing="0" align="center" width="100%">
+      	<colgroup>
+            <col width="30">
+            <col width="50">
+            <col width="50">
+            <col width="50">
+            <col width="30">
+            <col width="30">
+        </colgroup>
+        <thead>
+			<tr align="center" valign="middle" class="editHeader" nowrap>
+				<th>类别编号</th>
+				<th>类别名称</th>
+				<th>编辑</th>
+				<th>编辑时间</th>
+				<th colspan="2">操作</th>
+			</tr>
+        </thead>
+        <tbody>
+        	#foreach($category in $categories)
+			<tr align="center" valign="middle" nowrap>
+	            <td>$category.categoryid</td>
+	            <td>$category.categoryname</td>
+	            <td>$category.userid</td>
+	            <td>
+	            $!date.format('yyyy-MM-dd HH:mm:ss ',$!category.datestamp)
+	            </td>
+	            <td><a href='category.html?categoryid=$category.categoryid'>修改</a></td>
+	            <td><a onclick="javascript: return confirm('确认删除?');" href='removeCategory.html?categoryid=$category.categoryid'>删除</a></td>
+			</tr>
+			#end
+        </tbody>
+      </table>     
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.debao</groupId>
+		<artifactId>debao-defiles-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.debao</groupId>
+	<artifactId>debao-defiles</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<root.dir>${project.basedir}/../../</root.dir>
+	</properties>
+
+
+	<name>debao-defiles Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+	    <dependency>
+			<groupId>com.debao</groupId>
+			<artifactId>debao-defiles-dal</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.debao</groupId>
+			<artifactId>debao-defiles-biz-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+	    <finalName>debao-defiles</finalName>
+	    <plugins>
+			 <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+				  	<filters>
+				   	 	<filter>${root.dir}/debao.properties</filter>
+				  	</filters>		        
+					 <webResources>
+					    <resource>
+					      <directory>src/main/config</directory>
+					      <targetPath>WEB-INF</targetPath>
+				     	  <filtering>true</filtering>
+					    </resource>
+					  </webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-deploy-plugin</artifactId>
+			  <configuration>
+			    <skip>true</skip>
+			  </configuration>
+			</plugin>		
+	    </plugins>
+	</build>
+</project>

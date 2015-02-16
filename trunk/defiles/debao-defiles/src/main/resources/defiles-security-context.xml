@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd"
+	default-autowire="byName">
+
+	<security:http auto-config="true" access-denied-page="/login.html">
+	    
+		<security:intercept-url pattern="/login.html*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<!-- <security:intercept-url pattern="/changeuser.html" access="ROLE_ADMIN" /> -->
+		<security:form-login login-page="/login.html" authentication-failure-url="/logout.html" default-target-url="/main.html" />
+		<security:logout invalidate-session="true" logout-success-url="/main.html" logout-url="/logout.html" />
+	</security:http>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="customUserDetailsService"/>
+	</security:authentication-manager>
+
+	<bean id="customUserDetailsService" class="com.debao.defiles.security.CustomUserDetailsService" />
+	
+	<bean id="failureHandler" class="com.debao.defiles.security.FailureHandler"/>
+	
+</beans>

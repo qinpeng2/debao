@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+	
+	<bean id="categoryDAO" class="com.debao.defiles.dao.impl.CategoryDAOImpl"/>
+	<bean id="userDAO" class="com.debao.defiles.dao.impl.UserDAOImpl"/>
+	<bean id="fileDAO" class="com.debao.defiles.dao.impl.FileDAOImpl"/>
+	<bean id="fileLogDAO" class="com.debao.defiles.dao.impl.FileLogDAOImpl"/>
+	
+	<bean id="sequenceUtil" class="com.debao.defiles.sql.util.SequenceUtil">
+		<property name="table2sequence">
+		    <map>
+		       <!--  <entry key="com.debao.defiles.vo.CreditVO" value="CREDIT" />-->
+		    </map> 
+		</property>
+	</bean>
+</beans>

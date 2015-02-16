@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
+<link rel="stylesheet" href="../css/admindefault.css">
+<style type="text/css">
+.txtFull{height:27px;width:290px; border-radius:3px;}
+.txtName{height:27px;width:130px; border-radius:3px;}
+.txtBetween{height:27px;width:80px; border-radius:3px;}
+</style>
+<script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript">
+
+function checkform() {
+	if ($('#categoryName').val() == "") {
+		alert('请填写分类名称!');
+		return false;
+	}
+	return true;
+}
+</script>
+
+</head>
+<body>
+#if($error_msg)
+<p class="error_msg">$error_msg</p>
+#end
+<!-- 
+==============================添加==============================
+ -->	
+ 
+<div class="mainbox">
+  <table width="100%">
+    <tbody>
+      <tr>
+        <td>
+          <div id="AddBox">
+            
+            <form name="myform" id="myform" action="addCategory.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+
+            <div class="row"> <strong class="caption">分类名称:</strong>
+              <input type="hidden" name="categoryId" value="$!category.categoryid"/>
+              <input type="text" class="txtFull" value="$!category.categoryname" name="categoryName" id="categoryName" placeholder="分类名称" />
+            </div>
+            <div class="row" style="text-left:center; padding-left:135px;">
+            	<input type="submit" class="button add" id="btnAdd" value="提交"/>&nbsp;
+            	<a href="categorylist.html"><input type="button" class="button add" id="btnAdd" value="返回"/></a>
+           	</div>
+            </form>
+          </div>
+		  </td>
+      </tr>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="js/finance/income/|js/finance/whole/|js/finance/outcome/|js/credit/|js/|js/finance/transfer/|js/finance/credit/|js/finance/setup/|js/finance/general/|js/finance/layout/|user/" kind="src" path=""/>
+	<classpathentry excluding="finance/income/|finance/whole/|finance/outcome/|credit/|finance/transfer/|finance/credit/|finance/setup/|finance/general/|finance/layout/" kind="src" path="js"/>
+	<classpathentry kind="src" path="js/credit"/>
+	<classpathentry kind="src" path="js/finance/credit"/>
+	<classpathentry kind="src" path="js/finance/general"/>
+	<classpathentry kind="src" path="js/finance/income"/>
+	<classpathentry kind="src" path="js/finance/layout"/>
+	<classpathentry kind="src" path="js/finance/outcome"/>
+	<classpathentry kind="src" path="js/finance/setup"/>
+	<classpathentry kind="src" path="js/finance/transfer"/>
+	<classpathentry kind="src" path="js/finance/whole"/>
+	<classpathentry kind="src" path="user"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

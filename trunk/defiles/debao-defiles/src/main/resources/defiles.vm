@@ -1,0 +1,39 @@
+#macro( addCss $css ) ## add a css file to the page
+#if(!$cssList)
+ #set($cssList =[])   ##setting a new cssList
+#end
+ $cssList.add(0,$css)
+#end
+
+
+#macro( renderCss )   ## list all the css file in head
+#foreach($css in $cssList)<link rel="stylesheet" href="$css" /><br>#end
+#end
+
+
+#macro( addTailJs $js ) ## add a js file to the page
+#if(!$tailJsList)
+ #set($tailJsList =[])   ##setting a new tailJsList
+#end
+ $tailJsList.add(0,$js)
+#end
+
+#macro( renderTailJs )   ## list all the js file in tail  
+#foreach($js in $tailJsList)<script type="text/javascript" src="$js"></script><br>#end
+#end
+
+#macro( addHeadJs $js ) ## add a js file to the page
+#if(!$headJsList)
+ #set($headJsList =[])   ##setting a new headJsList
+#end
+ $headJsList.add(0,$js)
+#end
+
+#macro( renderHeadJs )   ## list all the js file in head  
+#foreach($js in $headJsList)<script type="text/javascript" src="$js"></script><br>#end
+#end
+
+
+
+
+
