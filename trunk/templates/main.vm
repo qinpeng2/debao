@@ -31,9 +31,10 @@
   <div class="logo" style="padding-bottom:10px"><img src="img/logo.png"/></div>
   <div class="topmenu">
     <ul>
-	  <li id="menu_0"><span><a href="javascript:void(0);" onClick="sethighlight(0);">文件中心</a></span></li>
-	  <li id="menu_5"><span><a href="javascript:void(0);" onClick="sethighlight(0);">视频中心</a></span></li>	  
-	  <li id="menu_4"><span><a href="javascript:void(0);" onClick="sethighlight(0);">CAPA</a></span></li>	  
+        <li id="menu_0"><span><a href="javascript:void(0);" onClick="sethighlight(0);">文件中心</a></span></li>
+        <li id="menu_4"><span><a href="javascript:void(0);" onClick="sethighlight(4);">CAPA管理</a></span></li>
+        <li id="menu_5"><span><a href="javascript:void(0);" onClick="sethighlight(5);">偏差管理</a></span></li>
+        <li id="menu_6"><span><a href="javascript:void(0);" onClick="sethighlight(6);">培训中心</a></span></li>
 	  #if($!SYSTEM_USER.roleid == 1)
       <li id="menu_1"><span><a href="javascript:void(0);" onClick="sethighlight(1);">资料上传</a></span></li>
       <li id="menu_2"><span><a href="javascript:void(0);" onClick="sethighlight(2);">类别管理</a></span></li>
@@ -62,14 +63,15 @@
         </dl>
         <dl id="nav_1">
           <dt>资料上传</dt>
-          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传文件</span></a></dd>
-          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传视频</span></a></dd>
-          <dd id="nav_102" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA</span></a></dd>		            
+          <dd id="nav_101" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('101')">上传文件</span></a></dd>
+          <dd id="nav_102" class="on"><a href="capa.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA管理</span></a></dd>
+          <dd id="nav_103" class="on"><a href="drift.html" target="main"><span onClick="javascript:gourl('103')">上传偏差管理</span></a></dd>
+            <dd id="nav_104" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
         </dl>
         <dl id="nav_2">
           <dt>类别管理</dt>
-          <dd id="nav_103"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('103')">类别列表</span></a></dd>
-          <dd id="nav_104"><a href="category.html" target="main"><span onClick="javascript:gourl('104')">添加类别</span></a></dd>
+          <dd id="nav_201"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('201')">类别列表</span></a></dd>
+          <dd id="nav_202"><a href="category.html" target="main"><span onClick="javascript:gourl('202')">添加类别</span></a></dd>
         </dl>
         <dl id="nav_3">
           <dt>用户中心</dt>
@@ -82,6 +84,11 @@
           <dd id="nav_28"><a href="changeuser.html?roleid=1" target="main"><span onClick="javascript:gourl('28')">添加管理员</span></a></dd>
           #end
         </dl>
+
+          <dl id="nav_6">
+              <dt>培训中心</dt>
+              <dd id="nav_601"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('601')">教学视频</span></a></dd>
+          </dl>
         
       </div>
     </div>
