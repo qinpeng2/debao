@@ -1,0 +1,8 @@
+ 部署步骤：
+1. 解压templates.zip里面的所有文件，到E:/project/template目录下
+2. 进入MySQL命令行,  输入密码root后进入:
+(把传给你的DB.sql放在E:/project目录下)
+1) 输入命令: use defiles;
+2) 输入命令 Source E:/project/DB.sql
+(执行此步骤后，之前的数据会丢失)
+3. 把root.war放在 Jetty所对应的目录 Jetty\jetty-distribution-9.2.5.v20141112\webapps 下 
