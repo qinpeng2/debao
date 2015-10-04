@@ -1,7 +1,7 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>西安德宝体系文件管理系统</title>
+<title>西安德宝质量和职业健康安全管理系统</title>
 <link rel="stylesheet" type="text/css" href="css/adminstyle.css">
 <link rel="stylesheet" type="text/css" href="css/adminlogin.css" />
 <script type="text/javascript" src="js/adminjquery.min.js"></script>
@@ -33,7 +33,7 @@ if (self.frameElement && self.frameElement.tagName=="IFRAME") {
 
   <div class="login_box">
     <div class="login_title">
-    	<img style="vertical-align: middle" src="../img/logo.png"/>&nbsp;西安德宝体系文件管理系统
+    	<img style="vertical-align: middle" src="../img/logo.png"/>&nbsp;西安德宝质量和职业健康安全管理系统
    	</div>
     <div class="login_right">
       <div class="msg">

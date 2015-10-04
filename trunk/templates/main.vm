@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/admindefault.css">
 <link rel="stylesheet" href="css/adminmain.css">
 <link rel="stylesheet" type="text/css" href="css/adminstyle.css">
-<title>西安德宝质量和职业健康安全体系文件管理系统</title>
+<title>西安德宝质量和职业健康安全管理系统</title>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -64,8 +64,8 @@
         <dl id="nav_1">
           <dt>资料上传</dt>
           <dd id="nav_101" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('101')">上传文件</span></a></dd>
-          <dd id="nav_102" class="on"><a href="capa.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA管理</span></a></dd>
-          <dd id="nav_103" class="on"><a href="drift.html" target="main"><span onClick="javascript:gourl('103')">上传偏差管理</span></a></dd>
+          <dd id="nav_102" class="on"><a href="capa.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA</span></a></dd>
+          <dd id="nav_103" class="on"><a href="drift.html" target="main"><span onClick="javascript:gourl('103')">上传偏差</span></a></dd>
             <dd id="nav_104" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
         </dl>
         <dl id="nav_2">
