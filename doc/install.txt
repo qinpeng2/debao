@@ -6,3 +6,8 @@
 2) 输入命令 Source E:/project/DB.sql
 (执行此步骤后，之前的数据会丢失)
 3. 把root.war放在 Jetty所对应的目录 Jetty\jetty-distribution-9.2.5.v20141112\webapps 下 
+
+
+
+1. 拷贝jar包中的context.xml 到 ROOT的classes中
+2. 拷贝css到WEB-INF中

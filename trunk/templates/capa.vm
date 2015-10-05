@@ -109,7 +109,7 @@ function checkform() {
               <div class="row"> <strong class="caption">&nbsp;&nbsp;部门名称:</strong>
                   <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
               </div>
-              <div class="row"> <strong class="caption">&nbsp;&nbsp;CAPA来源:</strong>
+              <div class="row"> <strong class="caption">CAPA来源:</strong>
                   <input type="text" class="txtFull" name="source" id="source" placeholder="CAPA来源" value="$!file.source" />
               </div>
               <div class="row"> <strong class="caption">&nbsp;&nbsp;问题类型:</strong>

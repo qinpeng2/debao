@@ -66,7 +66,7 @@
           <dd id="nav_101" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('101')">上传文件</span></a></dd>
           <dd id="nav_102" class="on"><a href="capa.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA</span></a></dd>
           <dd id="nav_103" class="on"><a href="drift.html" target="main"><span onClick="javascript:gourl('103')">上传偏差</span></a></dd>
-            <dd id="nav_104" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
+            <dd id="nav_104" class="on"><a href="video.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
         </dl>
         <dl id="nav_2">
           <dt>类别管理</dt>

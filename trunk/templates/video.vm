@@ -18,7 +18,7 @@ function initDatePicker() {
 	$('input.datepicker').datepicker({
 		showOn: "button",
 		buttonImage: "img/show-calendar.gif",
-		buttonText: "Date Picker",		
+		buttonText: "Date Picker",
 		dateFormat: 'yy-mm-dd',
         beforeShow: function(dateText, inst) {
             $(this).keydown();
@@ -39,30 +39,30 @@ function initFileCategory() {
 }
 
 function checkform() {
-	
+
 	if ($('#categoryid').val() == "" || $('#categoryid').val() <= 0) {
 		alert("请选择分类！");
 		return false;
-	} 
-	
+	}
+
 	if ($('#filename').val() == "") {
 		alert("请输入文件名！");
 		return false;
 	}
-	
+
 	if ($('#filenumber').val() == "") {
 		alert("请输入文件编号！");
 		return false;
 	}
-	
-	
+
+
 	#if(!$!file.fileid)
 	if ($('#file').val() == "") {
 		alert("请上传文件！");
 		return false;
 	}
 	#end
-	
+
 	return true;
 }
 
@@ -78,8 +78,8 @@ function checkform() {
 <p class="info_msg">$info_msg</p>
 #end
 <!-- 
-==============================添加CAPA管理==============================
- -->	
+==============================添加视频==============================
+ -->
 <div class="mainbox">
   <table class="search_table" width="100%">
     <tbody>
@@ -101,21 +101,24 @@ function checkform() {
           #end
 
             <div class="row"> <strong class="caption">*视频名称:</strong>
-              <input type="text" class="txtFull" name="filename" id="filename" placeholder="文件名" style="width:600px" value="$!file.filename" />
+                <input type="text" class="txtFull" name="filename" id="filename" placeholder="文件名" style="width:600px" value="$!file.filename" />
             </div>
-              <div class="row"> <strong class="caption">&nbsp;&nbsp;编制部门:</strong>
-                  <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
-              </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;编制部门:</strong>
+              <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
+            </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
+              <input type="text" class="txtFull" name="filelable" id="filelable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
+            </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;视频简介:</strong>
             	<textarea rows="5" cols="95" id="filedesc" name="filedesc">$!file.filedesc</textarea>
             </div>
             <hr/>
-              <div class="row"> <strong class="caption">*选择缩略图:</strong>
-                  <input type="file" class="txtFull" name="file" id="file" placeholder="上传缩略图" />
-              </div>
+            <div class="row"> <strong class="caption">*选择缩略图:</strong>
+              <input type="file" class="txtFull" name="file" id="file" placeholder="上传缩略图" />
+            </div>
             #if(!$!file.fileid)
             <div class="row"> <strong class="caption">*选择视频源:</strong>
-              <input type="file" class="txtFull" name="file" id="file" placeholder="上传图标" />
+              <input type="file" class="txtFull" name="file" id="file" placeholder="上传视频源" />
             </div>
             #end
             <div class="row" style=" text-align:left; padding-left:250px;">
