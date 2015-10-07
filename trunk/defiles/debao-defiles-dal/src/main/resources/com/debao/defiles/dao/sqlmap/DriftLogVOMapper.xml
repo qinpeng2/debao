@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.DriftLogVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.DriftLogVO" >
+    <id column="DriftLogID" property="driftlogid" jdbcType="INTEGER" />
+    <result column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FileOptID" property="fileoptid" jdbcType="INTEGER" />
+    <result column="ChangeDesc" property="changedesc" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DriftLogID, FileID, FileOptID, ChangeDesc, UserID, Datestamp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from driftlog
+    where DriftLogID = #{driftlogid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driftlog
+    where DriftLogID = #{driftlogid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.DriftLogVO" >
+    insert into driftlog (DriftLogID, FileID, FileOptID, 
+      ChangeDesc, UserID, Datestamp
+      )
+    values (#{driftlogid,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{fileoptid,jdbcType=INTEGER}, 
+      #{changedesc,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.DriftLogVO" >
+    insert into driftlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driftlogid != null" >
+        DriftLogID,
+      </if>
+      <if test="fileid != null" >
+        FileID,
+      </if>
+      <if test="fileoptid != null" >
+        FileOptID,
+      </if>
+      <if test="changedesc != null" >
+        ChangeDesc,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="datestamp != null" >
+        Datestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driftlogid != null" >
+        #{driftlogid,jdbcType=INTEGER},
+      </if>
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="fileoptid != null" >
+        #{fileoptid,jdbcType=INTEGER},
+      </if>
+      <if test="changedesc != null" >
+        #{changedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.DriftLogVO" >
+    update driftlog
+    <set >
+      <if test="fileid != null" >
+        FileID = #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="fileoptid != null" >
+        FileOptID = #{fileoptid,jdbcType=INTEGER},
+      </if>
+      <if test="changedesc != null" >
+        ChangeDesc = #{changedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DriftLogID = #{driftlogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.DriftLogVO" >
+    update driftlog
+    set FileID = #{fileid,jdbcType=INTEGER},
+      FileOptID = #{fileoptid,jdbcType=INTEGER},
+      ChangeDesc = #{changedesc,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      Datestamp = #{datestamp,jdbcType=TIMESTAMP}
+    where DriftLogID = #{driftlogid,jdbcType=INTEGER}
+  </update>
+</mapper>
