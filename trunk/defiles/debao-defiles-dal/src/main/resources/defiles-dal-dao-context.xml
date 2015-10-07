@@ -13,6 +13,12 @@
 	<bean id="userDAO" class="com.debao.defiles.dao.impl.UserDAOImpl"/>
 	<bean id="fileDAO" class="com.debao.defiles.dao.impl.FileDAOImpl"/>
 	<bean id="fileLogDAO" class="com.debao.defiles.dao.impl.FileLogDAOImpl"/>
+    <bean id="capaDAO" class="com.debao.defiles.dao.impl.CapaDAOImpl"/>
+    <bean id="capaLogDAO" class="com.debao.defiles.dao.impl.CapaLogDAOImpl"/>
+    <bean id="driftDAO" class="com.debao.defiles.dao.impl.DriftDAOImpl"/>
+    <bean id="driftLogDAO" class="com.debao.defiles.dao.impl.DriftLogDAOImpl"/>
+    <bean id="videoDAO" class="com.debao.defiles.dao.impl.VideoDAOImpl"/>
+    <bean id="videoLogDAO" class="com.debao.defiles.dao.impl.VideoLogDAOImpl"/>
 	
 	<bean id="sequenceUtil" class="com.debao.defiles.sql.util.SequenceUtil">
 		<property name="table2sequence">

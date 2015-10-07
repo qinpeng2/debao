@@ -2,12 +2,12 @@ package com.debao.defiles.vo;
 
 import java.util.Date;
 
-public class FileLogVO {
-    private Integer filelogid;
+public class VideoLogVO {
+    private Integer videologid;
 
-    private Integer fileid;
+    private Integer videoid;
 
-    private Integer fileoptid;
+    private Integer videooptid;
 
     private String changedesc;
 
@@ -15,28 +15,28 @@ public class FileLogVO {
 
     private Date datestamp;
 
-    public Integer getFilelogid() {
-        return filelogid;
+    public Integer getVideologid() {
+        return videologid;
     }
 
-    public void setFilelogid(Integer filelogid) {
-        this.filelogid = filelogid;
+    public void setVideologid(Integer videologid) {
+        this.videologid = videologid;
     }
 
-    public Integer getFileid() {
-        return fileid;
+    public Integer getVideoid() {
+        return videoid;
     }
 
-    public void setFileid(Integer fileid) {
-        this.fileid = fileid;
+    public void setVideoid(Integer videoid) {
+        this.videoid = videoid;
     }
 
-    public Integer getFileoptid() {
-        return fileoptid;
+    public Integer getVideooptid() {
+        return videooptid;
     }
 
-    public void setFileoptid(Integer fileoptid) {
-        this.fileoptid = fileoptid;
+    public void setVideooptid(Integer videooptid) {
+        this.videooptid = videooptid;
     }
 
     public String getChangedesc() {

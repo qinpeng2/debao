@@ -59,6 +59,18 @@
         </table>
 		<table tableName="user" domainObjectName="UserVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 			enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
+        <table tableName="capa" domainObjectName="CapaVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="capalog" domainObjectName="CapaLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="drift" domainObjectName="DriftVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="driftlog" domainObjectName="DriftLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="video" domainObjectName="VideoVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="videolog" domainObjectName="VideoLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
 
     </context>
 </generatorConfiguration>

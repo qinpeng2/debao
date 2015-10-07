@@ -2,10 +2,8 @@ package com.debao.defiles.vo;
 
 import java.util.Date;
 
-public class FileVO {
+public class CapaVO {
     private Integer fileid;
-
-    private Integer categoryid;
 
     private String filetype;
 
@@ -13,13 +11,13 @@ public class FileVO {
 
     private String filenumber;
 
+    private String capasource;
+
+    private Boolean closed;
+
     private String filelabel;
 
-    private String version;
-
     private String department;
-
-    private Date approvedate;
 
     private String filedesc;
 
@@ -37,14 +35,6 @@ public class FileVO {
 
     public void setFileid(Integer fileid) {
         this.fileid = fileid;
-    }
-
-    public Integer getCategoryid() {
-        return categoryid;
-    }
-
-    public void setCategoryid(Integer categoryid) {
-        this.categoryid = categoryid;
     }
 
     public String getFiletype() {
@@ -71,6 +61,22 @@ public class FileVO {
         this.filenumber = filenumber == null ? null : filenumber.trim();
     }
 
+    public String getCapasource() {
+        return capasource;
+    }
+
+    public void setCapasource(String capasource) {
+        this.capasource = capasource == null ? null : capasource.trim();
+    }
+
+    public Boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
+    }
+
     public String getFilelabel() {
         return filelabel;
     }
@@ -79,28 +85,12 @@ public class FileVO {
         this.filelabel = filelabel == null ? null : filelabel.trim();
     }
 
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version == null ? null : version.trim();
-    }
-
     public String getDepartment() {
         return department;
     }
 
     public void setDepartment(String department) {
         this.department = department == null ? null : department.trim();
-    }
-
-    public Date getApprovedate() {
-        return approvedate;
-    }
-
-    public void setApprovedate(Date approvedate) {
-        this.approvedate = approvedate;
     }
 
     public String getFiledesc() {

@@ -1,56 +1,164 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.debao.defiles.dao.mapper.FileLabelVOMapper" >
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLabelVO" >
-    <id column="LabelID" property="labelid" jdbcType="INTEGER" />
-    <result column="LabelName" property="labelname" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debao.defiles.dao.mapper.FileLabelVOMapper">
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLabelVO">
+    <id column="LabelID" jdbcType="INTEGER" property="labelid" />
+    <result column="LabelName" jdbcType="VARCHAR" property="labelname" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     LabelID, LabelName
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from filelabel
     where LabelID = #{labelid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from filelabel
     where LabelID = #{labelid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileLabelVO" >
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileLabelVO">
     insert into filelabel (LabelID, LabelName)
     values (#{labelid,jdbcType=INTEGER}, #{labelname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLabelVO" >
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLabelVO">
     insert into filelabel
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="labelid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
         LabelID,
       </if>
-      <if test="labelname != null" >
+      <if test="labelname != null">
         LabelName,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="labelid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
         #{labelid,jdbcType=INTEGER},
       </if>
-      <if test="labelname != null" >
+      <if test="labelname != null">
         #{labelname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLabelVO" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLabelVO">
     update filelabel
-    <set >
-      <if test="labelname != null" >
+    <set>
+      <if test="labelname != null">
         LabelName = #{labelname,jdbcType=VARCHAR},
       </if>
     </set>
     where LabelID = #{labelid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLabelVO" >
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLabelVO">
+    update filelabel
+    set LabelName = #{labelname,jdbcType=VARCHAR}
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLabelVO">
+    <id column="LabelID" jdbcType="INTEGER" property="labelid" />
+    <result column="LabelName" jdbcType="VARCHAR" property="labelname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LabelID, LabelName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from filelabel
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from filelabel
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileLabelVO">
+    insert into filelabel (LabelID, LabelName)
+    values (#{labelid,jdbcType=INTEGER}, #{labelname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLabelVO">
+    insert into filelabel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        LabelID,
+      </if>
+      <if test="labelname != null">
+        LabelName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        #{labelid,jdbcType=INTEGER},
+      </if>
+      <if test="labelname != null">
+        #{labelname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLabelVO">
+    update filelabel
+    <set>
+      <if test="labelname != null">
+        LabelName = #{labelname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLabelVO">
+    update filelabel
+    set LabelName = #{labelname,jdbcType=VARCHAR}
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLabelVO">
+    <id column="LabelID" jdbcType="INTEGER" property="labelid" />
+    <result column="LabelName" jdbcType="VARCHAR" property="labelname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LabelID, LabelName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from filelabel
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from filelabel
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileLabelVO">
+    insert into filelabel (LabelID, LabelName)
+    values (#{labelid,jdbcType=INTEGER}, #{labelname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLabelVO">
+    insert into filelabel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        LabelID,
+      </if>
+      <if test="labelname != null">
+        LabelName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        #{labelid,jdbcType=INTEGER},
+      </if>
+      <if test="labelname != null">
+        #{labelname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLabelVO">
+    update filelabel
+    <set>
+      <if test="labelname != null">
+        LabelName = #{labelname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LabelID = #{labelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLabelVO">
     update filelabel
     set LabelName = #{labelname,jdbcType=VARCHAR}
     where LabelID = #{labelid,jdbcType=INTEGER}

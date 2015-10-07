@@ -2,8 +2,8 @@ package com.debao.defiles.vo;
 
 import java.util.Date;
 
-public class FileLogVO {
-    private Integer filelogid;
+public class DriftLogVO {
+    private Integer driftlogid;
 
     private Integer fileid;
 
@@ -15,12 +15,12 @@ public class FileLogVO {
 
     private Date datestamp;
 
-    public Integer getFilelogid() {
-        return filelogid;
+    public Integer getDriftlogid() {
+        return driftlogid;
     }
 
-    public void setFilelogid(Integer filelogid) {
-        this.filelogid = filelogid;
+    public void setDriftlogid(Integer driftlogid) {
+        this.driftlogid = driftlogid;
     }
 
     public Integer getFileid() {
