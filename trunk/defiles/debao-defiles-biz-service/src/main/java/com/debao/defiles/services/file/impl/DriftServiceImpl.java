@@ -1,6 +1,7 @@
 package com.debao.defiles.services.file.impl;
 
 import com.debao.defiles.common.util.StringUtil;
+import com.debao.defiles.constant.FileOperations;
 import com.debao.defiles.dao.DriftDAO;
 import com.debao.defiles.dao.DriftLogDAO;
 import com.debao.defiles.services.file.DriftService;
@@ -16,7 +17,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.Calendar;
 import java.util.List;
 
-public class DriftServiceImpl implements DriftService {
+public class DriftServiceImpl extends CommonFileService implements DriftService {
 	
 	@Autowired
 	private TransactionTemplate transactionTemplate;
@@ -44,14 +45,14 @@ public class DriftServiceImpl implements DriftService {
 					return false;
 				}
 
-				driftVO.setDriftid(driftDAO.insertedID());
+				driftVO.setFileid(driftDAO.insertedID());
 				
 				// insert drift log then
 				
 				DriftLogVO driftLogVO = new DriftLogVO();
-				driftLogVO.setDriftid(driftVO.getDriftid());
-				driftLogVO.setDriftoptid(DriftOperations.ADD.ordinal());
-				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, userVO, DriftOperations.ADD));
+				driftLogVO.setFileid(driftVO.getFileid());
+				driftLogVO.setFileoptid(FileOperations.ADD.ordinal());
+				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, userVO, FileOperations.ADD));
 				driftLogVO.setUserid(userVO.getUserid());
 				driftLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
@@ -76,8 +77,8 @@ public class DriftServiceImpl implements DriftService {
 			public Boolean doInTransaction(TransactionStatus status) {
 				
 				// 1. Find the original drift first
-				DriftVO orgDriftVO = driftDAO.findByID(driftVO.getDriftid());
-				
+				DriftVO orgDriftVO = driftDAO.findByID(driftVO.getFileid());
+
 				// 2. update drift then
 				if (!driftDAO.update(driftVO)) {
 					return false;
@@ -86,9 +87,9 @@ public class DriftServiceImpl implements DriftService {
 				// 3. insert drift log then
 				
 				DriftLogVO driftLogVO = new DriftLogVO();
-				driftLogVO.setDriftid(driftVO.getDriftid());
-				driftLogVO.setDriftoptid(DriftOperations.EDIT.ordinal());
-				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, orgDriftVO, userVO, DriftOperations.EDIT));
+				driftLogVO.setFileid(driftVO.getFileid());
+				driftLogVO.setFileoptid(FileOperations.EDIT.ordinal());
+				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, orgDriftVO, userVO, FileOperations.EDIT));
 				driftLogVO.setUserid(userVO.getUserid());
 				driftLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
@@ -119,9 +120,9 @@ public class DriftServiceImpl implements DriftService {
 				}
 				
 				DriftLogVO driftLogVO = new DriftLogVO();
-				driftLogVO.setDriftid(driftVO.getDriftid());
-				driftLogVO.setDriftoptid(DriftOperations.DELETE.ordinal());
-				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, userVO, DriftOperations.DELETE));
+				driftLogVO.setFileid(driftVO.getFileid());
+				driftLogVO.setFileoptid(FileOperations.DELETE.ordinal());
+				driftLogVO.setChangedesc(prepareChangeDesc(driftVO, userVO, FileOperations.DELETE));
 				driftLogVO.setUserid(userVO.getUserid());
 				driftLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
@@ -167,7 +168,7 @@ public class DriftServiceImpl implements DriftService {
 	 * @param opt
 	 * @return
 	 */
-	public String prepareChangeDesc(DriftVO driftVO, UserVO userVO, DriftOperations opt) {
+	public String prepareChangeDesc(DriftVO driftVO, UserVO userVO, FileOperations opt) {
 		return prepareChangeDesc(driftVO, null, userVO, opt);
 	}
 	
@@ -180,27 +181,27 @@ public class DriftServiceImpl implements DriftService {
 	 * @param opt
 	 * @return
 	 */
-	public String prepareChangeDesc(DriftVO newDriftVO, DriftVO orgDriftVO, UserVO userVO, DriftOperations opt) {
+	public String prepareChangeDesc(DriftVO newDriftVO, DriftVO orgDriftVO, UserVO userVO, FileOperations opt) {
 		
 		String str = opt.getDescription();
 		
 		String userName = userVO.getUsername();
-		Integer driftID = newDriftVO.getDriftid();
+		Integer driftID = newDriftVO.getFileid();
 		
 		
-		if (opt == DriftOperations.ADD) {
+		if (opt == FileOperations.ADD) {
 			// 新增文件日志描述
 			return StringUtil.format(str, userName, driftID, descAdd(newDriftVO));
-		} else if (opt == DriftOperations.EDIT) {
+		} else if (opt == FileOperations.EDIT) {
 			// 编辑文件日志描述
 			String descEdit = descEdit(orgDriftVO, newDriftVO);
 			if (descEdit == null || !descEdit.isEmpty()) {
 				return StringUtil.format(str, userName, driftID, descEdit);
 			}
-		} else if (opt == DriftOperations.DELETE) {
+		} else if (opt == FileOperations.DELETE) {
 			// 删除文件日志描述
 			return StringUtil.format(str, userName, driftID);
-		} else if (opt == DriftOperations.VIEW) {
+		} else if (opt == FileOperations.VIEW) {
 			// 浏览文件日志描述
 			return StringUtil.format(str, userName, driftID);
 		}
@@ -217,24 +218,23 @@ public class DriftServiceImpl implements DriftService {
 	private String descAdd(DriftVO driftVO) {
 		
 		StringBuilder desc = new StringBuilder();
-		
-		Integer categoryID = driftVO.getCategoryid();
-		categoryID = categoryID == null ? 0 : categoryID;
-		descSingleAdd(desc, "分类编号", categoryID);
-		
-		String driftName = driftVO.getDriftname();
+
+		String driftName = driftVO.getFilename();
 		driftName = driftName == null || driftName.isEmpty() ? "" : driftName;
 		descSingleAdd(desc, "文件名称", driftName);
 		
-		String driftNumber = driftVO.getDriftnumber();
+		String driftNumber = driftVO.getFilenumber();
 		driftNumber = driftNumber == null || driftNumber.isEmpty() ? "" : driftNumber;
 		descSingleAdd(desc, "文件编号", driftNumber);
+
+    String closed = driftVO.getClosed() ? "是" : "否";
+    descSingleAdd(desc, "是否闭环", closed);
 		
-		String driftLabel = driftVO.getDriftlabel();
+		String driftLabel = driftVO.getFilelabel();
 		driftLabel = driftLabel == null || driftLabel.isEmpty() ? "" : driftLabel;
 		descSingleAdd(desc, "文件标签", driftLabel);
 		
-		String driftDesc = driftVO.getDriftdesc();
+		String driftDesc = driftVO.getFiledesc();
 		driftDesc = driftDesc == null || driftDesc.isEmpty() ? "" : driftDesc;
 		descSingleAdd(desc, "文件描述", driftDesc);
 		
@@ -251,74 +251,50 @@ public class DriftServiceImpl implements DriftService {
 	private String descEdit(DriftVO origDriftVO, DriftVO newDriftVO) {
 
 		// only compare drifts with the same ID
-		if (origDriftVO.getDriftid() != newDriftVO.getDriftid()) {
+		if (origDriftVO.getFileid() != newDriftVO.getFileid()) {
 			return "";
 		}
 		
 		StringBuilder desc = new StringBuilder();
-		
-		// category change
-		if (origDriftVO.getCategoryid() != newDriftVO.getCategoryid()) {
-			descSingleEdit(desc, "分类变更", origDriftVO.getCategoryid(), newDriftVO.getCategoryid());
-		}
-		
+
 		// drift name change
-		if (!origDriftVO.getDriftname().trim().equals(newDriftVO.getDriftname().trim())) {
-			descSingleEdit(desc, "文件名称", origDriftVO.getDriftname(), newDriftVO.getDriftname());
+		if (!origDriftVO.getFilename().trim().equalsIgnoreCase(newDriftVO.getFilename().trim())) {
+			descSingleEdit(desc, "文件名称", origDriftVO.getFilename(), newDriftVO.getFilename());
 		}
 		
 		// drift number change
-		if (!origDriftVO.getDriftnumber().trim().equals(newDriftVO.getDriftnumber().trim())) {
-			descSingleEdit(desc, "文件编号", origDriftVO.getDriftnumber(), newDriftVO.getDriftnumber());
+		if (!origDriftVO.getFilenumber().trim().equalsIgnoreCase(newDriftVO.getFilenumber().trim())) {
+			descSingleEdit(desc, "文件编号", origDriftVO.getFilenumber(), newDriftVO.getFilenumber());
 		}
+
+    if (origDriftVO.getClosed() != newDriftVO.getClosed()) {
+      descSingleEdit(desc, "是否闭环", origDriftVO.getClosed(), newDriftVO.getClosed());
+    }
 		
 		// drift label change
-		String orgDriftLabel = origDriftVO.getDriftlabel() == null ? "" : origDriftVO.getDriftlabel().trim();
-		String newDriftLabel = newDriftVO.getDriftlabel() == null ? "" : newDriftVO.getDriftlabel().trim();
+		String orgDriftLabel = origDriftVO.getFilelabel() == null ? "" : origDriftVO.getFilelabel().trim();
+		String newDriftLabel = newDriftVO.getFilelabel() == null ? "" : newDriftVO.getFilelabel().trim();
 		
-		if (!orgDriftLabel.trim().equals(newDriftLabel.trim())) {
+		if (!orgDriftLabel.trim().equalsIgnoreCase(newDriftLabel.trim())) {
 			descSingleEdit(desc, "文件标签", orgDriftLabel, newDriftLabel);
 		}
 		
 		// drift description change
-		String orgDriftDesc = origDriftVO.getDriftdesc() == null ? "" : origDriftVO.getDriftdesc().trim();
-		String newDriftDesc = newDriftVO.getDriftdesc() == null ? "" : newDriftVO.getDriftdesc().trim();
+		String orgDriftDesc = origDriftVO.getFiledesc() == null ? "" : origDriftVO.getFiledesc().trim();
+		String newDriftDesc = newDriftVO.getFiledesc() == null ? "" : newDriftVO.getFiledesc().trim();
 		
-		if (!orgDriftDesc.equals(newDriftDesc)) {
+		if (!orgDriftDesc.equalsIgnoreCase(newDriftDesc)) {
 			descSingleEdit(desc, "文件描述", orgDriftDesc, newDriftDesc);
 		}
 		
 		// drift upload change
-		if (!origDriftVO.getLocation().equals(newDriftVO.getLocation())) {
+		if (!origDriftVO.getLocation().equalsIgnoreCase(newDriftVO.getLocation())) {
 			desc.append("文件被重新上传;");
 		}
 		
 		return desc.toString();
 	}
-	
-	/**
-	 * 新增文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param value
-	 */
-	private void descSingleAdd(StringBuilder target, String name, Object value) {
-		target.append(name).append("： ").append(value).append("; \n");
-	}
-	
-	/**
-	 * 修改文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param oldValue
-	 * @param newValue
-	 */
-	private void descSingleEdit(StringBuilder target, String name, Object oldValue, Object newValue) {
-		target.append(name).append("： 由 ").append(oldValue).append(" 变为 ").append(newValue).append("; \n");
-	}
-	
+
 	/******************************Getter & Setter*******************************************/
 
 	public DriftDAO getDriftDAO() {

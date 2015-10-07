@@ -5,7 +5,7 @@ import com.debao.defiles.constant.FileOperations;
 import com.debao.defiles.dao.VideoDAO;
 import com.debao.defiles.dao.VideoLogDAO;
 import com.debao.defiles.services.file.VideoService;
-import com.debao.defiles.vo.FileLogVO;
+import com.debao.defiles.vo.VideoLogVO;
 import com.debao.defiles.vo.VideoVO;
 import com.debao.defiles.vo.UserVO;
 import com.debao.defiles.vo.query.VideoQueryVO;
@@ -17,7 +17,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.Calendar;
 import java.util.List;
 
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl extends CommonFileService implements VideoService {
 	
 	@Autowired
 	private TransactionTemplate transactionTemplate;
@@ -49,15 +49,15 @@ public class VideoServiceImpl implements VideoService {
 				
 				// insert file log then
 				
-				FileLogVO fileLogVO = new FileLogVO();
-				fileLogVO.setFileid(videoVO.getVideoid());
-				fileLogVO.setFileoptid(FileOperations.ADD.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(videoVO, userVO, FileOperations.ADD));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				VideoLogVO videoLogVO = new VideoLogVO();
+				videoLogVO.setVideoid(videoVO.getVideoid());
+				videoLogVO.setVideooptid(FileOperations.ADD.ordinal());
+				videoLogVO.setChangedesc(prepareChangeDesc(videoVO, userVO, FileOperations.ADD));
+				videoLogVO.setUserid(userVO.getUserid());
+				videoLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				
-				if (!videoLogDAO.insert(fileLogVO)) {
+				if (!videoLogDAO.insert(videoLogVO)) {
 					return false;
 				}
 				
@@ -77,7 +77,7 @@ public class VideoServiceImpl implements VideoService {
 			public Boolean doInTransaction(TransactionStatus status) {
 				
 				// 1. Find the original file first
-				VideoVO orgVideoVO = videoDAO.findByID(videoVO.getFileid());
+				VideoVO orgVideoVO = videoDAO.findByID(videoVO.getVideoid());
 				
 				// 2. update file then
 				if (!videoDAO.update(videoVO)) {
@@ -86,15 +86,15 @@ public class VideoServiceImpl implements VideoService {
 				
 				// 3. insert file log then
 				
-				FileLogVO fileLogVO = new FileLogVO();
-				fileLogVO.setFileid(videoVO.getFileid());
-				fileLogVO.setFileoptid(FileOperations.EDIT.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(videoVO, orgVideoVO, userVO, FileOperations.EDIT));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				VideoLogVO videoLogVO = new VideoLogVO();
+				videoLogVO.setVideoid(videoVO.getVideoid());
+				videoLogVO.setVideooptid(FileOperations.EDIT.ordinal());
+				videoLogVO.setChangedesc(prepareChangeDesc(videoVO, orgVideoVO, userVO, FileOperations.EDIT));
+				videoLogVO.setUserid(userVO.getUserid());
+				videoLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				
-				if (!videoLogDAO.insert(fileLogVO)) {
+				if (!videoLogDAO.insert(videoLogVO)) {
 					return false;
 				}
 				
@@ -119,15 +119,15 @@ public class VideoServiceImpl implements VideoService {
 					return false;
 				}
 				
-				FileLogVO fileLogVO = new FileLogVO();
-				fileLogVO.setFileid(videoVO.getFileid());
-				fileLogVO.setFileoptid(FileOperations.DELETE.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(videoVO, userVO, FileOperations.DELETE));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				VideoLogVO videoLogVO = new VideoLogVO();
+				videoLogVO.setVideoid(videoVO.getVideoid());
+				videoLogVO.setVideooptid(FileOperations.DELETE.ordinal());
+				videoLogVO.setChangedesc(prepareChangeDesc(videoVO, userVO, FileOperations.DELETE));
+				videoLogVO.setUserid(userVO.getUserid());
+				videoLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				// 2. record the log then
-				if (!videoLogDAO.insert(fileLogVO)) {
+				if (!videoLogDAO.insert(videoLogVO)) {
 					return false;
 				}
 				
@@ -186,7 +186,7 @@ public class VideoServiceImpl implements VideoService {
 		String str = opt.getDescription();
 		
 		String userName = userVO.getUsername();
-		Integer fileID = newVideoVO.getFileid();
+		Integer fileID = newVideoVO.getVideoid();
 		
 		
 		if (opt == FileOperations.ADD) {
@@ -218,26 +218,18 @@ public class VideoServiceImpl implements VideoService {
 	private String descAdd(VideoVO videoVO) {
 		
 		StringBuilder desc = new StringBuilder();
-		
-		Integer categoryID = videoVO.getCategoryid();
-		categoryID = categoryID == null ? 0 : categoryID;
-		descSingleAdd(desc, "分类编号", categoryID);
-		
-		String fileName = videoVO.getFilename();
+
+		String fileName = videoVO.getViedoname();
 		fileName = fileName == null || fileName.isEmpty() ? "" : fileName;
-		descSingleAdd(desc, "文件名称", fileName);
-		
-		String fileNumber = videoVO.getFilenumber();
-		fileNumber = fileNumber == null || fileNumber.isEmpty() ? "" : fileNumber;
-		descSingleAdd(desc, "文件编号", fileNumber);
-		
-		String fileLabel = videoVO.getFilelabel();
+		descSingleAdd(desc, "视频名称", fileName);
+
+		String fileLabel = videoVO.getVideolabel();
 		fileLabel = fileLabel == null || fileLabel.isEmpty() ? "" : fileLabel;
-		descSingleAdd(desc, "文件标签", fileLabel);
+		descSingleAdd(desc, "视频标签", fileLabel);
 		
-		String fileDesc = videoVO.getFiledesc();
+		String fileDesc = videoVO.getVideodesc();
 		fileDesc = fileDesc == null || fileDesc.isEmpty() ? "" : fileDesc;
-		descSingleAdd(desc, "文件描述", fileDesc);
+		descSingleAdd(desc, "视频描述", fileDesc);
 		
 		return desc.toString();
 	}
@@ -252,74 +244,48 @@ public class VideoServiceImpl implements VideoService {
 	private String descEdit(VideoVO origVideoVO, VideoVO newVideoVO) {
 
 		// only compare files with the same ID
-		if (origVideoVO.getFileid() != newVideoVO.getFileid()) {
+		if (origVideoVO.getVideoid() != newVideoVO.getVideoid()) {
 			return "";
 		}
 		
 		StringBuilder desc = new StringBuilder();
-		
-		// category change
-		if (origVideoVO.getCategoryid() != newVideoVO.getCategoryid()) {
-			descSingleEdit(desc, "分类变更", origVideoVO.getCategoryid(), newVideoVO.getCategoryid());
-		}
-		
+
 		// file name change
-		if (!origVideoVO.getFilename().trim().equals(newVideoVO.getFilename().trim())) {
-			descSingleEdit(desc, "文件名称", origVideoVO.getFilename(), newVideoVO.getFilename());
+		if (!origVideoVO.getViedoname().trim().equalsIgnoreCase(newVideoVO.getViedoname().trim())) {
+			descSingleEdit(desc, "视频名称", origVideoVO.getViedoname(), newVideoVO.getViedoname());
 		}
-		
-		// file number change
-		if (!origVideoVO.getFilenumber().trim().equals(newVideoVO.getFilenumber().trim())) {
-			descSingleEdit(desc, "文件编号", origVideoVO.getFilenumber(), newVideoVO.getFilenumber());
-		}
-		
+
 		// file label change
-		String orgFileLabel = origVideoVO.getFilelabel() == null ? "" : origVideoVO.getFilelabel().trim();
-		String newFileLabel = newVideoVO.getFilelabel() == null ? "" : newVideoVO.getFilelabel().trim();
+		String orgFileLabel = origVideoVO.getVideolabel() == null ? "" : origVideoVO.getVideolabel().trim();
+		String newFileLabel = newVideoVO.getVideolabel() == null ? "" : newVideoVO.getVideolabel().trim();
 		
-		if (!orgFileLabel.trim().equals(newFileLabel.trim())) {
-			descSingleEdit(desc, "文件标签", orgFileLabel, newFileLabel);
+		if (!orgFileLabel.trim().equalsIgnoreCase(newFileLabel.trim())) {
+			descSingleEdit(desc, "视频标签", orgFileLabel, newFileLabel);
 		}
 		
 		// file description change
-		String orgFileDesc = origVideoVO.getFiledesc() == null ? "" : origVideoVO.getFiledesc().trim();
-		String newFileDesc = newVideoVO.getFiledesc() == null ? "" : newVideoVO.getFiledesc().trim();
+		String orgFileDesc = origVideoVO.getVideodesc() == null ? "" : origVideoVO.getVideodesc().trim();
+		String newFileDesc = newVideoVO.getVideodesc() == null ? "" : newVideoVO.getVideodesc().trim();
 		
-		if (!orgFileDesc.equals(newFileDesc)) {
-			descSingleEdit(desc, "文件描述", orgFileDesc, newFileDesc);
+		if (!orgFileDesc.equalsIgnoreCase(newFileDesc)) {
+			descSingleEdit(desc, "视频描述", orgFileDesc, newFileDesc);
 		}
 		
 		// file upload change
-		if (!origVideoVO.getLocation().equals(newVideoVO.getLocation())) {
-			desc.append("文件被重新上传;");
+		if (!origVideoVO.getLocation().equalsIgnoreCase(newVideoVO.getLocation())) {
+			desc.append("视频被重新上传;");
 		}
+
+    String orgImgLoc = origVideoVO.getImglocation() == null ? "" : origVideoVO.getImglocation().trim();
+    String newImgLoc = newVideoVO.getImglocation() == null ? "" : newVideoVO.getImglocation().trim();
+
+    if (!orgImgLoc.equalsIgnoreCase(newImgLoc)) {
+      desc.append("缩略图被重新上传;");
+    }
 		
 		return desc.toString();
 	}
-	
-	/**
-	 * 新增文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param value
-	 */
-	private void descSingleAdd(StringBuilder target, String name, Object value) {
-		target.append(name).append("： ").append(value).append("; \n");
-	}
-	
-	/**
-	 * 修改文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param oldValue
-	 * @param newValue
-	 */
-	private void descSingleEdit(StringBuilder target, String name, Object oldValue, Object newValue) {
-		target.append(name).append("： 由 ").append(oldValue).append(" 变为 ").append(newValue).append("; \n");
-	}
-	
+
 	/******************************Getter & Setter*******************************************/
 
 	public VideoDAO getVideoDAO() {

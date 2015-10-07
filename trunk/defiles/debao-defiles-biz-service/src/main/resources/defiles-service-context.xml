@@ -10,6 +10,12 @@
 	default-autowire="byName">
 	
     <bean id="fileService" class="com.debao.defiles.services.file.impl.FileServiceImpl"/>
+
+    <bean id="capaService" class="com.debao.defiles.services.file.impl.CapaServiceImpl"/>
+
+    <bean id="driftService" class="com.debao.defiles.services.file.impl.DriftServiceImpl"/>
+
+    <bean id="videoService" class="com.debao.defiles.services.file.impl.VideoServiceImpl"/>
     
     <bean id="categoryService" class="com.debao.defiles.services.category.impl.CategoryServiceImpl"/>
     

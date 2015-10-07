@@ -17,7 +17,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.Calendar;
 import java.util.List;
 
-public class CapaServiceImpl implements CapaService {
+public class CapaServiceImpl extends CommonFileService implements CapaService {
 	
 	@Autowired
 	private TransactionTemplate transactionTemplate;
@@ -34,30 +34,30 @@ public class CapaServiceImpl implements CapaService {
 	}
 
 	@Override
-	public boolean insert(final CapaVO fileVO, final UserVO userVO) {
+	public boolean insert(final CapaVO capaVO, final UserVO userVO) {
 		Boolean result = transactionTemplate.execute(new TransactionCallback<Boolean>() {
 
 			@Override
 			public Boolean doInTransaction(TransactionStatus status) {
 
 				// insert file first
-				if (!capaDAO.insert(fileVO)) {
+				if (!capaDAO.insert(capaVO)) {
 					return false;
 				}
 
-				fileVO.setCapaid(capaDAO.insertedID());
+				capaVO.setFileid(capaDAO.insertedID());
 				
 				// insert file log then
 				
-				CapaLogVO fileLogVO = new CapaLogVO();
-				fileLogVO.setCapaid(fileVO.getCapaid());
-				fileLogVO.setCapaoptid(CapaOperations.ADD.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(fileVO, userVO, CapaOperations.ADD));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				CapaLogVO capaLogVO = new CapaLogVO();
+				capaLogVO.setFileid(capaVO.getFileid());
+				capaLogVO.setFileoptid(FileOperations.ADD.ordinal());
+				capaLogVO.setChangedesc(prepareChangeDesc(capaVO, userVO, FileOperations.ADD));
+				capaLogVO.setUserid(userVO.getUserid());
+				capaLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				
-				if (!capaLogDAO.insert(fileLogVO)) {
+				if (!capaLogDAO.insert(capaLogVO)) {
 					return false;
 				}
 				
@@ -69,7 +69,7 @@ public class CapaServiceImpl implements CapaService {
 	}
 	
 	@Override
-	public boolean update(final CapaVO fileVO, final UserVO userVO) {
+	public boolean update(final CapaVO capaVO, final UserVO userVO) {
 		
 		return transactionTemplate.execute(new TransactionCallback<Boolean>() {
 
@@ -77,24 +77,24 @@ public class CapaServiceImpl implements CapaService {
 			public Boolean doInTransaction(TransactionStatus status) {
 				
 				// 1. Find the original file first
-				CapaVO orgCapaVO = capaDAO.findByID(fileVO.getCapaid());
+				CapaVO orgCapaVO = capaDAO.findByID(capaVO.getFileid());
 				
 				// 2. update file then
-				if (!capaDAO.update(fileVO)) {
+				if (!capaDAO.update(capaVO)) {
 					return false;
 				}
 				
 				// 3. insert file log then
 				
-				CapaLogVO fileLogVO = new CapaLogVO();
-				fileLogVO.setCapaid(fileVO.getCapaid());
-				fileLogVO.setCapaoptid(CapaOperations.EDIT.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(fileVO, orgCapaVO, userVO, CapaOperations.EDIT));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				CapaLogVO capaLogVO = new CapaLogVO();
+				capaLogVO.setFileid(capaVO.getFileid());
+				capaLogVO.setFileoptid(FileOperations.EDIT.ordinal());
+				capaLogVO.setChangedesc(prepareChangeDesc(capaVO, orgCapaVO, userVO, FileOperations.EDIT));
+				capaLogVO.setUserid(userVO.getUserid());
+				capaLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				
-				if (!capaLogDAO.insert(fileLogVO)) {
+				if (!capaLogDAO.insert(capaLogVO)) {
 					return false;
 				}
 				
@@ -112,22 +112,22 @@ public class CapaServiceImpl implements CapaService {
 			@Override
 			public Boolean doInTransaction(TransactionStatus status) {
 				
-				CapaVO fileVO = capaDAO.findByID(fileid);
+				CapaVO capaVO = capaDAO.findByID(fileid);
 				
 				// 1. mark file as delete
 				if (!capaDAO.delete(fileid)) {
 					return false;
 				}
 				
-				CapaLogVO fileLogVO = new CapaLogVO();
-				fileLogVO.setCapaid(fileVO.getCapaid());
-				fileLogVO.setCapaoptid(CapaOperations.DELETE.ordinal());
-				fileLogVO.setChangedesc(prepareChangeDesc(fileVO, userVO, CapaOperations.DELETE));
-				fileLogVO.setUserid(userVO.getUserid());
-				fileLogVO.setDatestamp(Calendar.getInstance().getTime());
+				CapaLogVO capaLogVO = new CapaLogVO();
+				capaLogVO.setFileid(capaVO.getFileid());
+				capaLogVO.setFileoptid(FileOperations.DELETE.ordinal());
+				capaLogVO.setChangedesc(prepareChangeDesc(capaVO, userVO, FileOperations.DELETE));
+				capaLogVO.setUserid(userVO.getUserid());
+				capaLogVO.setDatestamp(Calendar.getInstance().getTime());
 				
 				// 2. record the log then
-				if (!capaLogDAO.insert(fileLogVO)) {
+				if (!capaLogDAO.insert(capaLogVO)) {
 					return false;
 				}
 				
@@ -163,13 +163,13 @@ public class CapaServiceImpl implements CapaService {
 	/**
 	 * 获取文件日志描述
 	 * 
-	 * @param fileVO
+	 * @param capaVO
 	 * @param userVO
 	 * @param opt
 	 * @return
 	 */
-	public String prepareChangeDesc(CapaVO fileVO, UserVO userVO, FileOperations opt) {
-		return prepareChangeDesc(fileVO, null, userVO, opt);
+	public String prepareChangeDesc(CapaVO capaVO, UserVO userVO, FileOperations opt) {
+		return prepareChangeDesc(capaVO, null, userVO, opt);
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class CapaServiceImpl implements CapaService {
 		String str = opt.getDescription();
 		
 		String userName = userVO.getUsername();
-		Integer fileID = newCapaVO.getCapaid();
+		Integer fileID = newCapaVO.getFileid();
 		
 		
 		if (opt == FileOperations.ADD) {
@@ -212,30 +212,33 @@ public class CapaServiceImpl implements CapaService {
 	/**
 	 * 新增文件日志描述
 	 * 
-	 * @param fileVO
+	 * @param capaVO
 	 * @return
 	 */
-	private String descAdd(CapaVO fileVO) {
+	private String descAdd(CapaVO capaVO) {
 		
 		StringBuilder desc = new StringBuilder();
 		
-		Integer categoryID = fileVO.getCategoryid();
-		categoryID = categoryID == null ? 0 : categoryID;
-		descSingleAdd(desc, "分类编号", categoryID);
-		
-		String fileName = fileVO.getCapaname();
+		String fileName = capaVO.getFilename();
 		fileName = fileName == null || fileName.isEmpty() ? "" : fileName;
 		descSingleAdd(desc, "文件名称", fileName);
 		
-		String fileNumber = fileVO.getCapanumber();
+		String fileNumber = capaVO.getFilenumber();
 		fileNumber = fileNumber == null || fileNumber.isEmpty() ? "" : fileNumber;
 		descSingleAdd(desc, "文件编号", fileNumber);
+
+    String capaSource = capaVO.getCapasource();
+    capaSource = capaSource == null || capaSource.isEmpty() ? "" : capaSource;
+    descSingleAdd(desc, "CAPA来源", capaSource);
+
+    String closed = capaVO.getClosed() ? "是" : "否";
+    descSingleAdd(desc, "是否闭环", closed);
 		
-		String fileLabel = fileVO.getCapalabel();
+		String fileLabel = capaVO.getFilelabel();
 		fileLabel = fileLabel == null || fileLabel.isEmpty() ? "" : fileLabel;
 		descSingleAdd(desc, "文件标签", fileLabel);
 		
-		String fileDesc = fileVO.getCapadesc();
+		String fileDesc = capaVO.getFiledesc();
 		fileDesc = fileDesc == null || fileDesc.isEmpty() ? "" : fileDesc;
 		descSingleAdd(desc, "文件描述", fileDesc);
 		
@@ -252,74 +255,59 @@ public class CapaServiceImpl implements CapaService {
 	private String descEdit(CapaVO origCapaVO, CapaVO newCapaVO) {
 
 		// only compare files with the same ID
-		if (origCapaVO.getCapaid() != newCapaVO.getCapaid()) {
+		if (origCapaVO.getFileid() != newCapaVO.getFileid()) {
 			return "";
 		}
 		
 		StringBuilder desc = new StringBuilder();
-		
-		// category change
-		if (origCapaVO.getCategoryid() != newCapaVO.getCategoryid()) {
-			descSingleEdit(desc, "分类变更", origCapaVO.getCategoryid(), newCapaVO.getCategoryid());
-		}
-		
+
 		// file name change
-		if (!origCapaVO.getCapaname().trim().equals(newCapaVO.getCapaname().trim())) {
-			descSingleEdit(desc, "文件名称", origCapaVO.getCapaname(), newCapaVO.getCapaname());
+		if (!origCapaVO.getFilename().trim().equalsIgnoreCase(newCapaVO.getFilename().trim())) {
+			descSingleEdit(desc, "文件名称", origCapaVO.getFilename(), newCapaVO.getFilename());
 		}
 		
 		// file number change
-		if (!origCapaVO.getCapanumber().trim().equals(newCapaVO.getCapanumber().trim())) {
-			descSingleEdit(desc, "文件编号", origCapaVO.getCapanumber(), newCapaVO.getCapanumber());
+		if (!origCapaVO.getFilenumber().trim().equalsIgnoreCase(newCapaVO.getFilenumber().trim())) {
+			descSingleEdit(desc, "文件编号", origCapaVO.getFilenumber(), newCapaVO.getFilenumber());
 		}
+
+    // capa source change
+    String orgCapaSrc = origCapaVO.getCapasource() == null ? "" : origCapaVO.getCapasource().trim();
+    String newCapaSrc = newCapaVO.getCapasource() == null ? "" : newCapaVO.getCapasource().trim();
+
+    if (!orgCapaSrc.trim().equalsIgnoreCase(newCapaSrc.trim())) {
+      descSingleEdit(desc, "CAPA来源", orgCapaSrc, newCapaSrc);
+    }
+
+    // file number change
+    if (origCapaVO.getClosed() != newCapaVO.getClosed()) {
+      descSingleEdit(desc, "是否闭环", origCapaVO.getClosed(), newCapaVO.getClosed());
+    }
 		
 		// file label change
-		String orgCapaLabel = origCapaVO.getCapalabel() == null ? "" : origCapaVO.getCapalabel().trim();
-		String newCapaLabel = newCapaVO.getCapalabel() == null ? "" : newCapaVO.getCapalabel().trim();
+		String orgCapaLabel = origCapaVO.getFilelabel() == null ? "" : origCapaVO.getFilelabel().trim();
+		String newCapaLabel = newCapaVO.getFilelabel() == null ? "" : newCapaVO.getFilelabel().trim();
 		
-		if (!orgCapaLabel.trim().equals(newCapaLabel.trim())) {
+		if (!orgCapaLabel.trim().equalsIgnoreCase(newCapaLabel.trim())) {
 			descSingleEdit(desc, "文件标签", orgCapaLabel, newCapaLabel);
 		}
 		
 		// file description change
-		String orgCapaDesc = origCapaVO.getCapadesc() == null ? "" : origCapaVO.getCapadesc().trim();
-		String newCapaDesc = newCapaVO.getCapadesc() == null ? "" : newCapaVO.getCapadesc().trim();
+		String orgCapaDesc = origCapaVO.getFiledesc() == null ? "" : origCapaVO.getFiledesc().trim();
+		String newCapaDesc = newCapaVO.getFiledesc() == null ? "" : newCapaVO.getFiledesc().trim();
 		
-		if (!orgCapaDesc.equals(newCapaDesc)) {
+		if (!orgCapaDesc.equalsIgnoreCase(newCapaDesc)) {
 			descSingleEdit(desc, "文件描述", orgCapaDesc, newCapaDesc);
 		}
 		
 		// file upload change
-		if (!origCapaVO.getLocation().equals(newCapaVO.getLocation())) {
+		if (!origCapaVO.getLocation().equalsIgnoreCase(newCapaVO.getLocation())) {
 			desc.append("文件被重新上传;");
 		}
 		
 		return desc.toString();
 	}
-	
-	/**
-	 * 新增文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param value
-	 */
-	private void descSingleAdd(StringBuilder target, String name, Object value) {
-		target.append(name).append("： ").append(value).append("; \n");
-	}
-	
-	/**
-	 * 修改文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param oldValue
-	 * @param newValue
-	 */
-	private void descSingleEdit(StringBuilder target, String name, Object oldValue, Object newValue) {
-		target.append(name).append("： 由 ").append(oldValue).append(" 变为 ").append(newValue).append("; \n");
-	}
-	
+
 	/******************************Getter & Setter*******************************************/
 
 	public CapaDAO getCapaDAO() {

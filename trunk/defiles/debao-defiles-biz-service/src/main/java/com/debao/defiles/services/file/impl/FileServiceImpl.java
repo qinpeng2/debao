@@ -18,7 +18,7 @@ import com.debao.defiles.vo.FileVO;
 import com.debao.defiles.vo.UserVO;
 import com.debao.defiles.vo.query.FileQueryVO;
 
-public class FileServiceImpl implements FileService {
+public class FileServiceImpl extends CommonFileService implements FileService {
 	
 	@Autowired
 	private TransactionTemplate transactionTemplate;
@@ -265,12 +265,12 @@ public class FileServiceImpl implements FileService {
 		}
 		
 		// file name change
-		if (!origFileVO.getFilename().trim().equals(newFileVO.getFilename().trim())) {
+		if (!origFileVO.getFilename().trim().equalsIgnoreCase(newFileVO.getFilename().trim())) {
 			descSingleEdit(desc, "文件名称", origFileVO.getFilename(), newFileVO.getFilename());
 		}
 		
 		// file number change
-		if (!origFileVO.getFilenumber().trim().equals(newFileVO.getFilenumber().trim())) {
+		if (!origFileVO.getFilenumber().trim().equalsIgnoreCase(newFileVO.getFilenumber().trim())) {
 			descSingleEdit(desc, "文件编号", origFileVO.getFilenumber(), newFileVO.getFilenumber());
 		}
 		
@@ -278,7 +278,7 @@ public class FileServiceImpl implements FileService {
 		String orgFileLabel = origFileVO.getFilelabel() == null ? "" : origFileVO.getFilelabel().trim();
 		String newFileLabel = newFileVO.getFilelabel() == null ? "" : newFileVO.getFilelabel().trim();
 		
-		if (!orgFileLabel.trim().equals(newFileLabel.trim())) {
+		if (!orgFileLabel.trim().equalsIgnoreCase(newFileLabel.trim())) {
 			descSingleEdit(desc, "文件标签", orgFileLabel, newFileLabel);
 		}
 		
@@ -286,41 +286,19 @@ public class FileServiceImpl implements FileService {
 		String orgFileDesc = origFileVO.getFiledesc() == null ? "" : origFileVO.getFiledesc().trim();
 		String newFileDesc = newFileVO.getFiledesc() == null ? "" : newFileVO.getFiledesc().trim();
 		
-		if (!orgFileDesc.equals(newFileDesc)) {
+		if (!orgFileDesc.equalsIgnoreCase(newFileDesc)) {
 			descSingleEdit(desc, "文件描述", orgFileDesc, newFileDesc);
 		}
 		
 		// file upload change
-		if (!origFileVO.getLocation().equals(newFileVO.getLocation())) {
+		if (!origFileVO.getLocation().equalsIgnoreCase(newFileVO.getLocation())) {
 			desc.append("文件被重新上传;");
 		}
 		
 		return desc.toString();
 	}
 	
-	/**
-	 * 新增文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param value
-	 */
-	private void descSingleAdd(StringBuilder target, String name, Object value) {
-		target.append(name).append("： ").append(value).append("; \n");
-	}
-	
-	/**
-	 * 修改文件Log中的一行描述
-	 * 
-	 * @param target
-	 * @param name
-	 * @param oldValue
-	 * @param newValue
-	 */
-	private void descSingleEdit(StringBuilder target, String name, Object oldValue, Object newValue) {
-		target.append(name).append("： 由 ").append(oldValue).append(" 变为 ").append(newValue).append("; \n");
-	}
-	
+
 	/******************************Getter & Setter*******************************************/
 
 	public FileDAO getFileDAO() {
