@@ -131,6 +131,14 @@
 				                <directory>${basedir}/debao-defiles/src/main/config/</directory>
 				                <filtering>true</filtering>
 				            </resource>
+                            <resource>
+                                <directory>${basedir}/debao-defiles-biz-service/src/main/resources/</directory>
+                                <filtering>true</filtering>
+                            </resource>
+                            <resource>
+                                <directory>${basedir}/debao-defiles-dal/src/main/resources/</directory>
+                                <filtering>true</filtering>
+                            </resource>
 				        </resources>
 					<overwrite>true</overwrite>
 				    </configuration>
