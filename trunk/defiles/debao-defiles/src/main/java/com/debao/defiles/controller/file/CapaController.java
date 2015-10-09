@@ -116,7 +116,7 @@ public class CapaController {
 
     capaService.update(capaVO, userVO);
 
-    return fileList(req, map, searchReq);
+    return capaList(req, map, searchReq);
   }
 
   @RequestMapping(value = "processCapa.html", method = RequestMethod.POST)
@@ -191,8 +191,8 @@ public class CapaController {
     return changeCapa(req, map);
   }
 
-  @RequestMapping(value = "filelist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String fileList(HttpServletRequest request, ModelMap map, CapaSearchRequest searchReq) {
+  @RequestMapping(value = "capalist.html", method = {RequestMethod.POST, RequestMethod.GET})
+  public String capaList(HttpServletRequest request, ModelMap map, CapaSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
@@ -275,7 +275,7 @@ public class CapaController {
 
     capaService.delete(fileid, LogonController.getCurrentUser(request));
 
-    return fileList(request, map, searchReq);
+    return capaList(request, map, searchReq);
   }
 
   private static String sortLine(String field, String flag) {
