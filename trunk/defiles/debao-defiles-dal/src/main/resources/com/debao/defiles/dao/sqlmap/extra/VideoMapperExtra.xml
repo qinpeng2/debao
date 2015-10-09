@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.VideoVOMapper" >
+	
+	<update id="deleteFile" parameterType="map">
+		update video
+		set deleted = #{deleted,jdbcType=BIT}
+		where videoid = #{id,jdbcType=INTEGER} and deleted = 0
+	</update>
+	
+	<select id="selectByFilter" resultMap="BaseResultMap"
+		parameterType="com.debao.defiles.vo.query.VideoQueryVO">
+		select
+		<include refid="Base_Column_List" />
+		from video
+		where deleted = 0
+		<if test="department != null">
+		    and department like CONCAT('%', #{department,jdbcType=VARCHAR}, '%')
+		</if>
+        <if test="videotype != null">
+            and videotype like CONCAT('%', #{videotype,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="videoname != null">
+            and videoname like CONCAT('%', #{videoname,jdbcType=VARCHAR}, '%')
+        </if>
+		<if test="videolabel != null">
+		    and  videolabel like CONCAT('%', #{videolabel,jdbcType=VARCHAR}, '%')
+		</if>
+		order by ${extrasort} filenumber asc
+		limit #{paginator.offset},#{paginator.itemsPerPage}
+	</select>
+	
+	<select id="selectLastInsertID" resultType="int">
+	    select LAST_INSERT_ID();
+	</select>
+	
+	<select id="selectTotalByFilter" resultType="int"
+		parameterType="com.debao.defiles.vo.query.VideoQueryVO">
+		select count(videoid)
+		from video
+		where deleted = 0
+        <if test="department != null">
+            and department like CONCAT('%', #{department,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="videotype != null">
+            and videotype like CONCAT('%', #{videotype,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="videoname != null">
+            and videoname like CONCAT('%', #{videoname,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="videolabel != null">
+            and  videolabel like CONCAT('%', #{videolabel,jdbcType=VARCHAR}, '%')
+        </if>
+	</select>
+	
+	
+	<select id="selectByFuzzyFilter" resultMap="BaseResultMap"
+		parameterType="com.debao.defiles.vo.query.VideoQueryVO">
+		select
+		<include refid="Base_Column_List" />
+		from video
+		where deleted = 0
+		<if test="keyword != null">
+		    and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or videotype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or videoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+		    		or videolabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
+		</if>
+		order by ${extrasort} filenumber asc
+		limit #{paginator.offset},#{paginator.itemsPerPage}
+	</select>
+	
+	<select id="selectTotalByFuzzyFilter" resultType="int"
+		parameterType="com.debao.defiles.vo.query.VideoQueryVO">
+		select count(videoid)
+		from video
+		where deleted = 0
+		<if test="keyword != null">
+            and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or videotype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or videoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or videolabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
+		</if>
+	</select>
+</mapper>

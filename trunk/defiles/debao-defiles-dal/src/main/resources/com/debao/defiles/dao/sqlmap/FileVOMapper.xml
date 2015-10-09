@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.debao.defiles.dao.mapper.FileVOMapper">
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileVO">
-    <id column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="CategoryID" jdbcType="INTEGER" property="categoryid" />
-    <result column="FileType" jdbcType="VARCHAR" property="filetype" />
-    <result column="FileName" jdbcType="VARCHAR" property="filename" />
-    <result column="FileNumber" jdbcType="VARCHAR" property="filenumber" />
-    <result column="FileLabel" jdbcType="VARCHAR" property="filelabel" />
-    <result column="Version" jdbcType="VARCHAR" property="version" />
-    <result column="Department" jdbcType="VARCHAR" property="department" />
-    <result column="ApproveDate" jdbcType="DATE" property="approvedate" />
-    <result column="FileDesc" jdbcType="VARCHAR" property="filedesc" />
-    <result column="Location" jdbcType="VARCHAR" property="location" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.FileVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileVO" >
+    <id column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="CategoryID" property="categoryid" jdbcType="INTEGER" />
+    <result column="FileType" property="filetype" jdbcType="VARCHAR" />
+    <result column="FileName" property="filename" jdbcType="VARCHAR" />
+    <result column="FileNumber" property="filenumber" jdbcType="VARCHAR" />
+    <result column="FileLabel" property="filelabel" jdbcType="VARCHAR" />
+    <result column="Version" property="version" jdbcType="VARCHAR" />
+    <result column="Department" property="department" jdbcType="VARCHAR" />
+    <result column="ApproveDate" property="approvedate" jdbcType="DATE" />
+    <result column="FileDesc" property="filedesc" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     FileID, CategoryID, FileType, FileName, FileNumber, FileLabel, Version, Department, 
     ApproveDate, FileDesc, Location, UserID, Datestamp, Deleted
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from file
     where FileID = #{fileid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from file
     where FileID = #{fileid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileVO">
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileVO" >
     insert into file (FileID, CategoryID, FileType, 
       FileName, FileNumber, FileLabel, 
       Version, Department, ApproveDate, 
@@ -43,533 +43,143 @@
       #{filedesc,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
       #{datestamp,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileVO">
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileVO" >
     insert into file
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
         FileID,
       </if>
-      <if test="categoryid != null">
+      <if test="categoryid != null" >
         CategoryID,
       </if>
-      <if test="filetype != null">
+      <if test="filetype != null" >
         FileType,
       </if>
-      <if test="filename != null">
+      <if test="filename != null" >
         FileName,
       </if>
-      <if test="filenumber != null">
+      <if test="filenumber != null" >
         FileNumber,
       </if>
-      <if test="filelabel != null">
+      <if test="filelabel != null" >
         FileLabel,
       </if>
-      <if test="version != null">
+      <if test="version != null" >
         Version,
       </if>
-      <if test="department != null">
+      <if test="department != null" >
         Department,
       </if>
-      <if test="approvedate != null">
+      <if test="approvedate != null" >
         ApproveDate,
       </if>
-      <if test="filedesc != null">
+      <if test="filedesc != null" >
         FileDesc,
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         Location,
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         UserID,
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         Datestamp,
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         Deleted,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
         #{fileid,jdbcType=INTEGER},
       </if>
-      <if test="categoryid != null">
+      <if test="categoryid != null" >
         #{categoryid,jdbcType=INTEGER},
       </if>
-      <if test="filetype != null">
+      <if test="filetype != null" >
         #{filetype,jdbcType=VARCHAR},
       </if>
-      <if test="filename != null">
+      <if test="filename != null" >
         #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="filenumber != null">
+      <if test="filenumber != null" >
         #{filenumber,jdbcType=VARCHAR},
       </if>
-      <if test="filelabel != null">
+      <if test="filelabel != null" >
         #{filelabel,jdbcType=VARCHAR},
       </if>
-      <if test="version != null">
+      <if test="version != null" >
         #{version,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
+      <if test="department != null" >
         #{department,jdbcType=VARCHAR},
       </if>
-      <if test="approvedate != null">
+      <if test="approvedate != null" >
         #{approvedate,jdbcType=DATE},
       </if>
-      <if test="filedesc != null">
+      <if test="filedesc != null" >
         #{filedesc,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         #{location,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         #{datestamp,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         #{deleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileVO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileVO" >
     update file
-    <set>
-      <if test="categoryid != null">
+    <set >
+      <if test="categoryid != null" >
         CategoryID = #{categoryid,jdbcType=INTEGER},
       </if>
-      <if test="filetype != null">
+      <if test="filetype != null" >
         FileType = #{filetype,jdbcType=VARCHAR},
       </if>
-      <if test="filename != null">
+      <if test="filename != null" >
         FileName = #{filename,jdbcType=VARCHAR},
       </if>
-      <if test="filenumber != null">
+      <if test="filenumber != null" >
         FileNumber = #{filenumber,jdbcType=VARCHAR},
       </if>
-      <if test="filelabel != null">
+      <if test="filelabel != null" >
         FileLabel = #{filelabel,jdbcType=VARCHAR},
       </if>
-      <if test="version != null">
+      <if test="version != null" >
         Version = #{version,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
+      <if test="department != null" >
         Department = #{department,jdbcType=VARCHAR},
       </if>
-      <if test="approvedate != null">
+      <if test="approvedate != null" >
         ApproveDate = #{approvedate,jdbcType=DATE},
       </if>
-      <if test="filedesc != null">
+      <if test="filedesc != null" >
         FileDesc = #{filedesc,jdbcType=VARCHAR},
       </if>
-      <if test="location != null">
+      <if test="location != null" >
         Location = #{location,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         UserID = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         Datestamp = #{datestamp,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         Deleted = #{deleted,jdbcType=BIT},
       </if>
     </set>
     where FileID = #{fileid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileVO">
-    update file
-    set CategoryID = #{categoryid,jdbcType=INTEGER},
-      FileType = #{filetype,jdbcType=VARCHAR},
-      FileName = #{filename,jdbcType=VARCHAR},
-      FileNumber = #{filenumber,jdbcType=VARCHAR},
-      FileLabel = #{filelabel,jdbcType=VARCHAR},
-      Version = #{version,jdbcType=VARCHAR},
-      Department = #{department,jdbcType=VARCHAR},
-      ApproveDate = #{approvedate,jdbcType=DATE},
-      FileDesc = #{filedesc,jdbcType=VARCHAR},
-      Location = #{location,jdbcType=VARCHAR},
-      UserID = #{userid,jdbcType=INTEGER},
-      Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      Deleted = #{deleted,jdbcType=BIT}
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileVO">
-    <id column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="CategoryID" jdbcType="INTEGER" property="categoryid" />
-    <result column="FileType" jdbcType="VARCHAR" property="filetype" />
-    <result column="FileName" jdbcType="VARCHAR" property="filename" />
-    <result column="FileNumber" jdbcType="VARCHAR" property="filenumber" />
-    <result column="FileLabel" jdbcType="VARCHAR" property="filelabel" />
-    <result column="Version" jdbcType="VARCHAR" property="version" />
-    <result column="Department" jdbcType="VARCHAR" property="department" />
-    <result column="ApproveDate" jdbcType="DATE" property="approvedate" />
-    <result column="FileDesc" jdbcType="VARCHAR" property="filedesc" />
-    <result column="Location" jdbcType="VARCHAR" property="location" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileID, CategoryID, FileType, FileName, FileNumber, FileLabel, Version, Department, 
-    ApproveDate, FileDesc, Location, UserID, Datestamp, Deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from file
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from file
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileVO">
-    insert into file (FileID, CategoryID, FileType, 
-      FileName, FileNumber, FileLabel, 
-      Version, Department, ApproveDate, 
-      FileDesc, Location, UserID, 
-      Datestamp, Deleted)
-    values (#{fileid,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, 
-      #{filename,jdbcType=VARCHAR}, #{filenumber,jdbcType=VARCHAR}, #{filelabel,jdbcType=VARCHAR}, 
-      #{version,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{approvedate,jdbcType=DATE}, 
-      #{filedesc,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{datestamp,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileVO">
-    insert into file
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
-        FileID,
-      </if>
-      <if test="categoryid != null">
-        CategoryID,
-      </if>
-      <if test="filetype != null">
-        FileType,
-      </if>
-      <if test="filename != null">
-        FileName,
-      </if>
-      <if test="filenumber != null">
-        FileNumber,
-      </if>
-      <if test="filelabel != null">
-        FileLabel,
-      </if>
-      <if test="version != null">
-        Version,
-      </if>
-      <if test="department != null">
-        Department,
-      </if>
-      <if test="approvedate != null">
-        ApproveDate,
-      </if>
-      <if test="filedesc != null">
-        FileDesc,
-      </if>
-      <if test="location != null">
-        Location,
-      </if>
-      <if test="userid != null">
-        UserID,
-      </if>
-      <if test="datestamp != null">
-        Datestamp,
-      </if>
-      <if test="deleted != null">
-        Deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
-        #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="categoryid != null">
-        #{categoryid,jdbcType=INTEGER},
-      </if>
-      <if test="filetype != null">
-        #{filetype,jdbcType=VARCHAR},
-      </if>
-      <if test="filename != null">
-        #{filename,jdbcType=VARCHAR},
-      </if>
-      <if test="filenumber != null">
-        #{filenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="filelabel != null">
-        #{filelabel,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="approvedate != null">
-        #{approvedate,jdbcType=DATE},
-      </if>
-      <if test="filedesc != null">
-        #{filedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileVO">
-    update file
-    <set>
-      <if test="categoryid != null">
-        CategoryID = #{categoryid,jdbcType=INTEGER},
-      </if>
-      <if test="filetype != null">
-        FileType = #{filetype,jdbcType=VARCHAR},
-      </if>
-      <if test="filename != null">
-        FileName = #{filename,jdbcType=VARCHAR},
-      </if>
-      <if test="filenumber != null">
-        FileNumber = #{filenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="filelabel != null">
-        FileLabel = #{filelabel,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null">
-        Version = #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="department != null">
-        Department = #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="approvedate != null">
-        ApproveDate = #{approvedate,jdbcType=DATE},
-      </if>
-      <if test="filedesc != null">
-        FileDesc = #{filedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        Location = #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        UserID = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        Deleted = #{deleted,jdbcType=BIT},
-      </if>
-    </set>
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileVO">
-    update file
-    set CategoryID = #{categoryid,jdbcType=INTEGER},
-      FileType = #{filetype,jdbcType=VARCHAR},
-      FileName = #{filename,jdbcType=VARCHAR},
-      FileNumber = #{filenumber,jdbcType=VARCHAR},
-      FileLabel = #{filelabel,jdbcType=VARCHAR},
-      Version = #{version,jdbcType=VARCHAR},
-      Department = #{department,jdbcType=VARCHAR},
-      ApproveDate = #{approvedate,jdbcType=DATE},
-      FileDesc = #{filedesc,jdbcType=VARCHAR},
-      Location = #{location,jdbcType=VARCHAR},
-      UserID = #{userid,jdbcType=INTEGER},
-      Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      Deleted = #{deleted,jdbcType=BIT}
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileVO">
-    <id column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="CategoryID" jdbcType="INTEGER" property="categoryid" />
-    <result column="FileType" jdbcType="VARCHAR" property="filetype" />
-    <result column="FileName" jdbcType="VARCHAR" property="filename" />
-    <result column="FileNumber" jdbcType="VARCHAR" property="filenumber" />
-    <result column="FileLabel" jdbcType="VARCHAR" property="filelabel" />
-    <result column="Version" jdbcType="VARCHAR" property="version" />
-    <result column="Department" jdbcType="VARCHAR" property="department" />
-    <result column="ApproveDate" jdbcType="DATE" property="approvedate" />
-    <result column="FileDesc" jdbcType="VARCHAR" property="filedesc" />
-    <result column="Location" jdbcType="VARCHAR" property="location" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileID, CategoryID, FileType, FileName, FileNumber, FileLabel, Version, Department, 
-    ApproveDate, FileDesc, Location, UserID, Datestamp, Deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from file
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from file
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileVO">
-    insert into file (FileID, CategoryID, FileType, 
-      FileName, FileNumber, FileLabel, 
-      Version, Department, ApproveDate, 
-      FileDesc, Location, UserID, 
-      Datestamp, Deleted)
-    values (#{fileid,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, 
-      #{filename,jdbcType=VARCHAR}, #{filenumber,jdbcType=VARCHAR}, #{filelabel,jdbcType=VARCHAR}, 
-      #{version,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{approvedate,jdbcType=DATE}, 
-      #{filedesc,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{datestamp,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileVO">
-    insert into file
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
-        FileID,
-      </if>
-      <if test="categoryid != null">
-        CategoryID,
-      </if>
-      <if test="filetype != null">
-        FileType,
-      </if>
-      <if test="filename != null">
-        FileName,
-      </if>
-      <if test="filenumber != null">
-        FileNumber,
-      </if>
-      <if test="filelabel != null">
-        FileLabel,
-      </if>
-      <if test="version != null">
-        Version,
-      </if>
-      <if test="department != null">
-        Department,
-      </if>
-      <if test="approvedate != null">
-        ApproveDate,
-      </if>
-      <if test="filedesc != null">
-        FileDesc,
-      </if>
-      <if test="location != null">
-        Location,
-      </if>
-      <if test="userid != null">
-        UserID,
-      </if>
-      <if test="datestamp != null">
-        Datestamp,
-      </if>
-      <if test="deleted != null">
-        Deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileid != null">
-        #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="categoryid != null">
-        #{categoryid,jdbcType=INTEGER},
-      </if>
-      <if test="filetype != null">
-        #{filetype,jdbcType=VARCHAR},
-      </if>
-      <if test="filename != null">
-        #{filename,jdbcType=VARCHAR},
-      </if>
-      <if test="filenumber != null">
-        #{filenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="filelabel != null">
-        #{filelabel,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="approvedate != null">
-        #{approvedate,jdbcType=DATE},
-      </if>
-      <if test="filedesc != null">
-        #{filedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileVO">
-    update file
-    <set>
-      <if test="categoryid != null">
-        CategoryID = #{categoryid,jdbcType=INTEGER},
-      </if>
-      <if test="filetype != null">
-        FileType = #{filetype,jdbcType=VARCHAR},
-      </if>
-      <if test="filename != null">
-        FileName = #{filename,jdbcType=VARCHAR},
-      </if>
-      <if test="filenumber != null">
-        FileNumber = #{filenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="filelabel != null">
-        FileLabel = #{filelabel,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null">
-        Version = #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="department != null">
-        Department = #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="approvedate != null">
-        ApproveDate = #{approvedate,jdbcType=DATE},
-      </if>
-      <if test="filedesc != null">
-        FileDesc = #{filedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        Location = #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        UserID = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deleted != null">
-        Deleted = #{deleted,jdbcType=BIT},
-      </if>
-    </set>
-    where FileID = #{fileid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileVO">
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileVO" >
     update file
     set CategoryID = #{categoryid,jdbcType=INTEGER},
       FileType = #{filetype,jdbcType=VARCHAR},

@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.debao.defiles.dao.mapper.UserVOMapper">
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.UserVO">
-    <id column="UserId" jdbcType="INTEGER" property="userid" />
-    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <result column="UserName" jdbcType="VARCHAR" property="username" />
-    <result column="Password" jdbcType="VARCHAR" property="password" />
-    <result column="RealName" jdbcType="VARCHAR" property="realname" />
-    <result column="PhoneNumber" jdbcType="VARCHAR" property="phonenumber" />
-    <result column="CellPhoneNumber" jdbcType="VARCHAR" property="cellphonenumber" />
-    <result column="Email" jdbcType="VARCHAR" property="email" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.UserVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.UserVO" >
+    <id column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="RoleId" property="roleid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="RealName" property="realname" jdbcType="VARCHAR" />
+    <result column="PhoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="CellPhoneNumber" property="cellphonenumber" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     UserId, RoleId, UserName, Password, RealName, PhoneNumber, CellPhoneNumber, Email, 
     Deleted
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where UserId = #{userid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where UserId = #{userid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.UserVO">
+  <insert id="insert" parameterType="com.debao.defiles.vo.UserVO" >
     insert into user (UserId, RoleId, UserName, 
       Password, RealName, PhoneNumber, 
       CellPhoneNumber, Email, Deleted
@@ -36,374 +36,98 @@
       #{cellphonenumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.UserVO">
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.UserVO" >
     insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
         UserId,
       </if>
-      <if test="roleid != null">
+      <if test="roleid != null" >
         RoleId,
       </if>
-      <if test="username != null">
+      <if test="username != null" >
         UserName,
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         Password,
       </if>
-      <if test="realname != null">
+      <if test="realname != null" >
         RealName,
       </if>
-      <if test="phonenumber != null">
+      <if test="phonenumber != null" >
         PhoneNumber,
       </if>
-      <if test="cellphonenumber != null">
+      <if test="cellphonenumber != null" >
         CellPhoneNumber,
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         Email,
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         Deleted,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="roleid != null">
+      <if test="roleid != null" >
         #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
+      <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="realname != null">
+      <if test="realname != null" >
         #{realname,jdbcType=VARCHAR},
       </if>
-      <if test="phonenumber != null">
+      <if test="phonenumber != null" >
         #{phonenumber,jdbcType=VARCHAR},
       </if>
-      <if test="cellphonenumber != null">
+      <if test="cellphonenumber != null" >
         #{cellphonenumber,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         #{deleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.UserVO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.UserVO" >
     update user
-    <set>
-      <if test="roleid != null">
+    <set >
+      <if test="roleid != null" >
         RoleId = #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
+      <if test="username != null" >
         UserName = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
+      <if test="password != null" >
         Password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="realname != null">
+      <if test="realname != null" >
         RealName = #{realname,jdbcType=VARCHAR},
       </if>
-      <if test="phonenumber != null">
+      <if test="phonenumber != null" >
         PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
       </if>
-      <if test="cellphonenumber != null">
+      <if test="cellphonenumber != null" >
         CellPhoneNumber = #{cellphonenumber,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         Email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="deleted != null">
+      <if test="deleted != null" >
         Deleted = #{deleted,jdbcType=BIT},
       </if>
     </set>
     where UserId = #{userid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.UserVO">
-    update user
-    set RoleId = #{roleid,jdbcType=INTEGER},
-      UserName = #{username,jdbcType=VARCHAR},
-      Password = #{password,jdbcType=VARCHAR},
-      RealName = #{realname,jdbcType=VARCHAR},
-      PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
-      CellPhoneNumber = #{cellphonenumber,jdbcType=VARCHAR},
-      Email = #{email,jdbcType=VARCHAR},
-      Deleted = #{deleted,jdbcType=BIT}
-    where UserId = #{userid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.UserVO">
-    <id column="UserId" jdbcType="INTEGER" property="userid" />
-    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <result column="UserName" jdbcType="VARCHAR" property="username" />
-    <result column="Password" jdbcType="VARCHAR" property="password" />
-    <result column="RealName" jdbcType="VARCHAR" property="realname" />
-    <result column="PhoneNumber" jdbcType="VARCHAR" property="phonenumber" />
-    <result column="CellPhoneNumber" jdbcType="VARCHAR" property="cellphonenumber" />
-    <result column="Email" jdbcType="VARCHAR" property="email" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    UserId, RoleId, UserName, Password, RealName, PhoneNumber, CellPhoneNumber, Email, 
-    Deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where UserId = #{userid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where UserId = #{userid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.UserVO">
-    insert into user (UserId, RoleId, UserName, 
-      Password, RealName, PhoneNumber, 
-      CellPhoneNumber, Email, Deleted
-      )
-    values (#{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
-      #{cellphonenumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.UserVO">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        UserId,
-      </if>
-      <if test="roleid != null">
-        RoleId,
-      </if>
-      <if test="username != null">
-        UserName,
-      </if>
-      <if test="password != null">
-        Password,
-      </if>
-      <if test="realname != null">
-        RealName,
-      </if>
-      <if test="phonenumber != null">
-        PhoneNumber,
-      </if>
-      <if test="cellphonenumber != null">
-        CellPhoneNumber,
-      </if>
-      <if test="email != null">
-        Email,
-      </if>
-      <if test="deleted != null">
-        Deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="roleid != null">
-        #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phonenumber != null">
-        #{phonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphonenumber != null">
-        #{cellphonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.UserVO">
-    update user
-    <set>
-      <if test="roleid != null">
-        RoleId = #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        UserName = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        Password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        RealName = #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phonenumber != null">
-        PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphonenumber != null">
-        CellPhoneNumber = #{cellphonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        Email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null">
-        Deleted = #{deleted,jdbcType=BIT},
-      </if>
-    </set>
-    where UserId = #{userid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.UserVO">
-    update user
-    set RoleId = #{roleid,jdbcType=INTEGER},
-      UserName = #{username,jdbcType=VARCHAR},
-      Password = #{password,jdbcType=VARCHAR},
-      RealName = #{realname,jdbcType=VARCHAR},
-      PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
-      CellPhoneNumber = #{cellphonenumber,jdbcType=VARCHAR},
-      Email = #{email,jdbcType=VARCHAR},
-      Deleted = #{deleted,jdbcType=BIT}
-    where UserId = #{userid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.UserVO">
-    <id column="UserId" jdbcType="INTEGER" property="userid" />
-    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <result column="UserName" jdbcType="VARCHAR" property="username" />
-    <result column="Password" jdbcType="VARCHAR" property="password" />
-    <result column="RealName" jdbcType="VARCHAR" property="realname" />
-    <result column="PhoneNumber" jdbcType="VARCHAR" property="phonenumber" />
-    <result column="CellPhoneNumber" jdbcType="VARCHAR" property="cellphonenumber" />
-    <result column="Email" jdbcType="VARCHAR" property="email" />
-    <result column="Deleted" jdbcType="BIT" property="deleted" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    UserId, RoleId, UserName, Password, RealName, PhoneNumber, CellPhoneNumber, Email, 
-    Deleted
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where UserId = #{userid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where UserId = #{userid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.UserVO">
-    insert into user (UserId, RoleId, UserName, 
-      Password, RealName, PhoneNumber, 
-      CellPhoneNumber, Email, Deleted
-      )
-    values (#{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
-      #{cellphonenumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.UserVO">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        UserId,
-      </if>
-      <if test="roleid != null">
-        RoleId,
-      </if>
-      <if test="username != null">
-        UserName,
-      </if>
-      <if test="password != null">
-        Password,
-      </if>
-      <if test="realname != null">
-        RealName,
-      </if>
-      <if test="phonenumber != null">
-        PhoneNumber,
-      </if>
-      <if test="cellphonenumber != null">
-        CellPhoneNumber,
-      </if>
-      <if test="email != null">
-        Email,
-      </if>
-      <if test="deleted != null">
-        Deleted,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="roleid != null">
-        #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phonenumber != null">
-        #{phonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphonenumber != null">
-        #{cellphonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.UserVO">
-    update user
-    <set>
-      <if test="roleid != null">
-        RoleId = #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        UserName = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        Password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        RealName = #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phonenumber != null">
-        PhoneNumber = #{phonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphonenumber != null">
-        CellPhoneNumber = #{cellphonenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        Email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null">
-        Deleted = #{deleted,jdbcType=BIT},
-      </if>
-    </set>
-    where UserId = #{userid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.UserVO">
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.UserVO" >
     update user
     set RoleId = #{roleid,jdbcType=INTEGER},
       UserName = #{username,jdbcType=VARCHAR},

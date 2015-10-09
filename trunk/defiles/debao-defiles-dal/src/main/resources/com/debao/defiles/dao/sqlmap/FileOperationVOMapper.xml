@@ -1,164 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.debao.defiles.dao.mapper.FileOperationVOMapper">
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileOperationVO">
-    <id column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="OptName" jdbcType="VARCHAR" property="optname" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.FileOperationVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileOperationVO" >
+    <id column="FileOptID" property="fileoptid" jdbcType="INTEGER" />
+    <result column="OptName" property="optname" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     FileOptID, OptName
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from fileoperation
     where FileOptID = #{fileoptid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from fileoperation
     where FileOptID = #{fileoptid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileOperationVO">
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileOperationVO" >
     insert into fileoperation (FileOptID, OptName)
     values (#{fileoptid,jdbcType=INTEGER}, #{optname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileOperationVO">
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileOperationVO" >
     insert into fileoperation
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileoptid != null" >
         FileOptID,
       </if>
-      <if test="optname != null">
+      <if test="optname != null" >
         OptName,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileoptid != null" >
         #{fileoptid,jdbcType=INTEGER},
       </if>
-      <if test="optname != null">
+      <if test="optname != null" >
         #{optname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileOperationVO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileOperationVO" >
     update fileoperation
-    <set>
-      <if test="optname != null">
+    <set >
+      <if test="optname != null" >
         OptName = #{optname,jdbcType=VARCHAR},
       </if>
     </set>
     where FileOptID = #{fileoptid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileOperationVO">
-    update fileoperation
-    set OptName = #{optname,jdbcType=VARCHAR}
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileOperationVO">
-    <id column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="OptName" jdbcType="VARCHAR" property="optname" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileOptID, OptName
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from fileoperation
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from fileoperation
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileOperationVO">
-    insert into fileoperation (FileOptID, OptName)
-    values (#{fileoptid,jdbcType=INTEGER}, #{optname,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileOperationVO">
-    insert into fileoperation
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
-        FileOptID,
-      </if>
-      <if test="optname != null">
-        OptName,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
-        #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="optname != null">
-        #{optname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileOperationVO">
-    update fileoperation
-    <set>
-      <if test="optname != null">
-        OptName = #{optname,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileOperationVO">
-    update fileoperation
-    set OptName = #{optname,jdbcType=VARCHAR}
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileOperationVO">
-    <id column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="OptName" jdbcType="VARCHAR" property="optname" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileOptID, OptName
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from fileoperation
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from fileoperation
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileOperationVO">
-    insert into fileoperation (FileOptID, OptName)
-    values (#{fileoptid,jdbcType=INTEGER}, #{optname,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileOperationVO">
-    insert into fileoperation
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
-        FileOptID,
-      </if>
-      <if test="optname != null">
-        OptName,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fileoptid != null">
-        #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="optname != null">
-        #{optname,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileOperationVO">
-    update fileoperation
-    <set>
-      <if test="optname != null">
-        OptName = #{optname,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where FileOptID = #{fileoptid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileOperationVO">
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileOperationVO" >
     update fileoperation
     set OptName = #{optname,jdbcType=VARCHAR}
     where FileOptID = #{fileoptid,jdbcType=INTEGER}

@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.debao.defiles.dao.mapper.FileLogVOMapper">
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLogVO">
-    <id column="FileLogID" jdbcType="INTEGER" property="filelogid" />
-    <result column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="ChangeDesc" jdbcType="VARCHAR" property="changedesc" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.FileLogVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLogVO" >
+    <id column="FileLogID" property="filelogid" jdbcType="INTEGER" />
+    <result column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FileOptID" property="fileoptid" jdbcType="INTEGER" />
+    <result column="ChangeDesc" property="changedesc" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     FileLogID, FileID, FileOptID, ChangeDesc, UserID, Datestamp
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from filelog
     where FileLogID = #{filelogid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from filelog
     where FileLogID = #{filelogid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileLogVO">
+  <insert id="insert" parameterType="com.debao.defiles.vo.FileLogVO" >
     insert into filelog (FileLogID, FileID, FileOptID, 
       ChangeDesc, UserID, Datestamp
       )
@@ -30,275 +30,71 @@
       #{changedesc,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLogVO">
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLogVO" >
     insert into filelog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="filelogid != null" >
         FileLogID,
       </if>
-      <if test="fileid != null">
+      <if test="fileid != null" >
         FileID,
       </if>
-      <if test="fileoptid != null">
+      <if test="fileoptid != null" >
         FileOptID,
       </if>
-      <if test="changedesc != null">
+      <if test="changedesc != null" >
         ChangeDesc,
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         UserID,
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         Datestamp,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="filelogid != null" >
         #{filelogid,jdbcType=INTEGER},
       </if>
-      <if test="fileid != null">
+      <if test="fileid != null" >
         #{fileid,jdbcType=INTEGER},
       </if>
-      <if test="fileoptid != null">
+      <if test="fileoptid != null" >
         #{fileoptid,jdbcType=INTEGER},
       </if>
-      <if test="changedesc != null">
+      <if test="changedesc != null" >
         #{changedesc,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         #{datestamp,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLogVO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLogVO" >
     update filelog
-    <set>
-      <if test="fileid != null">
+    <set >
+      <if test="fileid != null" >
         FileID = #{fileid,jdbcType=INTEGER},
       </if>
-      <if test="fileoptid != null">
+      <if test="fileoptid != null" >
         FileOptID = #{fileoptid,jdbcType=INTEGER},
       </if>
-      <if test="changedesc != null">
+      <if test="changedesc != null" >
         ChangeDesc = #{changedesc,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
+      <if test="userid != null" >
         UserID = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="datestamp != null">
+      <if test="datestamp != null" >
         Datestamp = #{datestamp,jdbcType=TIMESTAMP},
       </if>
     </set>
     where FileLogID = #{filelogid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLogVO">
-    update filelog
-    set FileID = #{fileid,jdbcType=INTEGER},
-      FileOptID = #{fileoptid,jdbcType=INTEGER},
-      ChangeDesc = #{changedesc,jdbcType=VARCHAR},
-      UserID = #{userid,jdbcType=INTEGER},
-      Datestamp = #{datestamp,jdbcType=TIMESTAMP}
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLogVO">
-    <id column="FileLogID" jdbcType="INTEGER" property="filelogid" />
-    <result column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="ChangeDesc" jdbcType="VARCHAR" property="changedesc" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileLogID, FileID, FileOptID, ChangeDesc, UserID, Datestamp
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from filelog
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from filelog
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileLogVO">
-    insert into filelog (FileLogID, FileID, FileOptID, 
-      ChangeDesc, UserID, Datestamp
-      )
-    values (#{filelogid,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{fileoptid,jdbcType=INTEGER}, 
-      #{changedesc,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLogVO">
-    insert into filelog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
-        FileLogID,
-      </if>
-      <if test="fileid != null">
-        FileID,
-      </if>
-      <if test="fileoptid != null">
-        FileOptID,
-      </if>
-      <if test="changedesc != null">
-        ChangeDesc,
-      </if>
-      <if test="userid != null">
-        UserID,
-      </if>
-      <if test="datestamp != null">
-        Datestamp,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
-        #{filelogid,jdbcType=INTEGER},
-      </if>
-      <if test="fileid != null">
-        #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="fileoptid != null">
-        #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="changedesc != null">
-        #{changedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLogVO">
-    update filelog
-    <set>
-      <if test="fileid != null">
-        FileID = #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="fileoptid != null">
-        FileOptID = #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="changedesc != null">
-        ChangeDesc = #{changedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        UserID = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLogVO">
-    update filelog
-    set FileID = #{fileid,jdbcType=INTEGER},
-      FileOptID = #{fileoptid,jdbcType=INTEGER},
-      ChangeDesc = #{changedesc,jdbcType=VARCHAR},
-      UserID = #{userid,jdbcType=INTEGER},
-      Datestamp = #{datestamp,jdbcType=TIMESTAMP}
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.FileLogVO">
-    <id column="FileLogID" jdbcType="INTEGER" property="filelogid" />
-    <result column="FileID" jdbcType="INTEGER" property="fileid" />
-    <result column="FileOptID" jdbcType="INTEGER" property="fileoptid" />
-    <result column="ChangeDesc" jdbcType="VARCHAR" property="changedesc" />
-    <result column="UserID" jdbcType="INTEGER" property="userid" />
-    <result column="Datestamp" jdbcType="TIMESTAMP" property="datestamp" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    FileLogID, FileID, FileOptID, ChangeDesc, UserID, Datestamp
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from filelog
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from filelog
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.debao.defiles.vo.FileLogVO">
-    insert into filelog (FileLogID, FileID, FileOptID, 
-      ChangeDesc, UserID, Datestamp
-      )
-    values (#{filelogid,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{fileoptid,jdbcType=INTEGER}, 
-      #{changedesc,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.debao.defiles.vo.FileLogVO">
-    insert into filelog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
-        FileLogID,
-      </if>
-      <if test="fileid != null">
-        FileID,
-      </if>
-      <if test="fileoptid != null">
-        FileOptID,
-      </if>
-      <if test="changedesc != null">
-        ChangeDesc,
-      </if>
-      <if test="userid != null">
-        UserID,
-      </if>
-      <if test="datestamp != null">
-        Datestamp,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="filelogid != null">
-        #{filelogid,jdbcType=INTEGER},
-      </if>
-      <if test="fileid != null">
-        #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="fileoptid != null">
-        #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="changedesc != null">
-        #{changedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.FileLogVO">
-    update filelog
-    <set>
-      <if test="fileid != null">
-        FileID = #{fileid,jdbcType=INTEGER},
-      </if>
-      <if test="fileoptid != null">
-        FileOptID = #{fileoptid,jdbcType=INTEGER},
-      </if>
-      <if test="changedesc != null">
-        ChangeDesc = #{changedesc,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        UserID = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="datestamp != null">
-        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where FileLogID = #{filelogid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLogVO">
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.FileLogVO" >
     update filelog
     set FileID = #{fileid,jdbcType=INTEGER},
       FileOptID = #{fileoptid,jdbcType=INTEGER},
