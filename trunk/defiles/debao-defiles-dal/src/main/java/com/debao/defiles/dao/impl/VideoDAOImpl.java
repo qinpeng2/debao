@@ -20,8 +20,8 @@ public class VideoDAOImpl implements VideoDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public boolean insert(VideoVO driftVO) {
-		return 1 == videoVOMapper.insert(driftVO);
+	public boolean insert(VideoVO videoVO) {
+		return 1 == videoVOMapper.insert(videoVO);
 	}
 	
 	@Override
@@ -30,8 +30,8 @@ public class VideoDAOImpl implements VideoDAO {
 	};
 
 	@Override
-	public boolean update(VideoVO driftVO) {
-		return 1 == videoVOMapper.updateByPrimaryKey(driftVO);
+	public boolean update(VideoVO videoVO) {
+		return 1 == videoVOMapper.updateByPrimaryKey(videoVO);
 	}
 
 

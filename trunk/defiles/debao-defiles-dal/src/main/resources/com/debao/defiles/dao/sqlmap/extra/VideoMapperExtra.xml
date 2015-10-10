@@ -20,8 +20,8 @@
         <if test="videotype != null">
             and videotype like CONCAT('%', #{videotype,jdbcType=VARCHAR}, '%')
         </if>
-        <if test="videoname != null">
-            and videoname like CONCAT('%', #{videoname,jdbcType=VARCHAR}, '%')
+        <if test="viedoname != null">
+            and viedoname like CONCAT('%', #{viedoname,jdbcType=VARCHAR}, '%')
         </if>
 		<if test="videolabel != null">
 		    and  videolabel like CONCAT('%', #{videolabel,jdbcType=VARCHAR}, '%')
@@ -45,8 +45,8 @@
         <if test="videotype != null">
             and videotype like CONCAT('%', #{videotype,jdbcType=VARCHAR}, '%')
         </if>
-        <if test="videoname != null">
-            and videoname like CONCAT('%', #{videoname,jdbcType=VARCHAR}, '%')
+        <if test="viedoname != null">
+            and viedoname like CONCAT('%', #{viedoname,jdbcType=VARCHAR}, '%')
         </if>
         <if test="videolabel != null">
             and  videolabel like CONCAT('%', #{videolabel,jdbcType=VARCHAR}, '%')
@@ -63,7 +63,7 @@
 		<if test="keyword != null">
 		    and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or videotype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
-                    or videoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or viedoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
 		    		or videolabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
 		</if>
 		order by ${extrasort} datestamp desc
@@ -78,7 +78,7 @@
 		<if test="keyword != null">
             and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or videotype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
-                    or videoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or viedoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or videolabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
 		</if>
 	</select>

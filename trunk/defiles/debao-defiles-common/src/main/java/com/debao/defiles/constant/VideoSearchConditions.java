@@ -10,7 +10,7 @@ public enum VideoSearchConditions {
   LABEL("视频标签"),
   // 3
   TYPE("视频类型"),
-  // 5
+  // 4
   DEPARTMENT("部门名称");
 
 

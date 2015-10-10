@@ -70,7 +70,7 @@ function checkform() {
           #end
 
             <div class="row"> <strong class="caption">*视频名称:</strong>
-                <input type="text" class="txtFull" name="viedoname" id="viedoname" placeholder="视频名称" style="width:600px" value="$!file.filename" />
+                <input type="text" class="txtFull" name="viedoname" id="viedoname" placeholder="视频名称" style="width:600px" value="$!file.viedoname" />
             </div>
               <div class="row"> <strong class="caption">&nbsp;&nbsp;视频类型:</strong>
                   <input type="text" class="txtFull" name="videotype" id="videotype" placeholder="视频类型" value="$!file.videotype" />
@@ -79,20 +79,21 @@ function checkform() {
               <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
             </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
-              <input type="text" class="txtFull" name="videolable" id="videolable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
+              <input type="text" class="txtFull" name="videolabel" id="videolabel" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.videolabel" />
             </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;视频简介:</strong>
-            	<textarea rows="5" cols="95" id="videodesc" name="videodesc">$!file.filedesc</textarea>
+            	<textarea rows="5" cols="95" id="videodesc" name="videodesc">$!file.videodesc</textarea>
             </div>
             <hr/>
-            <div class="row"> <strong class="caption">*选择缩略图:</strong>
-              <input type="file" class="txtFull" name="img" id="file" placeholder="上传缩略图" />
-            </div>
-            #if(!$!file.videoid)
-            <div class="row"> <strong class="caption">*选择视频源:</strong>
-              <input type="file" class="txtFull" name="file" id="file" placeholder="上传视频源" />
-            </div>
-            #end
+              #if(!$!file.videoid)
+                  <div class="row"><strong class="caption">*选择缩略图:</strong>
+                      <input type="file" class="txtFull" name="img" id="file" placeholder="上传缩略图"/>
+                  </div>
+
+                  <div class="row"><strong class="caption">*选择视频源:</strong>
+                      <input type="file" class="txtFull" name="file" id="file" placeholder="上传视频源"/>
+                  </div>
+              #end
             <div class="row" style=" text-align:left; padding-left:250px;">
             	<input type="submit" class="button add" id="btnAdd" value="提交"/>&nbsp;&nbsp;
            	</div>

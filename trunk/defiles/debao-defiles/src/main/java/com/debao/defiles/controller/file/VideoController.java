@@ -33,9 +33,9 @@ import java.util.List;
 @Controller
 public class VideoController {
 
-  public static final String UPLOAD_FOLDER = "uploavideo";
+  public static final String UPLOAD_FOLDER = "uploadvideo";
 
-  public static final String UPLOAD_IMG_FOLDER = "uploavideoimg";
+  public static final String UPLOAD_IMG_FOLDER = "uploadvideoimg";
 
   private VideoService videoService;
 
@@ -55,7 +55,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "editVideo.html", method = RequestMethod.GET)
-  public String editVideo(HttpServletRequest req, ModelMap map, Integer fileid,
+  public String editVideo(HttpServletRequest req, ModelMap map, Integer videoid,
                            VideoSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
@@ -63,7 +63,7 @@ public class VideoController {
       return permission;
     }
 
-    VideoVO VideoVO = videoService.findByID(fileid);
+    VideoVO VideoVO = videoService.findByID(videoid);
 
     map.put("file", VideoVO);
     map.put("search", searchReq);
@@ -266,7 +266,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "removeVideo.html", method = RequestMethod.GET)
-  public String removeVideo(HttpServletRequest request, ModelMap map, Integer fileid,
+  public String removeVideo(HttpServletRequest request, ModelMap map, Integer videoid,
                              VideoSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
@@ -274,7 +274,7 @@ public class VideoController {
       return permission;
     }
 
-    videoService.delete(fileid, LogonController.getCurrentUser(request));
+    videoService.delete(videoid, LogonController.getCurrentUser(request));
 
     return videoList(request, map, searchReq);
   }
