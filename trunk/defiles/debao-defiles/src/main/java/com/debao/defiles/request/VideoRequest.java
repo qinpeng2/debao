@@ -2,103 +2,83 @@ package com.debao.defiles.request;
 
 public class VideoRequest {
 	
-	private Integer fileid;
+	private Integer videoid;
 
-	private String filename;
-	
-	private String filenumber;
+	private String viedoname;
 
-	private String filetype;
+	private String videotype;
 	
 	private String department;
 
-	private String filelable;
+	private String videolabel;
 	
-	private String filedesc;
+	private String videodesc;
 	
 	private String location;
 
-  private String capasource;
+  private String imglocation;
 
-  private String closed;
-
-	public Integer getFileid() {
-		return fileid;
-	}
-
-	public void setFileid(Integer fileid) {
-		this.fileid = fileid;
-	}
-
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public String getFilenumber() {
-		return filenumber;
-	}
-
-	public void setFilenumber(String filenumber) {
-		this.filenumber = filenumber;
-	}
-
-	public String getFilelable() {
-		return filelable;
-	}
-
-	public void setFilelable(String filelable) {
-		this.filelable = filelable;
-	}
-
-	public String getFiledesc() {
-		return filedesc;
-	}
-
-	public void setFiledesc(String filedesc) {
-		this.filedesc = filedesc;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getFiletype() {
-		return filetype;
-	}
-
-	public void setFiletype(String filetype) {
-		this.filetype = filetype;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-  public String getCapasource() {
-    return capasource;
+  public Integer getVideoid() {
+    return videoid;
   }
 
-  public void setCapasource(String capasource) {
-    this.capasource = capasource;
+  public void setVideoid(Integer videoid) {
+    this.videoid = videoid;
   }
 
-  public String getClosed() {
-    return closed;
+  public String getViedoname() {
+    return viedoname;
   }
 
-  public void setClosed(String closed) {
-    this.closed = closed;
+  public void setViedoname(String viedoname) {
+    this.viedoname = viedoname;
+  }
+
+  public String getVideotype() {
+    return videotype;
+  }
+
+  public void setVideotype(String videotype) {
+    this.videotype = videotype;
+  }
+
+  public String getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(String department) {
+    this.department = department;
+  }
+
+  public String getVideolabel() {
+    return videolabel;
+  }
+
+  public void setVideolabel(String videolabel) {
+    this.videolabel = videolabel;
+  }
+
+  public String getVideodesc() {
+    return videodesc;
+  }
+
+  public void setVideodesc(String videodesc) {
+    this.videodesc = videodesc;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  public String getImglocation() {
+    return imglocation;
+  }
+
+  public void setImglocation(String imglocation) {
+    this.imglocation = imglocation;
   }
 }

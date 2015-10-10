@@ -14,36 +14,11 @@
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-function initDatePicker() {
-	$('input.datepicker').datepicker({
-		showOn: "button",
-		buttonImage: "img/show-calendar.gif",
-		buttonText: "Date Picker",		
-		dateFormat: 'yy-mm-dd',
-        beforeShow: function(dateText, inst) {
-            $(this).keydown();
-        }
-	});
-	$('.ui-datepicker-trigger').css({"cursor":"pointer", "vertical-align":"middle"});
-}
 
 $(document).ready(function(){
-	initFileCategory();
-	initDatePicker();
 });
 
-function initFileCategory() {
-	#if($!file.categoryid)
-	$('#categoryid').val($!file.categoryid);
-	#end
-}
-
 function checkform() {
-	
-	if ($('#categoryid').val() == "" || $('#categoryid').val() <= 0) {
-		alert("请选择分类！");
-		return false;
-	}
 
 	if ($('#filename').val() == "") {
 		alert("请输入文件名！");

@@ -35,6 +35,8 @@ public class VideoController {
 
   public static final String UPLOAD_FOLDER = "uploavideo";
 
+  public static final String UPLOAD_IMG_FOLDER = "uploavideoimg";
+
   private VideoService videoService;
 
   private ServletContext servletContext;
@@ -82,12 +84,9 @@ public class VideoController {
 
     String errorMsg = "";
 
-    String fileName = videoReq.getFilename();
-    String fileNumber = videoReq.getFilenumber();
+    String fileName = videoReq.getViedoname();
     if (fileName == null || fileName.isEmpty()) {
       errorMsg = "请填写文件名称";
-    } else if (fileNumber == null || fileNumber.isEmpty()) {
-      errorMsg = "请填写文件编号！";
     }
 
     if (!errorMsg.isEmpty()) {
@@ -101,12 +100,12 @@ public class VideoController {
       return null;
     }
 
-    VideoVO VideoVO = videoService.findByID(videoReq.getFileid());
+    VideoVO VideoVO = videoService.findByID(videoReq.getVideoid());
     VideoVO.setViedoname(fileName);
-    VideoVO.setVideotype(videoReq.getFiletype());
+    VideoVO.setVideotype(videoReq.getVideotype());
     VideoVO.setDepartment(videoReq.getDepartment());
-    VideoVO.setVideolabel(videoReq.getFilelable());
-    VideoVO.setVideodesc(videoReq.getFiledesc());
+    VideoVO.setVideolabel(videoReq.getVideolabel());
+    VideoVO.setVideodesc(videoReq.getVideodesc());
     VideoVO.setUserid(LogonController.getCurrentUser(req).getUserid());
     VideoVO.setDatestamp(Calendar.getInstance().getTime());
     VideoVO.setDeleted(false);
@@ -117,7 +116,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "processVideo.html", method = RequestMethod.POST)
-  public String processChangeVideo(@RequestParam MultipartFile file, HttpServletRequest req,
+  public String processChangeVideo(@RequestParam MultipartFile file, @RequestParam MultipartFile img, HttpServletRequest req,
                                     ModelMap map, VideoRequest videoReq) throws ParseException {
 
     String permission = LogonController.permission(req, true);
@@ -129,12 +128,9 @@ public class VideoController {
 
     String errorMsg = "";
 
-    String fileName = videoReq.getFilename();
-    String fileNumber = videoReq.getFilenumber();
+    String fileName = videoReq.getViedoname();
     if (fileName == null || fileName.isEmpty()) {
       errorMsg = "请填写文件名称";
-    } else if (fileNumber == null || fileNumber.isEmpty()) {
-      errorMsg = "请填写文件编号！";
     } else if (file == null || file.isEmpty()) {
       errorMsg = "请选择上传文件！";
     }
@@ -152,10 +148,10 @@ public class VideoController {
 
     VideoVO videoVO = new VideoVO();
     videoVO.setViedoname(fileName);
-    videoVO.setVideotype(videoReq.getFiletype());
+    videoVO.setVideotype(videoReq.getVideotype());
     videoVO.setDepartment(videoReq.getDepartment());
-    videoVO.setVideolabel(videoReq.getFilelable());
-    videoVO.setVideodesc(videoReq.getFiledesc());
+    videoVO.setVideolabel(videoReq.getVideolabel());
+    videoVO.setVideodesc(videoReq.getVideodesc());
     videoVO.setUserid(LogonController.getCurrentUser(req).getUserid());
     videoVO.setDatestamp(Calendar.getInstance().getTime());
     videoVO.setDeleted(false);
@@ -173,6 +169,25 @@ public class VideoController {
         try {
           file.transferTo(new File(realPath));
           videoVO.setLocation(filePath);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    // upload img then
+    String originalImgName = img.getOriginalFilename();
+    String imgSuffix =
+      originalImgName.substring(originalImgName.indexOf("."), originalImgName.length());
+
+    if (img != null && !img.isEmpty()) {
+      String imgPath = UPLOAD_IMG_FOLDER + "/" + UUIDHelper.getUUIDFileName() + imgSuffix;
+      String imgRealPath = servletContext.getRealPath("/" + imgPath);
+
+      if (!imgRealPath.isEmpty()) {
+        try {
+          img.transferTo(new File(imgRealPath));
+          videoVO.setImglocation(imgPath);
         } catch (Exception e) {
           e.printStackTrace();
         }

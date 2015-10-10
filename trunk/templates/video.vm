@@ -14,49 +14,18 @@
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-function initDatePicker() {
-	$('input.datepicker').datepicker({
-		showOn: "button",
-		buttonImage: "img/show-calendar.gif",
-		buttonText: "Date Picker",
-		dateFormat: 'yy-mm-dd',
-        beforeShow: function(dateText, inst) {
-            $(this).keydown();
-        }
-	});
-	$('.ui-datepicker-trigger').css({"cursor":"pointer", "vertical-align":"middle"});
-}
 
 $(document).ready(function(){
-	initFileCategory();
-	initDatePicker();
 });
-
-function initFileCategory() {
-	#if($!file.categoryid)
-	$('#categoryid').val($!file.categoryid);
-	#end
-}
 
 function checkform() {
 
-	if ($('#categoryid').val() == "" || $('#categoryid').val() <= 0) {
-		alert("请选择分类！");
-		return false;
-	}
-
-	if ($('#filename').val() == "") {
+	if ($('#viedoname').val() == "") {
 		alert("请输入文件名！");
 		return false;
 	}
 
-	if ($('#filenumber').val() == "") {
-		alert("请输入文件编号！");
-		return false;
-	}
-
-
-	#if(!$!file.fileid)
+	#if(!$!file.videoid)
 	if ($('#file').val() == "") {
 		alert("请上传文件！");
 		return false;
@@ -86,9 +55,9 @@ function checkform() {
       <tr>
         <td>
           <div id="AddBox">
-          #if($!file.fileid)
-            <form name="myform" id="myform" action="processFileEdit.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
-	            <input type="hidden" id="fileid" name="fileid" value="$!file.fileid" />
+          #if($!file.videoid)
+            <form name="myform" id="myform" action="processVideoEdit.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+	            <input type="hidden" id="videoid" name="videoid" value="$!file.videoid" />
 	            <input type="hidden" name="itemsPerPage" value="$!searchReq.itemsPerPage"/>
 	   			<input type="hidden" name="currentPage" id="currentPage" value="$!searchReq.currentPage"/>
 	   			<input type="hidden" name="sortnumber" id="sortnumber" value="$!searchReq.sortnumber"/>
@@ -97,26 +66,29 @@ function checkform() {
 	   			<input type="hidden" name="keyword" id="keyword" value="$!searchReq.keyword"/>
 	   			<input type="hidden" name="searchcondtion" id="searchcondtion" value="$!searchReq.searchcondtion"/>
           #else
-          	<form name="myform" id="myform" action="processFile.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+          	<form name="myform" id="myform" action="processVideo.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
           #end
 
             <div class="row"> <strong class="caption">*视频名称:</strong>
-                <input type="text" class="txtFull" name="filename" id="filename" placeholder="文件名" style="width:600px" value="$!file.filename" />
+                <input type="text" class="txtFull" name="viedoname" id="viedoname" placeholder="视频名称" style="width:600px" value="$!file.filename" />
             </div>
+              <div class="row"> <strong class="caption">&nbsp;&nbsp;视频类型:</strong>
+                  <input type="text" class="txtFull" name="videotype" id="videotype" placeholder="视频类型" value="$!file.videotype" />
+              </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;编制部门:</strong>
               <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
             </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
-              <input type="text" class="txtFull" name="filelable" id="filelable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
+              <input type="text" class="txtFull" name="videolable" id="videolable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
             </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;视频简介:</strong>
-            	<textarea rows="5" cols="95" id="filedesc" name="filedesc">$!file.filedesc</textarea>
+            	<textarea rows="5" cols="95" id="videodesc" name="videodesc">$!file.filedesc</textarea>
             </div>
             <hr/>
             <div class="row"> <strong class="caption">*选择缩略图:</strong>
-              <input type="file" class="txtFull" name="file" id="file" placeholder="上传缩略图" />
+              <input type="file" class="txtFull" name="img" id="file" placeholder="上传缩略图" />
             </div>
-            #if(!$!file.fileid)
+            #if(!$!file.videoid)
             <div class="row"> <strong class="caption">*选择视频源:</strong>
               <input type="file" class="txtFull" name="file" id="file" placeholder="上传视频源" />
             </div>

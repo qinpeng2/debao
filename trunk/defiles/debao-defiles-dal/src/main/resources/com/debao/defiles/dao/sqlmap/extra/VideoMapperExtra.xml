@@ -26,7 +26,7 @@
 		<if test="videolabel != null">
 		    and  videolabel like CONCAT('%', #{videolabel,jdbcType=VARCHAR}, '%')
 		</if>
-		order by ${extrasort} filenumber asc
+		order by ${extrasort} datestamp desc
 		limit #{paginator.offset},#{paginator.itemsPerPage}
 	</select>
 	
@@ -66,7 +66,7 @@
                     or videoname like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
 		    		or videolabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
 		</if>
-		order by ${extrasort} filenumber asc
+		order by ${extrasort} datestamp desc
 		limit #{paginator.offset},#{paginator.itemsPerPage}
 	</select>
 	
