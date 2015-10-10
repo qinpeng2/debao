@@ -4,18 +4,21 @@ public enum CapaSearchConditions {
 
 	// 0
 	FUZZY("模糊搜索"),
-	// 1
-	DEPARTMENT("部门名称"),
+  // 1
+  NAME("文件名称"),
 	// 2
-	SOURCE("CAPA来源"),
+  LABEL("文件标签"),
   // 3
-  TYPE("问题类型"),
+  SOURCE("CAPA来源"),
   // 4
-  CLOSED("是否闭环"),
+  TYPE("问题类型"),
   // 5
-	LABEL("文件标签");
+  CLOSED("是否闭环"),
+  // 6
+  DEPARTMENT("部门名称");
 
-	private String description;
+
+  private String description;
 
 	private CapaSearchConditions(String description) {
 		this.description = description;

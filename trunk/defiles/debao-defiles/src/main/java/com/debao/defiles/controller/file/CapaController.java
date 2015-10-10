@@ -233,7 +233,9 @@ public class CapaController {
       files = capaService.fuzzyFind(filter);
       paginator.setItems(capaService.totalFuzzyFind(filter));
     } else {
-      if (CapaSearchConditions.DEPARTMENT.ordinal() == searchReq.getSearchcondtion()) {
+      if (CapaSearchConditions.NAME.ordinal() == searchReq.getSearchcondtion()) {
+        filter.setFilename(keyword);
+      } else if (CapaSearchConditions.DEPARTMENT.ordinal() == searchReq.getSearchcondtion()) {
         filter.setDepartment(keyword);
       } else if (CapaSearchConditions.SOURCE.ordinal() == searchReq.getSearchcondtion()) {
         filter.setCapasource(keyword);

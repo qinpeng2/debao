@@ -72,9 +72,6 @@
 		<include refid="Base_Column_List" />
 		from capa
 		where deleted = 0
-		<if test="categoryid != null and categoryid >0">
-			and categoryid = #{categoryid,jdbcType=INTEGER}
-		</if>
 		<if test="keyword != null">
 		    and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
 		    		or capasource like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
@@ -91,9 +88,6 @@
 		select count(fileid)
 		from capa
 		where deleted = 0
-		<if test="categoryid != null and categoryid >0">
-			and categoryid = #{categoryid,jdbcType=INTEGER}
-		</if>
 		<if test="keyword != null">
             and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or capasource like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
