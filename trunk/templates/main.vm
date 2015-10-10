@@ -92,7 +92,7 @@
 
           <dl id="nav_5">
               <dt>偏差管理</dt>
-              <dd id="nav_601"><a href="driftlist.html" target="main"><span onClick="javascript:gourl('501')">教学视频</span></a></dd>
+              <dd id="nav_601"><a href="driftlist.html" target="main"><span onClick="javascript:gourl('501')">偏差列表</span></a></dd>
           </dl>
 
           <dl id="nav_6">

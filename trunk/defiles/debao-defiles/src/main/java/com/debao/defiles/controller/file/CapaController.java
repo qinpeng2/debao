@@ -214,9 +214,6 @@ public class CapaController {
     if (searchReq.getSortnumber() != null && !searchReq.getSortnumber().isEmpty()) {
       extraSort += sortLine("filenumber", searchReq.getSortnumber());
     }
-    if (searchReq.getSortdate() != null && !searchReq.getSortdate().isEmpty()) {
-      extraSort += sortLine("approvedate", searchReq.getSortdate());
-    }
     if (searchReq.getSorttype() != null && !searchReq.getSorttype().isEmpty()) {
       extraSort += sortLine("filetype", searchReq.getSorttype());
     }

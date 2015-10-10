@@ -1,0 +1,33 @@
+package com.debao.defiles.constant;
+
+public enum DriftSearchConditions {
+
+	// 0
+	FUZZY("模糊搜索"),
+  // 1
+  NAME("文件名称"),
+	// 2
+  LABEL("文件标签"),
+  // 3
+  TYPE("问题类型"),
+  // 4
+  CLOSED("是否闭环"),
+  // 5
+  DEPARTMENT("部门名称");
+
+
+  private String description;
+
+	private DriftSearchConditions(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+}

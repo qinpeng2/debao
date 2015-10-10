@@ -16,7 +16,8 @@ CREATE TABLE `defiles`.`capa` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`FileID`)  COMMENT '');
+  PRIMARY KEY (`FileID`)  COMMENT ''
+  ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
 
 /****************************
 Table Drift
@@ -35,7 +36,8 @@ CREATE TABLE `defiles`.`drift` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`FileID`)  COMMENT '');
+  PRIMARY KEY (`FileID`)  COMMENT ''
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
 
 /****************************
 Table Video
@@ -53,4 +55,5 @@ CREATE TABLE `defiles`.`video` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`VideoID`)  COMMENT '');
+  PRIMARY KEY (`VideoID`)  COMMENT ''
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;

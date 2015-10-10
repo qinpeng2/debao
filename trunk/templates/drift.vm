@@ -87,7 +87,7 @@ function checkform() {
         <td>
           <div id="AddBox">
           #if($!file.fileid)
-            <form name="myform" id="myform" action="processFileEdit.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+            <form name="myform" id="myform" action="processDriftEdit.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
 	            <input type="hidden" id="fileid" name="fileid" value="$!file.fileid" />
 	            <input type="hidden" name="itemsPerPage" value="$!searchReq.itemsPerPage"/>
 	   			<input type="hidden" name="currentPage" id="currentPage" value="$!searchReq.currentPage"/>
@@ -97,7 +97,7 @@ function checkform() {
 	   			<input type="hidden" name="keyword" id="keyword" value="$!searchReq.keyword"/>
 	   			<input type="hidden" name="searchcondtion" id="searchcondtion" value="$!searchReq.searchcondtion"/>
           #else
-          	<form name="myform" id="myform" action="processFile.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+          	<form name="myform" id="myform" action="processDrift.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
           #end
 
             <div class="row"> <strong class="caption">*文件名称:</strong>
@@ -112,10 +112,10 @@ function checkform() {
               <div class="row"> <strong class="caption">&nbsp;&nbsp;问题类型:</strong>
                 <input type="text" class="txtFull" name="filetype" id="filetype" placeholder="类型" value="$!file.filetype" />
             </div>
-            <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;是否闭环:</strong>
-                <input type="radio" name="closed" value="1">是&nbsp;
-                <input type="radio" name="closed" value="2">否
-            </div>
+              <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;是否闭环:</strong>
+                  <input type="radio" name="closed" value="1" #if($!file.closed == "true") checked #end >是&nbsp;
+                  <input type="radio" name="closed" value="2" #if($!file.closed != "true") checked #end >否
+              </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
             	<input type="text" class="txtFull" name="filelable" id="filelable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
             </div>
