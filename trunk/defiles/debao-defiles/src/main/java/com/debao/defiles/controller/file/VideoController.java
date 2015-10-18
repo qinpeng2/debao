@@ -63,13 +63,29 @@ public class VideoController {
       return permission;
     }
 
-    VideoVO VideoVO = videoService.findByID(videoid);
+    VideoVO videoVO = videoService.findByID(videoid);
 
-    map.put("file", VideoVO);
+    map.put("file", videoVO);
     map.put("search", searchReq);
     map.put("date", dateTool);
 
     return "video";
+  }
+
+  @RequestMapping(value = "playvideo.html", method = RequestMethod.GET)
+  public String playVideo(HttpServletRequest req, ModelMap map, Integer videoid) {
+
+    String permission = LogonController.permission(req, true);
+    if (permission != null && !permission.isEmpty()) {
+      return permission;
+    }
+
+    VideoVO videoVO = videoService.findByID(videoid);
+
+    map.put("file", videoVO);
+    map.put("date", dateTool);
+
+    return "videoplay";
   }
 
   @RequestMapping(value = "processVideoEdit.html", method = RequestMethod.POST)
@@ -100,17 +116,17 @@ public class VideoController {
       return null;
     }
 
-    VideoVO VideoVO = videoService.findByID(videoReq.getVideoid());
-    VideoVO.setViedoname(fileName);
-    VideoVO.setVideotype(videoReq.getVideotype());
-    VideoVO.setDepartment(videoReq.getDepartment());
-    VideoVO.setVideolabel(videoReq.getVideolabel());
-    VideoVO.setVideodesc(videoReq.getVideodesc());
-    VideoVO.setUserid(LogonController.getCurrentUser(req).getUserid());
-    VideoVO.setDatestamp(Calendar.getInstance().getTime());
-    VideoVO.setDeleted(false);
+    VideoVO videoVO = videoService.findByID(videoReq.getVideoid());
+    videoVO.setViedoname(fileName);
+    videoVO.setVideotype(videoReq.getVideotype());
+    videoVO.setDepartment(videoReq.getDepartment());
+    videoVO.setVideolabel(videoReq.getVideolabel());
+    videoVO.setVideodesc(videoReq.getVideodesc());
+    videoVO.setUserid(LogonController.getCurrentUser(req).getUserid());
+    videoVO.setDatestamp(Calendar.getInstance().getTime());
+    videoVO.setDeleted(false);
 
-    videoService.update(VideoVO, userVO);
+    videoService.update(videoVO, userVO);
 
     return videoList(req, map, searchReq);
   }
@@ -215,7 +231,7 @@ public class VideoController {
     // 分页
     Integer itemsPerPage = searchReq.getItemsPerPage();
     Integer currentPage = searchReq.getCurrentPage();
-    Paginator paginator = new Paginator(itemsPerPage == null ? 0 : itemsPerPage);
+    Paginator paginator = new Paginator(itemsPerPage == null ? 12 : itemsPerPage);
     paginator.setPage(currentPage == null ? 0 : currentPage);
 
     //排序

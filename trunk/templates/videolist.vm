@@ -8,6 +8,19 @@
 .txtName{height:27px;width:130px; border-radius:3px;}
 .txtBetween{height:27px;width:80px; border-radius:3px;}
 .active{font-weight: bold; text-decoration: underline;}
+
+.myli{float:left; list-style: none;}
+.cssshadow
+{
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
 </style>
 <script type="text/javascript" src="../js/adminjquery.min.js"></script>
 <script type="text/javascript">
@@ -61,7 +74,7 @@ $(document).ready(function(){
 	var rowsCount = $files.paginator.items;
 	var itemsPerPage = $files.paginator.itemsPerPage;
 	
-	$("#pagination").html("<ul>"+constructPageNaviagorDetail(startPage, rowsCount, "submitSearch", 6, itemsPerPage)+"<ul>");
+	$(".pagination").html("<ul>"+constructPageNaviagorDetail(startPage, rowsCount, "submitSearch", 6, itemsPerPage)+"<ul>");
 });
 
 function initSort() {
@@ -176,7 +189,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
       <tr>
         <td class="search">
        		<form action="videolist.html" method="post" enctype="multipart/form-data" name="searchForm">
-       			<input type="hidden" name="itemsPerPage" value="10"/>
+       			<input type="hidden" name="itemsPerPage" value="12"/>
        			<input type="hidden" name="currentPage" id="currentPage" value="$files.paginator.page"/>
        			<input type="hidden" name="categoryid" id="categoryid" value="$!categoryid"/>
        			<!-- 按照编号排序 -->
@@ -204,7 +217,8 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 </div>
 <!-- 
 ==============================文件列表==============================
--->	
+-->
+    #if($!SYSTEM_USER.roleid == 1)
     <div class="table-list">
       <table cellspacing="0" align="center" width="100%">
       	<colgroup>
@@ -236,10 +250,10 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 	            <td>
 	            	<a href='web/viewer.html?file=/$file.location'>打开</a>
 	            	<!-- &nbsp;<a href='#'>编辑</a> -->
-	            	#if($!SYSTEM_USER.roleid == 1)
-	            	<a href='editVideo.html?videoid=$file.videoid&currentPage=$files.paginator.page&itemsPerPage=10&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype'>编辑</a>
-	            	<a href='removeVideo.html?videoid=$file.videoid&currentPage=$files.paginator.page&itemsPerPage=10&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype' onclick="return confirm('确认删除该文件?')">删除</a>
-	            	#end
+
+	            	<a href='editVideo.html?videoid=$file.videoid&currentPage=$files.paginator.page&itemsPerPage=12&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype'>编辑</a>
+	            	<a href='removeVideo.html?videoid=$file.videoid&currentPage=$files.paginator.page&itemsPerPage=12&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype' onclick="return confirm('确认删除该文件?')">删除</a>
+
             	</td>
 			</tr>
 			#end
@@ -247,6 +261,24 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
       </table>
       <div id="pagination" class="pagination"></div>
     </div>
+    #end
+<div>
+    <ul>
+#foreach($file in $files.listVO)
+        <li class="myli">
+            <div style="width: 280px; height: 175px; text-align: center; vertical-align: bottom;">
+                <br/><a href="/$file.location" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]”" style="vertical-align: middle" >
+                <img class="cssshadow" width="256px" height="144px" src="/$file.imglocation" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" />
+            </a>
+            </div>
+            <div style="width: 280px; height: 30px; text-align: center; vertical-align: top; overflow: auto;word-break:break-all; padding:3px;">
+                <a href="/$file.location" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" >$file.viedoname</a>
+                    <br/>
+            </div>
+        </li>
+#end
+    </ul>
+    <div style="float:left;" id="pagination2" class="pagination"></div>
 </div>
 </body>
 </html>
