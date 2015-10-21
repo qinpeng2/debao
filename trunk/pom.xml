@@ -17,6 +17,7 @@
 		<spring.framework.version>4.0.4.RELEASE</spring.framework.version>
 		<spring.framework.security.version>3.2.3.RELEASE</spring.framework.security.version>
 		<cxf.version>3.0.0</cxf.version>
+        <project.property.path>.</project.property.path>
 		<root.dir>${project.basedir}</root.dir>
 	</properties>
 
@@ -260,9 +261,6 @@
 				</plugin>				
 			</plugins>
 		</pluginManagement>
-		<filters>
-			<filter>${root.dir}/debao.properties</filter>
-		</filters>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -309,7 +307,12 @@
 
 	<profiles> 
 		<profile> 
-			<id>dev</id> 
+			<id>dev</id>
+            <build>
+                <filters>
+                    <filter>${root.dir}/debao-dev.properties</filter>
+                </filters>
+            </build>
 			<activation> 
 				<activeByDefault>true</activeByDefault> 
 			</activation> 
@@ -329,8 +332,32 @@
 					<snapshots> <enabled>false</enabled> </snapshots> 
 				</pluginRepository> 
 			</pluginRepositories> 
-		</profile> 
-	</profiles>
+		</profile>
+        <profile>
+            <id>prod</id>
+            <build>
+                <filters>
+                    <filter>${root.dir}/debao-prod.properties</filter>
+                </filters>
+            </build>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+                    <!--<url>http://117.79.84.132:8081/nexus/content/groups/public/</url>-->
+                    <snapshots> <enabled>true</enabled> </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+                    <!--<url>http://117.79.84.132:8088/nexus/content/groups/public/</url>-->
+                    <snapshots> <enabled>false</enabled> </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
 
 
 </project>

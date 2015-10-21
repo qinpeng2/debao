@@ -244,11 +244,11 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
         	#foreach($file in $files.listVO)
 			<tr align="center" valign="middle" title="$file.filedesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" nowrap>
 				<td>$velocityCount</td>
-	            <td style="font-weight: bold; padding:8px 8px 8px 20px;"><a href='web/viewer.html?file=/$file.location'>$file.viedoname</a></td>
+	            <td style="font-weight: bold; padding:8px 8px 8px 20px;"><a href='playvideo.html?videoid=$file.videoid'>$file.viedoname</a></td>
 	            <td>&nbsp;$!file.videotype </td>
 	            <td>&nbsp;$!file.department</td>
 	            <td>
-	            	<a href='web/viewer.html?file=/$file.location'>打开</a>
+	            	<a href='playvideo.html?videoid=$file.videoid'>打开</a>
 	            	<!-- &nbsp;<a href='#'>编辑</a> -->
 
 	            	<a href='editVideo.html?videoid=$file.videoid&currentPage=$files.paginator.page&itemsPerPage=12&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype'>编辑</a>
@@ -267,12 +267,12 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 #foreach($file in $files.listVO)
         <li class="myli">
             <div style="width: 280px; height: 175px; text-align: center; vertical-align: bottom;">
-                <br/><a href="/$file.location" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]”" style="vertical-align: middle" >
+                <br/><a href="playvideo.html?videoid=$file.videoid" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]”" style="vertical-align: middle" >
                 <img class="cssshadow" width="256px" height="144px" src="/$file.imglocation" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" />
             </a>
             </div>
             <div style="width: 280px; height: 30px; text-align: center; vertical-align: top; overflow: auto;word-break:break-all; padding:3px;">
-                <a href="/$file.location" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" >$file.viedoname</a>
+                <a href="playvideo.html?videoid=$file.videoid" alt="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" title="$file.videodesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" >$file.viedoname</a>
                     <br/>
             </div>
         </li>

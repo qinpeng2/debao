@@ -61,7 +61,7 @@
 				<configuration>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
 				  	<filters>
-				   	 	<filter>${root.dir}/debao.properties</filter>
+				   	 	<filter>${project.basedir}/debao.properties</filter>
 				  	</filters>		        
 					 <webResources>
 					    <resource>

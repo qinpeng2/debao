@@ -100,7 +100,7 @@ function checkform() {
             <hr/>
             #if(!$!file.fileid)
             <div class="row"> <strong class="caption">*选择文件:</strong>
-              <input type="file" class="txtFull" name="file" id="file" placeholder="上传图标" />
+              <input type="file" class="txtFull" name="file" id="file" placeholder="上传文件" /> &nbsp;(文件格式：pdf)
             </div>
             #end
             <div class="row" style=" text-align:left; padding-left:250px;">
