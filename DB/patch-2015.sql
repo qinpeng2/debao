@@ -16,8 +16,18 @@ CREATE TABLE `defiles`.`capa` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`FileID`)  COMMENT ''
-  ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
+  PRIMARY KEY (`FileID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `defiles`.`capalog` (
+  `CapaLogID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `FileID` INT NOT NULL COMMENT '',
+  `FileOptID` INT NOT NULL COMMENT '',
+  `ChangeDesc` VARCHAR(500) NULL COMMENT '',
+  `UserID` INT NOT NULL COMMENT '',
+  `Datestamp` DATETIME NOT NULL COMMENT '',
+  PRIMARY KEY (`CapaLogID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 /****************************
 Table Drift
@@ -36,8 +46,18 @@ CREATE TABLE `defiles`.`drift` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`FileID`)  COMMENT ''
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
+  PRIMARY KEY (`FileID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `defiles`.`driftlog` (
+  `DriftLogID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `FileID` INT NOT NULL COMMENT '',
+  `FileOptID` INT NOT NULL COMMENT '',
+  `ChangeDesc` VARCHAR(500) NULL COMMENT '',
+  `UserID` INT NOT NULL COMMENT '',
+  `Datestamp` DATETIME NOT NULL COMMENT '',
+  PRIMARY KEY (`DriftLogID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 /****************************
 Table Video
@@ -55,5 +75,15 @@ CREATE TABLE `defiles`.`video` (
   `UserID` INT NOT NULL COMMENT '',
   `Datestamp` DATETIME NOT NULL COMMENT '',
   `Deleted` BIT NOT NULL DEFAULT 0 COMMENT '',
-  PRIMARY KEY (`VideoID`)  COMMENT ''
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;;
+  PRIMARY KEY (`VideoID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+CREATE TABLE `defiles`.`videolog` (
+  `VideoLogID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `VideoID` INT NOT NULL COMMENT '',
+  `VideoOptID` INT NOT NULL COMMENT '',
+  `ChangeDesc` VARCHAR(500) NULL COMMENT '',
+  `UserID` INT NOT NULL COMMENT '',
+  `Datestamp` DATETIME NOT NULL COMMENT '',
+  PRIMARY KEY (`VideoLogID`)  COMMENT '') ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
