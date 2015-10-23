@@ -175,6 +175,12 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 	
 	return s;
 }
+
+function resetForm() {
+    $('#keyword').val("");
+    $('#searchcondtion').val("0");
+    $('#searchForm').submit();
+}
 </script>
 
 </head>
@@ -188,7 +194,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
     <tbody>
       <tr>
         <td class="search">
-       		<form action="videolist.html" method="post" enctype="multipart/form-data" name="searchForm">
+       		<form action="videolist.html" method="post" enctype="multipart/form-data" name="searchForm" id="searchForm">
        			<input type="hidden" name="itemsPerPage" value="12"/>
        			<input type="hidden" name="currentPage" id="currentPage" value="$files.paginator.page"/>
        			<input type="hidden" name="categoryid" id="categoryid" value="$!categoryid"/>
@@ -208,7 +214,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
                     <option value="4" $!searchcondtion4>部门名称</option>
 	            </select>
 	            <input type="submit" value="查询" class="button cx" id="serchData">
-	            <input type="reset" value="重置" class="button cz">
+	            <input type="click" value="重置" class="button cz" onclick="resetForm()">
           	</form>
        	</td>
       </tr>
