@@ -16,7 +16,21 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+    initDatePicker();
 });
+
+function initDatePicker() {
+    $('input.datepicker').datepicker({
+        showOn: "button",
+        buttonImage: "img/show-calendar.gif",
+        buttonText: "Date Picker",
+        dateFormat: 'yy-mm-dd',
+        beforeShow: function(dateText, inst) {
+            $(this).keydown();
+        }
+    });
+    $('.ui-datepicker-trigger').css({"cursor":"pointer", "vertical-align":"middle"});
+}
 
 function checkform() {
 	
