@@ -18,6 +18,8 @@ public class DriftRequest {
 	
 	private String location;
 
+  private String datestamp;
+
   private String closed;
 
 	public Integer getFileid() {
@@ -83,6 +85,14 @@ public class DriftRequest {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+
+  public String getDatestamp() {
+    return datestamp;
+  }
+
+  public void setDatestamp(String datestamp) {
+    this.datestamp = datestamp;
+  }
 
   public String getClosed() {
     return closed;

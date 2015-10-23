@@ -20,6 +20,8 @@ public class CapaRequest {
 
   private String capasource;
 
+  private String datestamp;
+
   private String closed;
 
 	public Integer getFileid() {
@@ -92,6 +94,14 @@ public class CapaRequest {
 
   public void setCapasource(String capasource) {
     this.capasource = capasource;
+  }
+
+  public String getDatestamp() {
+    return datestamp;
+  }
+
+  public void setDatestamp(String datestamp) {
+    this.datestamp = datestamp;
   }
 
   public String getClosed() {

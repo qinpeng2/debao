@@ -23,8 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class DriftController {
 
   @RequestMapping(value = "editDrift.html", method = RequestMethod.GET)
   public String editDrift(HttpServletRequest req, ModelMap map, Integer fileid,
-                             DriftSearchRequest searchReq) {
+                           DriftSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -72,7 +73,7 @@ public class DriftController {
 
   @RequestMapping(value = "processDriftEdit.html", method = RequestMethod.POST)
   public String processDriftEdit(HttpServletRequest req, ModelMap map, DriftRequest driftReq,
-                                 DriftSearchRequest searchReq) throws ParseException {
+                                  DriftSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -101,26 +102,30 @@ public class DriftController {
       return null;
     }
 
-    DriftVO DriftVO = driftService.findByID(driftReq.getFileid());
-    DriftVO.setFilename(fileName);
-    DriftVO.setFilenumber(fileNumber);
-    DriftVO.setFiletype(driftReq.getFiletype());
-    DriftVO.setDepartment(driftReq.getDepartment());
-    DriftVO.setClosed(driftReq.getClosed().equals("1"));
-    DriftVO.setFilelabel(driftReq.getFilelable());
-    DriftVO.setFiledesc(driftReq.getFiledesc());
-    DriftVO.setUserid(LogonController.getCurrentUser(req).getUserid());
-    DriftVO.setDatestamp(Calendar.getInstance().getTime());
-    DriftVO.setDeleted(false);
+    DriftVO driftVO = driftService.findByID(driftReq.getFileid());
+    driftVO.setFilename(fileName);
+    driftVO.setFilenumber(fileNumber);
+    driftVO.setFiletype(driftReq.getFiletype());
+    driftVO.setDepartment(driftReq.getDepartment());
+    driftVO.setClosed(driftReq.getClosed().equals("1"));
+    driftVO.setFilelabel(driftReq.getFilelable());
+    driftVO.setFiledesc(driftReq.getFiledesc());
+    driftVO.setUserid(LogonController.getCurrentUser(req).getUserid());
+    // driftVO.setDatestamp(Calendar.getInstance().getTime());
+    if (driftReq.getDatestamp() != null) {
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      driftVO.setDatestamp(df.parse(driftReq.getDatestamp()));
+    }
+    driftVO.setDeleted(false);
 
-    driftService.update(DriftVO, userVO);
+    driftService.update(driftVO, userVO);
 
     return driftList(req, map, searchReq);
   }
 
   @RequestMapping(value = "processDrift.html", method = RequestMethod.POST)
   public String processChangeDrift(@RequestParam MultipartFile file, HttpServletRequest req,
-                                   ModelMap map, DriftRequest driftReq) throws ParseException {
+                                    ModelMap map, DriftRequest driftReq) throws ParseException {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -152,17 +157,21 @@ public class DriftController {
       return null;
     }
 
-    DriftVO DriftVO = new DriftVO();
-    DriftVO.setFilename(fileName);
-    DriftVO.setFilenumber(fileNumber);
-    DriftVO.setFiletype(driftReq.getFiletype());
-    DriftVO.setDepartment(driftReq.getDepartment());
-    DriftVO.setClosed(driftReq.getClosed().equals("1"));
-    DriftVO.setFilelabel(driftReq.getFilelable());
-    DriftVO.setFiledesc(driftReq.getFiledesc());
-    DriftVO.setUserid(LogonController.getCurrentUser(req).getUserid());
-    DriftVO.setDatestamp(Calendar.getInstance().getTime());
-    DriftVO.setDeleted(false);
+    DriftVO driftVO = new DriftVO();
+    driftVO.setFilename(fileName);
+    driftVO.setFilenumber(fileNumber);
+    driftVO.setFiletype(driftReq.getFiletype());
+    driftVO.setDepartment(driftReq.getDepartment());
+    driftVO.setClosed(driftReq.getClosed().equals("1"));
+    driftVO.setFilelabel(driftReq.getFilelable());
+    driftVO.setFiledesc(driftReq.getFiledesc());
+    driftVO.setUserid(LogonController.getCurrentUser(req).getUserid());
+    // driftVO.setDatestamp(Calendar.getInstance().getTime());
+    if (driftReq.getDatestamp() != null) {
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      driftVO.setDatestamp(df.parse(driftReq.getDatestamp()));
+    }
+    driftVO.setDeleted(false);
 
     // upload file first
     String originalDriftName = file.getOriginalFilename();
@@ -176,14 +185,14 @@ public class DriftController {
       if (!realPath.isEmpty()) {
         try {
           file.transferTo(new File(realPath));
-          DriftVO.setLocation(filePath);
+          driftVO.setLocation(filePath);
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
     }
 
-    driftService.insert(DriftVO, userVO);
+    driftService.insert(driftVO, userVO);
 
     map.put(HtmlParams.INFO, "文件上传成功，您还可以继续上传！");
     return changeDrift(req, map);
@@ -226,7 +235,7 @@ public class DriftController {
     List<DriftVO> files = null;
     String keyword = searchReq.getKeyword();
     if (searchReq.getSearchcondtion() == null || DriftSearchConditions.FUZZY.ordinal() == searchReq
-                                                                                           .getSearchcondtion()) {
+                                                                                            .getSearchcondtion()) {
       filter.setKeyword(keyword);
       files = driftService.fuzzyFind(filter);
       paginator.setItems(driftService.totalFuzzyFind(filter));
@@ -264,7 +273,7 @@ public class DriftController {
 
   @RequestMapping(value = "removeDrift.html", method = RequestMethod.GET)
   public String removeDrift(HttpServletRequest request, ModelMap map, Integer fileid,
-                               DriftSearchRequest searchReq) {
+                             DriftSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {

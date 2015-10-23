@@ -23,8 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -111,7 +112,11 @@ public class CapaController {
     capaVO.setFilelabel(capaReq.getFilelable());
     capaVO.setFiledesc(capaReq.getFiledesc());
     capaVO.setUserid(LogonController.getCurrentUser(req).getUserid());
-    capaVO.setDatestamp(Calendar.getInstance().getTime());
+    // capaVO.setDatestamp(Calendar.getInstance().getTime());
+    if (capaReq.getDatestamp() != null) {
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      capaVO.setDatestamp(df.parse(capaReq.getDatestamp()));
+    }
     capaVO.setDeleted(false);
 
     capaService.update(capaVO, userVO);
@@ -163,7 +168,11 @@ public class CapaController {
     capaVO.setFilelabel(capaReq.getFilelable());
     capaVO.setFiledesc(capaReq.getFiledesc());
     capaVO.setUserid(LogonController.getCurrentUser(req).getUserid());
-    capaVO.setDatestamp(Calendar.getInstance().getTime());
+    // capaVO.setDatestamp(Calendar.getInstance().getTime());
+    if (capaReq.getDatestamp() != null) {
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      capaVO.setDatestamp(df.parse(capaReq.getDatestamp()));
+    }
     capaVO.setDeleted(false);
 
     // upload file first
