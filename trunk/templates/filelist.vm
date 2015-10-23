@@ -191,7 +191,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 					<option value="0" $!searchcondtion0>智能搜索</option>
 					<option value="1" $!searchcondtion1>文件编号</option>
 					<option value="2" $!searchcondtion2>文件名称</option>
-					<option value="3" $!searchcondtion3>文件标签</option>
+					<option value="3" $!searchcondtion3>关键字</option>
 	            </select>
 	            <input type="submit" value="查询" class="button cx" id="serchData">
 	            <input type="reset" value="重置" class="button cz">
@@ -222,7 +222,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 				<th>文件名称</th>
 				<th class="sort_col" id="col_number" sort="number">文件编号<span class="sort_icon"></span></th>
 				<th>版本</th>
-				<th class="sort_col" id="col_date" sort="date">批准日期<span class="sort_icon"></span></th>
+				<th class="sort_col" id="col_date" sort="date">执行日期<span class="sort_icon"></span></th>
 				<th class="sort_col" id="col_type" sort="type">文件类型<span class="sort_icon"></span></th>
 				<th>编制部门</th>
 				<th>&nbsp;</th>

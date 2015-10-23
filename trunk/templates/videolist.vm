@@ -203,7 +203,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 	            <select name="searchcondtion" class="t_aera" id="searchcondtion">
 					<option value="0" $!searchcondtion0>智能搜索</option>
 					<option value="1" $!searchcondtion1>视频名称</option>
-                    <option value="2" $!searchcondtion2>视频标签</option>
+                    <option value="2" $!searchcondtion2>关键字</option>
                     <option value="3" $!searchcondtion3>视频类型</option>
                     <option value="4" $!searchcondtion4>部门名称</option>
 	            </select>

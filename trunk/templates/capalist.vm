@@ -190,7 +190,7 @@ function constructPageNaviagorDetail(current_page, rowsCount, querymethod, devia
 	            <select name="searchcondtion" class="t_aera" id="searchcondtion">
 					<option value="0" $!searchcondtion0>智能搜索</option>
 					<option value="1" $!searchcondtion1>文件名称</option>
-                    <option value="2" $!searchcondtion2>文件标签</option>
+                    <option value="2" $!searchcondtion2>关键字</option>
                     <option value="3" $!searchcondtion3>CAPA来源</option>
                     <option value="4" $!searchcondtion4>问题类型</option>
                     <option value="5" $!searchcondtion5>是否闭环</option>

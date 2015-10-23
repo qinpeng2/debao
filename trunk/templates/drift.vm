@@ -87,10 +87,13 @@ function checkform() {
               <div class="row"> <strong class="caption">&nbsp;&nbsp;问题类型:</strong>
                 <input type="text" class="txtFull" name="filetype" id="filetype" placeholder="类型" value="$!file.filetype" />
             </div>
-              <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;是否闭环:</strong>
-                  <input type="radio" name="closed" value="1" #if($!file.closed == "true") checked #end >是&nbsp;
-                  <input type="radio" name="closed" value="2" #if($!file.closed != "true") checked #end >否
-              </div>
+            <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;是否闭环:</strong>
+              <input type="radio" name="closed" value="1" #if($!file.closed == "true") checked #end >是&nbsp;
+              <input type="radio" name="closed" value="2" #if($!file.closed != "true") checked #end >否
+            </div>
+            <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;发布日期:</strong>
+              <input type="text" class="datepicker txtFull" style="width:120px;" name="datestamp" id="datestamp" placeholder="例如：2015-1-1" value="$!date.format('yyyy-MM-dd',$!file.datestamp)" />
+            </div>
             <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
             	<input type="text" class="txtFull" name="filelable" id="filelable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
             </div>
