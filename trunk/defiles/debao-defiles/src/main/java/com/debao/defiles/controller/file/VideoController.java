@@ -72,22 +72,6 @@ public class VideoController {
     return "video";
   }
 
-  @RequestMapping(value = "playvideo.html", method = RequestMethod.GET)
-  public String playVideo(HttpServletRequest req, ModelMap map, Integer videoid) {
-
-    String permission = LogonController.permission(req, true);
-    if (permission != null && !permission.isEmpty()) {
-      return permission;
-    }
-
-    VideoVO videoVO = videoService.findByID(videoid);
-
-    map.put("file", videoVO);
-    map.put("date", dateTool);
-
-    return "videoplay";
-  }
-
   @RequestMapping(value = "processVideoEdit.html", method = RequestMethod.POST)
   public String processVideoEdit(HttpServletRequest req, ModelMap map, VideoRequest videoReq,
                                   VideoSearchRequest searchReq) throws ParseException {
@@ -216,6 +200,20 @@ public class VideoController {
     return changeVideo(req, map);
   }
 
+  @RequestMapping(value = "removeVideo.html", method = RequestMethod.GET)
+  public String removeVideo(HttpServletRequest request, ModelMap map, Integer videoid,
+                             VideoSearchRequest searchReq) {
+
+    String permission = LogonController.permission(request, true);
+    if (permission != null && !permission.isEmpty()) {
+      return permission;
+    }
+
+    videoService.delete(videoid, LogonController.getCurrentUser(request));
+
+    return videoList(request, map, searchReq);
+  }
+
   @RequestMapping(value = "videolist.html", method = {RequestMethod.POST, RequestMethod.GET})
   public String videoList(HttpServletRequest request, ModelMap map, VideoSearchRequest searchReq) {
 
@@ -281,18 +279,20 @@ public class VideoController {
     return "videolist";
   }
 
-  @RequestMapping(value = "removeVideo.html", method = RequestMethod.GET)
-  public String removeVideo(HttpServletRequest request, ModelMap map, Integer videoid,
-                             VideoSearchRequest searchReq) {
+  @RequestMapping(value = "playvideo.html", method = RequestMethod.GET)
+  public String playVideo(HttpServletRequest req, ModelMap map, Integer videoid) {
 
-    String permission = LogonController.permission(request);
+    String permission = LogonController.permission(req);
     if (permission != null && !permission.isEmpty()) {
       return permission;
     }
 
-    videoService.delete(videoid, LogonController.getCurrentUser(request));
+    VideoVO videoVO = videoService.findByID(videoid);
 
-    return videoList(request, map, searchReq);
+    map.put("file", videoVO);
+    map.put("date", dateTool);
+
+    return "videoplay";
   }
 
   private static String sortLine(String field, String flag) {
