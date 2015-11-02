@@ -196,6 +196,7 @@ function resetForm() {
 	            <select name="searchcondtion" class="t_aera" id="searchcondtion">
 					<option value="0" $!searchcondtion0>智能搜索</option>
 					<option value="1" $!searchcondtion1>文件名称</option>
+                    <option value="6" $!searchcondtion6>文件编号</option>
                     <option value="2" $!searchcondtion2>关键字</option>
 					<option value="3" $!searchcondtion3>问题类型</option>
                     <option value="4" $!searchcondtion4>是否闭环</option>

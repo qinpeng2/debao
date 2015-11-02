@@ -13,7 +13,9 @@ public enum DriftSearchConditions {
   // 4
   CLOSED("是否闭环"),
   // 5
-  DEPARTMENT("部门名称");
+  DEPARTMENT("部门名称"),
+  //6
+  NUMBER("文件编号");
 
 
   private String description;

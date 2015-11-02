@@ -29,9 +29,12 @@
         <if test="filename != null">
             and filename like CONCAT('%', #{filename,jdbcType=VARCHAR}, '%')
         </if>
-		<if test="filelabel != null">
+        <if test="filenumber != null">
+            and filenumber like CONCAT('%', #{filenumber,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filelabel != null">
 		    and  filelabel like CONCAT('%', #{filelabel,jdbcType=VARCHAR}, '%')
-		</if>
+        </if>
 		order by ${extrasort} filenumber asc
 		limit #{paginator.offset},#{paginator.itemsPerPage}
 	</select>
@@ -60,6 +63,9 @@
         <if test="filename != null">
             and filename like CONCAT('%', #{filename,jdbcType=VARCHAR}, '%')
         </if>
+        <if test="filenumber != null">
+            and filenumber like CONCAT('%', #{filenumber,jdbcType=VARCHAR}, '%')
+        </if>
         <if test="filelabel != null">
             and  filelabel like CONCAT('%', #{filelabel,jdbcType=VARCHAR}, '%')
         </if>
@@ -77,6 +83,7 @@
 		    		or capasource like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or filetype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or filename like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filenumber like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
 		    		or filelabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
 		</if>
 		order by ${extrasort} filenumber asc
@@ -93,6 +100,7 @@
                     or capasource like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or filetype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or filename like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filenumber like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
                     or filelabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
 		</if>
 	</select>

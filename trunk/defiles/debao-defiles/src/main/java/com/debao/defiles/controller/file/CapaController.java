@@ -251,6 +251,8 @@ public class CapaController {
         filter.setClosed(keyword.equalsIgnoreCase("是"));
       } else if (CapaSearchConditions.LABEL.ordinal() == searchReq.getSearchcondtion()) {
         filter.setFilelabel(keyword);
+      } else if (CapaSearchConditions.NUMBER.ordinal() == searchReq.getSearchcondtion()) {
+        filter.setFilenumber(keyword);
       }
       files = capaService.find(filter);
       paginator.setItems(capaService.totalFind(filter));

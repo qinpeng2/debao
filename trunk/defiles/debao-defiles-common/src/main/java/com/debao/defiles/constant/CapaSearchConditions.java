@@ -15,7 +15,9 @@ public enum CapaSearchConditions {
   // 5
   CLOSED("是否闭环"),
   // 6
-  DEPARTMENT("部门名称");
+  DEPARTMENT("部门名称"),
+  //7
+  NUMBER("文件编号");
 
 
   private String description;

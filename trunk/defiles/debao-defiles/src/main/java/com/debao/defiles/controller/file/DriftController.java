@@ -250,6 +250,8 @@ public class DriftController {
         filter.setClosed(keyword.equalsIgnoreCase("是"));
       } else if (DriftSearchConditions.LABEL.ordinal() == searchReq.getSearchcondtion()) {
         filter.setFilelabel(keyword);
+      } else if (DriftSearchConditions.NUMBER.ordinal() == searchReq.getSearchcondtion()) {
+        filter.setFilenumber(keyword);
       }
       files = driftService.find(filter);
       paginator.setItems(driftService.totalFind(filter));
