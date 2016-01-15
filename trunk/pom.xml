@@ -334,6 +334,30 @@
 			</pluginRepositories> 
 		</profile>
         <profile>
+            <id>qa</id>
+            <build>
+                <filters>
+                    <filter>${root.dir}/debao-prod.properties</filter>
+                </filters>
+            </build>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+                    <!--<url>http://117.79.84.132:8081/nexus/content/groups/public/</url>-->
+                    <snapshots> <enabled>true</enabled> </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+                    <!--<url>http://117.79.84.132:8088/nexus/content/groups/public/</url>-->
+                    <snapshots> <enabled>false</enabled> </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
             <id>prod</id>
             <build>
                 <filters>

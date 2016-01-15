@@ -10,6 +10,7 @@
 .active{font-weight: bold; text-decoration: underline;}
 </style>
 <script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript" src="../js/flowplayer-3.2.13.min.js"></script>
 </head>
 <body>
 
@@ -43,14 +44,10 @@
   </table>
 </div>
 <div style="text-align: center;">
-    <video width="640" height="480" controls autoplay>
-        <source src="/$file.location" type="video/ogg">
-        <source src="/$file.location" type="video/mp4">
-        <source src="/$file.location" type="video/webm">
-        <object data="/$file.location" width="640" height="480">
-            <embed width="640" height="480" src="/$file.location">
-        </object>
-    </video>
+    <a  href="/$file.location" style="display:block;width:80%;height:80%" id="player"></a> 
+    <script>
+        flowplayer("player", "../js/flowplayer-3.2.18.swf");
+    </script>
 </div>
 
 </body>

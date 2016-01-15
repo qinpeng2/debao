@@ -11,3 +11,6 @@
 
 1. 拷贝jar包中的context.xml 到 ROOT的classes中
 2. 拷贝css到WEB-INF中
+
+
+删除windows服务命令：sc delete JettyService
