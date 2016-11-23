@@ -1,0 +1,264 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
+<link rel="stylesheet" href="../css/admindefault.css">
+<style type="text/css">
+.txtFull{height:27px;width:290px; border-radius:3px;}
+.txtName{height:27px;width:130px; border-radius:3px;}
+.txtBetween{height:27px;width:80px; border-radius:3px;}
+.active{font-weight: bold; text-decoration: underline;}
+</style>
+<script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript">
+
+var sort_up = "▲";
+var sort_down = "▼";
+
+function clearSort(suffix) {
+	$('.sort_col').each(function(){
+		var sort_suffix = $(this).attr('sort');
+		
+		if (suffix == sort_suffix) {
+			return true;
+		}
+		
+		var hdn_sort = $('#sort' + sort_suffix);
+		var sort_icon = $(this).find('.sort_icon');
+		
+		sort_icon.text('');
+		hdn_sort.val('');
+	});
+}
+
+$(document).ready(function(){
+	
+	_sort_col = $('.sort_col');
+	_sort_col.attr('title', '排序').click(function(){
+		var sort_suffix = $(this).attr('sort');
+		var text = $(this).text();
+		
+		var hdn_sort = $('#sort' + sort_suffix);
+		var hdn_sort_val = hdn_sort.val();
+		var sort_icon = $(this).find('.sort_icon');
+		if (hdn_sort_val == "") {
+			hdn_sort.val('d');
+			sort_icon.text(sort_down);
+		} else if (hdn_sort_val == "a") {
+			hdn_sort.val('d');
+			sort_icon.text(sort_down);
+		} else if (hdn_sort_val == "d") {
+			hdn_sort.val('a');
+			sort_icon.text(sort_up);
+		}
+		clearSort(sort_suffix);
+		submitSearch(0);
+	});
+	
+	initSort();
+	
+	var startPage = $files.paginator.page;
+	var rowsCount = $files.paginator.items;
+	var itemsPerPage = $files.paginator.itemsPerPage;
+	
+	$("#pagination").html("<ul>"+constructPageNaviagorDetail(startPage, rowsCount, "submitSearch", 6, itemsPerPage)+"<ul>");
+});
+
+function initSort() {
+	var valNumber = $('#sortnumber').val();
+	var valDate = $('#sortdate').val();
+	var valType = $('#sorttype').val();
+	
+	initSortField('col_number', valNumber);
+	initSortField('col_date', valDate);
+	initSortField('col_type', valType);
+	
+}
+
+function initSortField(field, val) {
+	var _sort_icon = $('#' + field).find('.sort_icon')
+	if (val == "") {
+		_sort_icon.text('');
+	} else if (val == "d") {
+		_sort_icon.text(sort_down);
+	} else {
+		_sort_icon.text(sort_up);
+	}
+}
+
+function submitSearch(page) {
+	$('#currentPage').val(page);
+	
+	#if($precondition.keyword)
+		$('#keyword').val('$!precondition.keyword');
+	#else
+		$('#keyword').val('');
+	#end
+	
+	#if($precondition.searchcondtion)
+		$('#searchcondtion').val($!precondition.searchcondtion);
+	#else
+		$('#searchcondtion').val('0');
+	#end
+	
+	searchForm.submit();
+}
+
+
+function constructPageNaviagorDetail(current_page, rowsCount, querymethod, deviation, itemsPerPage) {
+	
+	// 总页数=总记录数/每页显示记录数
+	var total_page =Math.ceil(rowsCount / itemsPerPage);
+	var s="";
+	
+	// 总记录数大于每页显示记录数
+	if(rowsCount > itemsPerPage){
+		//默认页的前一页
+		var callPrePage =  querymethod + "(" + (current_page - 1) + ");";
+		//默认页的后一页
+		var callNextPage = querymethod + "(" + (current_page + 1) + ");";
+		if(current_page==1){
+			s += '<li><a href="javascript:void(0)">&laquo;</a></li>';
+		}else{
+			s += '<li><a href="javascript:void(0)" onclick="'+querymethod+'(1)">&laquo;</a></li>';
+		}
+		//当前页居中时左右最大偏移量
+		deviation = !deviation ? 6 : deviation;
+		var startNum = current_page <= deviation + 1 ? 1 : current_page- deviation;
+		var endNum = current_page + deviation < total_page ? current_page + deviation : total_page;
+		//使总码数固定
+		if (current_page - startNum < deviation) {
+			endNum += deviation - (current_page - startNum);
+			endNum = endNum > total_page ? total_page : endNum;
+		}
+		if (endNum - current_page < deviation) {
+			startNum -= deviation - (endNum - current_page);
+			startNum = startNum < 1 ? 1 : startNum; 
+		}			
+		var htmlDot='<li><a href="javascript:void(0)">...</a></li>';
+		for (var i = startNum; i <= endNum; i++){
+			var htmlNum = '<li><a href="javascript:void(0)" onclick="'+querymethod+'('+i+')">'+i+'</a></li>';
+			var htmlCurNum = '<li' + (i == current_page ? ' class="active"' : '') + '><a href="javascript:void(0)" onclick="'+querymethod+'(' + i + ')">' + i + '</a></li>';
+			if(startNum > 1 && i == startNum) {
+				s += '<li><a href="javascript:void(0)" onclick="'+querymethod+'('+i+')">'+i+'</a></li>';
+				continue;
+			}
+			if(startNum > 1 && i == startNum + 1){
+				s += htmlDot;
+				continue;
+			}
+			if(i < endNum){
+				s += i == current_page ? htmlCurNum : htmlNum;
+				continue;
+			} 
+			s += total_page > endNum ? htmlDot : (current_page == endNum ? htmlCurNum : htmlNum);
+		}
+		if(current_page==total_page){
+			s += '<li><a href="javascript:void(0)">&raquo;</a></li>';
+		}else{
+			s += '<li><a href="javascript:void(0)" onclick="'+querymethod+'(' + total_page + ')">&raquo;</a></li>';
+		}
+	}
+	
+	return s;
+}
+
+function resetForm() {
+    $('#keyword').val("");
+    $('#searchcondtion').val("0");
+    $('#searchForm').submit();
+}
+</script>
+
+</head>
+<body>
+<!-- 
+==============================搜索文件==============================
+ -->	
+ 
+<div class="mainbox">
+  <table class="search_table" width="100%">
+    <tbody>
+      <tr>
+        <td class="search">
+       		<form action="internallist.html" method="post" enctype="multipart/form-data" name="searchForm" id="searchForm">
+       			<input type="hidden" name="itemsPerPage" value="10"/>
+       			<input type="hidden" name="currentPage" id="currentPage" value="$files.paginator.page"/>
+       			<input type="hidden" name="categoryid" id="categoryid" value="$!categoryid"/>
+       			<!-- 按照编号排序 -->
+       			<input type="hidden" name="sortnumber" id="sortnumber" value="$!sortnumber"/>
+       			<!-- 按照日期排序 -->
+       			<input type="hidden" name="sortdate" id="sortdate" value="$!sortdate"/>
+       			<!-- 按照类型排序 -->
+       			<input type="hidden" name="sorttype" id="sorttype" value="$!sorttype"/>
+       			<!-- 搜索内容 -->
+	            <input type="text" size="50" class="input-text" name="keyword" id="keyword" placeholder="搜索内容" value="$!keyword">
+	            <select name="searchcondtion" class="t_aera" id="searchcondtion">
+					<option value="0" $!searchcondtion0>智能搜索</option>
+					<option value="1" $!searchcondtion1>文件名称</option>
+                    <option value="6" $!searchcondtion6>文件编号</option>
+                    <option value="2" $!searchcondtion2>关键字</option>
+					<option value="3" $!searchcondtion3>问题类型</option>
+                    <option value="4" $!searchcondtion4>是否闭环</option>
+                    <option value="5" $!searchcondtion5>部门名称</option>
+	            </select>
+	            <input type="submit" value="查询" class="button cx" id="serchData">
+	            <input type="click" value="重置" class="button cz" onclick="resetForm()">
+          	</form>
+       	</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- 
+==============================文件列表==============================
+-->	
+    <div class="table-list">
+      <table cellspacing="0" align="center" width="100%">
+      	<colgroup>
+      		<col width="15">
+            <col width="160">
+            <col width="40">
+            <col width="30">
+            <col width="40">
+            <col width="40">
+            <col width="30">
+            <col width="45">
+        </colgroup>
+        <thead>
+			<tr align="center" valign="middle" class="editHeader" nowrap>
+				<th>序号</th>
+				<th>文件名称</th>
+				<th class="sort_col" id="col_number" sort="number">文件编号<span class="sort_icon"></span></th>
+                <th>是否闭环</th>
+                <th class="sort_col" id="col_type" sort="type">文件类型<span class="sort_icon"></span></th>
+				<th>编制部门</th>
+				<th>&nbsp;</th>
+			</tr>
+        </thead>
+        <tbody>
+        	#foreach($file in $files.listVO)
+			<tr align="center" valign="middle" title="$file.filedesc [$!date.format('yyyy-MM-dd',$!file.datestamp)]" nowrap>
+				<td>$velocityCount</td>
+	            <td style="font-weight: bold; padding:8px 8px 8px 20px;"><a href='web/viewer.html?file=/$file.location'>$file.filename</a></td>
+	            <td style="font-weight: bold; "><a href='web/viewer.html?file=/$file.location'>$file.filenumber</a></td>
+                <td>&nbsp; #if($!file.closed == "true") 是 #else 否 #end </td>
+                <td>&nbsp;$!file.filetype</td>
+	            <td>&nbsp;$!file.department</td>
+	            <td>
+	            	<a href='web/viewer.html?file=/$file.location'>打开</a>
+	            	<!-- &nbsp;<a href='#'>编辑</a> -->
+	            	#if($!SYSTEM_USER.roleid == 1)
+	            	<a href='editInternal.html?fileid=$file.fileid&currentPage=$files.paginator.page&itemsPerPage=10&categoryid=$!categoryid&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype'>编辑</a>
+	            	<a href='removeInternal.html?fileid=$file.fileid&currentPage=$files.paginator.page&itemsPerPage=10&categoryid=$!categoryid&keyword=$!keyword&searchcondtion=$!searchcondtion&sortnumber=$!sortnumber&sortdate=$!sortdate&sorttype=$!sorttype' onclick="return confirm('确认删除该文件?')">删除</a>
+	            	#end
+            	</td>
+			</tr>
+			#end
+        </tbody>
+      </table>
+      <div id="pagination" class="pagination"></div>
+    </div>
+</div>
+</body>
+</html>

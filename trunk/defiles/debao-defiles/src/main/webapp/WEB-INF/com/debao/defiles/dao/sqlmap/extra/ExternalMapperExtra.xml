@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.ExternalVOMapper" >
+	
+	<update id="deleteFile" parameterType="map">
+		update external
+		set deleted = #{deleted,jdbcType=BIT}
+		where fileid = #{id,jdbcType=INTEGER} and deleted = 0
+	</update>
+	
+	<select id="selectByFilter" resultMap="BaseResultMap"
+		parameterType="com.debao.defiles.vo.query.ExternalQueryVO">
+		select
+		<include refid="Base_Column_List" />
+		from external
+		where deleted = 0
+		<if test="department != null">
+		    and department like CONCAT('%', #{department,jdbcType=VARCHAR}, '%')
+		</if>
+        <if test="closed != null">
+            and closed = #{closed,jdbcType=BIT}
+        </if>
+        <if test="filetype != null">
+            and filetype like CONCAT('%', #{filetype,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filename != null">
+            and filename like CONCAT('%', #{filename,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filenumber != null">
+            and filenumber like CONCAT('%', #{filenumber,jdbcType=VARCHAR}, '%')
+        </if>
+		<if test="filelabel != null">
+		    and  filelabel like CONCAT('%', #{filelabel,jdbcType=VARCHAR}, '%')
+		</if>
+		order by ${extrasort} filenumber asc
+		limit #{paginator.offset},#{paginator.itemsPerPage}
+	</select>
+	<select id="selectLastInsertID" resultType="int">
+	    select LAST_INSERT_ID();
+	</select>
+	
+	<select id="selectTotalByFilter" resultType="int"
+		parameterType="com.debao.defiles.vo.query.ExternalQueryVO">
+		select count(fileid)
+		from external
+		where deleted = 0
+        <if test="department != null">
+            and department like CONCAT('%', #{department,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="closed != null">
+            and closed = #{closed,jdbcType=BIT}
+        </if>
+        <if test="filetype != null">
+            and filetype like CONCAT('%', #{filetype,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filename != null">
+            and filename like CONCAT('%', #{filename,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filenumber != null">
+            and filenumber like CONCAT('%', #{filenumber,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="filelabel != null">
+            and  filelabel like CONCAT('%', #{filelabel,jdbcType=VARCHAR}, '%')
+        </if>
+	</select>
+	
+	
+	<select id="selectByFuzzyFilter" resultMap="BaseResultMap"
+		parameterType="com.debao.defiles.vo.query.ExternalQueryVO">
+		select
+		<include refid="Base_Column_List" />
+		from external
+		where deleted = 0
+		<if test="keyword != null">
+		    and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filetype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filename like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filenumber like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+		    		or filelabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
+		</if>
+		order by ${extrasort} filenumber asc
+		limit #{paginator.offset},#{paginator.itemsPerPage}
+	</select>
+	
+	<select id="selectTotalByFuzzyFilter" resultType="int"
+		parameterType="com.debao.defiles.vo.query.ExternalQueryVO">
+		select count(fileid)
+		from external
+		where deleted = 0
+		<if test="keyword != null">
+            and ( department like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filetype like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filename like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filenumber like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%')
+                    or filelabel like CONCAT('%', #{keyword,jdbcType=VARCHAR}, '%'))
+		</if>
+	</select>
+</mapper>

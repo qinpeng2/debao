@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.VideoVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.VideoVO" >
+    <id column="VideoID" property="videoid" jdbcType="INTEGER" />
+    <result column="VideoType" property="videotype" jdbcType="VARCHAR" />
+    <result column="ViedoName" property="viedoname" jdbcType="VARCHAR" />
+    <result column="VideoLabel" property="videolabel" jdbcType="VARCHAR" />
+    <result column="Department" property="department" jdbcType="VARCHAR" />
+    <result column="VideoDesc" property="videodesc" jdbcType="VARCHAR" />
+    <result column="ImgLocation" property="imglocation" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VideoID, VideoType, ViedoName, VideoLabel, Department, VideoDesc, ImgLocation, Location, 
+    UserID, Datestamp, Deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where VideoID = #{videoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where VideoID = #{videoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.VideoVO" >
+    insert into video (VideoID, VideoType, ViedoName, 
+      VideoLabel, Department, VideoDesc, 
+      ImgLocation, Location, UserID, 
+      Datestamp, Deleted)
+    values (#{videoid,jdbcType=INTEGER}, #{videotype,jdbcType=VARCHAR}, #{viedoname,jdbcType=VARCHAR}, 
+      #{videolabel,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{videodesc,jdbcType=VARCHAR}, 
+      #{imglocation,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{datestamp,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.VideoVO" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videoid != null" >
+        VideoID,
+      </if>
+      <if test="videotype != null" >
+        VideoType,
+      </if>
+      <if test="viedoname != null" >
+        ViedoName,
+      </if>
+      <if test="videolabel != null" >
+        VideoLabel,
+      </if>
+      <if test="department != null" >
+        Department,
+      </if>
+      <if test="videodesc != null" >
+        VideoDesc,
+      </if>
+      <if test="imglocation != null" >
+        ImgLocation,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="datestamp != null" >
+        Datestamp,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videoid != null" >
+        #{videoid,jdbcType=INTEGER},
+      </if>
+      <if test="videotype != null" >
+        #{videotype,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoname != null" >
+        #{viedoname,jdbcType=VARCHAR},
+      </if>
+      <if test="videolabel != null" >
+        #{videolabel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="videodesc != null" >
+        #{videodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imglocation != null" >
+        #{imglocation,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.VideoVO" >
+    update video
+    <set >
+      <if test="videotype != null" >
+        VideoType = #{videotype,jdbcType=VARCHAR},
+      </if>
+      <if test="viedoname != null" >
+        ViedoName = #{viedoname,jdbcType=VARCHAR},
+      </if>
+      <if test="videolabel != null" >
+        VideoLabel = #{videolabel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="videodesc != null" >
+        VideoDesc = #{videodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imglocation != null" >
+        ImgLocation = #{imglocation,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        Location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where VideoID = #{videoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.VideoVO" >
+    update video
+    set VideoType = #{videotype,jdbcType=VARCHAR},
+      ViedoName = #{viedoname,jdbcType=VARCHAR},
+      VideoLabel = #{videolabel,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      VideoDesc = #{videodesc,jdbcType=VARCHAR},
+      ImgLocation = #{imglocation,jdbcType=VARCHAR},
+      Location = #{location,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where VideoID = #{videoid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -14,14 +14,14 @@ import java.util.Map;
 public class DriftDAOImpl implements DriftDAO {
 	
 	@Autowired
-	private DriftVOMapper capaVOMapper;
+	private DriftVOMapper driftVOMapper;
 	
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public boolean insert(DriftVO driftVO) {
-		return 1 == capaVOMapper.insert(driftVO);
+		return 1 == driftVOMapper.insert(driftVO);
 	}
 	
 	@Override
@@ -31,7 +31,7 @@ public class DriftDAOImpl implements DriftDAO {
 
 	@Override
 	public boolean update(DriftVO driftVO) {
-		return 1 == capaVOMapper.updateByPrimaryKey(driftVO);
+		return 1 == driftVOMapper.updateByPrimaryKey(driftVO);
 	}
 
 
@@ -53,7 +53,7 @@ public class DriftDAOImpl implements DriftDAO {
 	
 	@Override
 	public DriftVO findByID(Integer id) {
-		return capaVOMapper.selectByPrimaryKey(id);
+		return driftVOMapper.selectByPrimaryKey(id);
 	}
 	
 	@Override
@@ -86,12 +86,12 @@ public class DriftDAOImpl implements DriftDAO {
 
 
 	public DriftVOMapper getDriftVOMapper() {
-		return capaVOMapper;
+		return driftVOMapper;
 	}
 
 
 	public void setDriftVOMapper(DriftVOMapper capaVOMapper) {
-		this.capaVOMapper = capaVOMapper;
+		this.driftVOMapper = capaVOMapper;
 	}
 
 }

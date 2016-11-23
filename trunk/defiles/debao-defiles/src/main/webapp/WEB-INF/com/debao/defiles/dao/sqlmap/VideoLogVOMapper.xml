@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.VideoLogVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.VideoLogVO" >
+    <id column="VideoLogID" property="videologid" jdbcType="INTEGER" />
+    <result column="VideoID" property="videoid" jdbcType="INTEGER" />
+    <result column="VideoOptID" property="videooptid" jdbcType="INTEGER" />
+    <result column="ChangeDesc" property="changedesc" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VideoLogID, VideoID, VideoOptID, ChangeDesc, UserID, Datestamp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from videolog
+    where VideoLogID = #{videologid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from videolog
+    where VideoLogID = #{videologid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.VideoLogVO" >
+    insert into videolog (VideoLogID, VideoID, VideoOptID, 
+      ChangeDesc, UserID, Datestamp
+      )
+    values (#{videologid,jdbcType=INTEGER}, #{videoid,jdbcType=INTEGER}, #{videooptid,jdbcType=INTEGER}, 
+      #{changedesc,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.VideoLogVO" >
+    insert into videolog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videologid != null" >
+        VideoLogID,
+      </if>
+      <if test="videoid != null" >
+        VideoID,
+      </if>
+      <if test="videooptid != null" >
+        VideoOptID,
+      </if>
+      <if test="changedesc != null" >
+        ChangeDesc,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="datestamp != null" >
+        Datestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videologid != null" >
+        #{videologid,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null" >
+        #{videoid,jdbcType=INTEGER},
+      </if>
+      <if test="videooptid != null" >
+        #{videooptid,jdbcType=INTEGER},
+      </if>
+      <if test="changedesc != null" >
+        #{changedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.VideoLogVO" >
+    update videolog
+    <set >
+      <if test="videoid != null" >
+        VideoID = #{videoid,jdbcType=INTEGER},
+      </if>
+      <if test="videooptid != null" >
+        VideoOptID = #{videooptid,jdbcType=INTEGER},
+      </if>
+      <if test="changedesc != null" >
+        ChangeDesc = #{changedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where VideoLogID = #{videologid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.VideoLogVO" >
+    update videolog
+    set VideoID = #{videoid,jdbcType=INTEGER},
+      VideoOptID = #{videooptid,jdbcType=INTEGER},
+      ChangeDesc = #{changedesc,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      Datestamp = #{datestamp,jdbcType=TIMESTAMP}
+    where VideoLogID = #{videologid,jdbcType=INTEGER}
+  </update>
+</mapper>

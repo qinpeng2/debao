@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
+<link rel="stylesheet" href="../css/admindefault.css">
+<link rel="stylesheet" href="../css/jquery-ui.min.css">
+<link rel="stylesheet" href="../css/jquery-ui.theme.min.css">
+<style type="text/css">
+.txtFull{height:27px;width:290px; border-radius:3px;}
+.txtName{height:27px;width:130px; border-radius:3px;}
+.txtBetween{height:27px;width:80px; border-radius:3px;}
+</style>
+<script type="text/javascript" src="../js/adminjquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    initDatePicker();
+});
+
+function initDatePicker() {
+    $('input.datepicker').datepicker({
+        showOn: "button",
+        buttonImage: "img/show-calendar.gif",
+        buttonText: "Date Picker",
+        dateFormat: 'yy-mm-dd',
+        beforeShow: function(dateText, inst) {
+            $(this).keydown();
+        }
+    });
+    $('.ui-datepicker-trigger').css({"cursor":"pointer", "vertical-align":"middle"});
+}
+
+function checkform() {
+	
+	if ($('#filename').val() == "") {
+		alert("请输入文件名！");
+		return false;
+	}
+	
+	if ($('#filenumber').val() == "") {
+		alert("请输入文件编号！");
+		return false;
+	}
+	
+	
+	#if(!$!file.fileid)
+	if ($('#file').val() == "") {
+		alert("请上传文件！");
+		return false;
+	}
+	#end
+	
+	return true;
+}
+
+</script>
+
+</head>
+<body>
+#if($error_msg)
+<p class="error_msg">$error_msg</p>
+#end
+
+#if($info_msg)
+<p class="info_msg">$info_msg</p>
+#end
+<!-- 
+==============================添加外部审核管理==============================
+ -->	
+<div class="mainbox">
+  <table class="search_table" width="100%">
+    <tbody>
+      <tr>
+        <td>
+          <div id="AddBox">
+          #if($!file.fileid)
+            <form name="myform" id="myform" action="processExternalEdit.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+	            <input type="hidden" id="fileid" name="fileid" value="$!file.fileid" />
+	            <input type="hidden" name="itemsPerPage" value="$!searchReq.itemsPerPage"/>
+	   			<input type="hidden" name="currentPage" id="currentPage" value="$!searchReq.currentPage"/>
+	   			<input type="hidden" name="sortnumber" id="sortnumber" value="$!searchReq.sortnumber"/>
+	   			<input type="hidden" name="sortdate" id="sortdate" value="$!searchReq.sortdate"/>
+	   			<input type="hidden" name="sorttype" id="sorttype" value="$!searchReq.sorttype"/>
+	   			<input type="hidden" name="keyword" id="keyword" value="$!searchReq.keyword"/>
+	   			<input type="hidden" name="searchcondtion" id="searchcondtion" value="$!searchReq.searchcondtion"/>
+          #else
+          	<form name="myform" id="myform" action="processExternal.html" method="post" enctype="multipart/form-data" onsubmit="return checkform()">
+          #end
+
+            <div class="row"> <strong class="caption">*文件名称:</strong>
+              <input type="text" class="txtFull" name="filename" id="filename" placeholder="文件名" style="width:600px" value="$!file.filename" />
+            </div>
+            <div class="row"> <strong class="caption">*文件编号:</strong>
+              	<input type="text" class="txtFull" name="filenumber" id="filenumber" placeholder="编号" value="$!file.filenumber" />
+            </div>
+              <div class="row"> <strong class="caption">&nbsp;&nbsp;部门名称:</strong>
+                  <input type="text" class="txtFull" name="department" id="department" placeholder="编制部门" value="$!file.department" />
+              </div>
+              <div class="row"> <strong class="caption">&nbsp;&nbsp;问题类型:</strong>
+                <input type="text" class="txtFull" name="filetype" id="filetype" placeholder="类型" value="$!file.filetype" />
+            </div>
+            <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;是否闭环:</strong>
+              <input type="radio" name="closed" value="1" #if($!file.closed == "true") checked #end >是&nbsp;
+              <input type="radio" name="closed" value="2" #if($!file.closed != "true") checked #end >否
+            </div>
+            <div class="row" style="vertical-align: middle;" > <strong class="caption">&nbsp;&nbsp;发布日期:</strong>
+              <input type="text" class="datepicker txtFull" style="width:120px;" name="datestamp" id="datestamp" placeholder="例如：2015-1-1" value="$!date.format('yyyy-MM-dd',$!file.datestamp)" />
+            </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;关&nbsp;&nbsp;键&nbsp;字:</strong>
+            	<input type="text" class="txtFull" name="filelable" id="filelable" placeholder="请在每个标签中间用逗号分隔。例如：标签一，标签二" style="width:600px" value="$!file.filelabel" />
+            </div>
+            <div class="row"> <strong class="caption">&nbsp;&nbsp;问题简述:</strong>
+            	<textarea rows="5" cols="95" id="filedesc" name="filedesc">$!file.filedesc</textarea>
+            </div>
+            <hr/>
+            #if(!$!file.fileid)
+            <div class="row"> <strong class="caption">*选择文件:</strong>
+              <input type="file" class="txtFull" name="file" id="file" placeholder="上传文件" /> &nbsp;(文件格式：pdf)
+            </div>
+            #end
+            <div class="row" style=" text-align:left; padding-left:250px;">
+            	<input type="submit" class="button add" id="btnAdd" value="提交"/>&nbsp;&nbsp;
+           	</div>
+            </form>
+          </div>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

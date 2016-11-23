@@ -1,0 +1,16 @@
+body{background:#E2E9EA}
+#Main, .leftMenu{ height:304px}
+.logo a img{ width:180px;}
+.leftMenuson{padding-left:12px;_padding-left:10px;}
+#nav_1{display: block;}
+#nav_2, #nav_3, #nav_4, #nav_5, #nav_6, .aui_icon, .aui_buttons{display: none;}
+#Main_drop a img{ width:11px; height:60px; border:0px;}
+.lin{display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;}
+.bottom{display: none; position: absolute;}
+.aui_title{cursor: move;}
+.aui_iconBg{background-image: none; background-position: initial initial; background-repeat: initial initial;}
+.aui_main{width: auto; height: auto;}
+.aui_content{padding: 20px 25px;}
+.aui_se{cursor: se-resize;}
+.footer_div{position: absolute; top: -1970px; left: -1970px;}
+.footer_div iframe{width: 186px; height: 198px;}

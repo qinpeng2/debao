@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.debao.defiles.dao.mapper.CapaVOMapper" >
+  <resultMap id="BaseResultMap" type="com.debao.defiles.vo.CapaVO" >
+    <id column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FileType" property="filetype" jdbcType="VARCHAR" />
+    <result column="FileName" property="filename" jdbcType="VARCHAR" />
+    <result column="FileNumber" property="filenumber" jdbcType="VARCHAR" />
+    <result column="CapaSource" property="capasource" jdbcType="VARCHAR" />
+    <result column="Closed" property="closed" jdbcType="BIT" />
+    <result column="FileLabel" property="filelabel" jdbcType="VARCHAR" />
+    <result column="Department" property="department" jdbcType="VARCHAR" />
+    <result column="FileDesc" property="filedesc" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="Datestamp" property="datestamp" jdbcType="TIMESTAMP" />
+    <result column="Deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FileID, FileType, FileName, FileNumber, CapaSource, Closed, FileLabel, Department, 
+    FileDesc, Location, UserID, Datestamp, Deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from capa
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from capa
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.debao.defiles.vo.CapaVO" >
+    insert into capa (FileID, FileType, FileName, 
+      FileNumber, CapaSource, Closed, 
+      FileLabel, Department, FileDesc, 
+      Location, UserID, Datestamp, 
+      Deleted)
+    values (#{fileid,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{filenumber,jdbcType=VARCHAR}, #{capasource,jdbcType=VARCHAR}, #{closed,jdbcType=BIT}, 
+      #{filelabel,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{datestamp,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.debao.defiles.vo.CapaVO" >
+    insert into capa
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        FileID,
+      </if>
+      <if test="filetype != null" >
+        FileType,
+      </if>
+      <if test="filename != null" >
+        FileName,
+      </if>
+      <if test="filenumber != null" >
+        FileNumber,
+      </if>
+      <if test="capasource != null" >
+        CapaSource,
+      </if>
+      <if test="closed != null" >
+        Closed,
+      </if>
+      <if test="filelabel != null" >
+        FileLabel,
+      </if>
+      <if test="department != null" >
+        Department,
+      </if>
+      <if test="filedesc != null" >
+        FileDesc,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="datestamp != null" >
+        Datestamp,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filenumber != null" >
+        #{filenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="capasource != null" >
+        #{capasource,jdbcType=VARCHAR},
+      </if>
+      <if test="closed != null" >
+        #{closed,jdbcType=BIT},
+      </if>
+      <if test="filelabel != null" >
+        #{filelabel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="filedesc != null" >
+        #{filedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.debao.defiles.vo.CapaVO" >
+    update capa
+    <set >
+      <if test="filetype != null" >
+        FileType = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        FileName = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filenumber != null" >
+        FileNumber = #{filenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="capasource != null" >
+        CapaSource = #{capasource,jdbcType=VARCHAR},
+      </if>
+      <if test="closed != null" >
+        Closed = #{closed,jdbcType=BIT},
+      </if>
+      <if test="filelabel != null" >
+        FileLabel = #{filelabel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="filedesc != null" >
+        FileDesc = #{filedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        Location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="datestamp != null" >
+        Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.debao.defiles.vo.CapaVO" >
+    update capa
+    set FileType = #{filetype,jdbcType=VARCHAR},
+      FileName = #{filename,jdbcType=VARCHAR},
+      FileNumber = #{filenumber,jdbcType=VARCHAR},
+      CapaSource = #{capasource,jdbcType=VARCHAR},
+      Closed = #{closed,jdbcType=BIT},
+      FileLabel = #{filelabel,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      FileDesc = #{filedesc,jdbcType=VARCHAR},
+      Location = #{location,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      Datestamp = #{datestamp,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+</mapper>

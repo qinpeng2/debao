@@ -34,10 +34,15 @@
         <li id="menu_0"><span><a href="javascript:void(0);" onClick="sethighlight(0);">文件中心</a></span></li>
         <li id="menu_4"><span><a href="javascript:void(0);" onClick="sethighlight(4);">CAPA管理</a></span></li>
         <li id="menu_5"><span><a href="javascript:void(0);" onClick="sethighlight(5);">偏差管理</a></span></li>
+        <li id="menu_7"><span><a href="javascript:void(0);" onClick="sethighlight(7);">内部审核</a></span></li>
+        <li id="menu_8"><span><a href="javascript:void(0);" onClick="sethighlight(8);">外部审核</a></span></li>
+        <li id="menu_9"><span><a href="javascript:void(0);" onClick="sethighlight(9);">客户审计</a></span></li>
+        <li id="menu_10"><span><a href="javascript:void(0);" onClick="sethighlight(10);">供应商管理</a></span></li>
+        <li id="menu_11"><span><a href="javascript:void(0);" onClick="sethighlight(11);">质量管理</a></span></li>
         <li id="menu_6"><span><a href="javascript:void(0);" onClick="sethighlight(6);">培训中心</a></span></li>
-	  #if($!SYSTEM_USER.roleid == 1)
+        #if($!SYSTEM_USER.roleid == 1)
       <li id="menu_1"><span><a href="javascript:void(0);" onClick="sethighlight(1);">资料上传</a></span></li>
-      <li id="menu_2"><span><a href="javascript:void(0);" onClick="sethighlight(2);">类别管理</a></span></li>
+      <!--<li id="menu_2"><span><a href="javascript:void(0);" onClick="sethighlight(2);">类别管理</a></span></li>-->
       #end
       <li id="menu_3"><span><a href="javascript:void(0);" onClick="sethighlight(3);">用户中心</a></span></li>
     </ul>
@@ -64,15 +69,24 @@
         <dl id="nav_1">
           <dt>资料上传</dt>
           <dd id="nav_101" class="on"><a href="file.html" target="main"><span onClick="javascript:gourl('101')">上传文件</span></a></dd>
+            <dd id="nav_201"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('201')">文件类别列表</span></a></dd>
+            <dd id="nav_202"><a href="category.html" target="main"><span onClick="javascript:gourl('202')">文件类别添加</span></a></dd>
           <dd id="nav_102" class="on"><a href="capa.html" target="main"><span onClick="javascript:gourl('102')">上传CAPA</span></a></dd>
           <dd id="nav_103" class="on"><a href="drift.html" target="main"><span onClick="javascript:gourl('103')">上传偏差</span></a></dd>
-            <dd id="nav_104" class="on"><a href="video.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
+          <dd id="nav_105" class="on"><a href="internal.html" target="main"><span onClick="javascript:gourl('105')">上传内部审核</span></a></dd>
+          <dd id="nav_106" class="on"><a href="external.html" target="main"><span onClick="javascript:gourl('106')">上传外部审核</span></a></dd>
+          <dd id="nav_107" class="on"><a href="audit.html" target="main"><span onClick="javascript:gourl('107')">上传客户审计</span></a></dd>
+          <dd id="nav_108" class="on"><a href="supply.html" target="main"><span onClick="javascript:gourl('108')">上传供应商管理</span></a></dd>
+          <dd id="nav_109" class="on"><a href="quality.html" target="main"><span onClick="javascript:gourl('109')">上传质量管理</span></a></dd>
+          <dd id="nav_104" class="on"><a href="video.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
         </dl>
+          <!--
         <dl id="nav_2">
           <dt>类别管理</dt>
           <dd id="nav_201"><a href="categorylist.html" target="main"><span onClick="javascript:gourl('201')">类别列表</span></a></dd>
           <dd id="nav_202"><a href="category.html" target="main"><span onClick="javascript:gourl('202')">添加类别</span></a></dd>
         </dl>
+          -->
         <dl id="nav_3">
           <dt>用户中心</dt>
           <dd id="nav_17"><a href="userinfo.html" target="main"><span onClick="javascript:gourl('17')">个人信息</span></a></dd>
@@ -93,6 +107,36 @@
           <dl id="nav_5">
               <dt>偏差管理</dt>
               <dd id="nav_601"><a href="driftlist.html" target="main"><span onClick="javascript:gourl('501')">偏差列表</span></a></dd>
+          </dl>
+
+          <dl id="nav_7">
+              <dt>内部审核</dt>
+              <dd id="nav_701"><a href="internallist.html" target="main"><span onClick="javascript:gourl('701')">内部审核</span></a></dd>
+          </dl>
+
+          <dl id="nav_8">
+              <dt>外部审核</dt>
+              <dd id="nav_801"><a href="externallist.html" target="main"><span onClick="javascript:gourl('801')">外部审核</span></a></dd>
+          </dl>
+
+          <dl id="nav_9">
+              <dt>客户审计</dt>
+              <dd id="nav_901"><a href="auditlist.html" target="main"><span onClick="javascript:gourl('901')">客户审计</span></a></dd>
+          </dl>
+
+          <dl id="nav_10">
+              <dt>供应商管理</dt>
+              <dd id="nav_1001"><a href="supplylist.html" target="main"><span onClick="javascript:gourl('1001')">供应商审计</span></a></dd>
+              <dd id="nav_1002"><a href="supplylist.html" target="main"><span onClick="javascript:gourl('1002')">供应商反馈</span></a></dd>
+          </dl>
+
+          <dl id="nav_11">
+              <dt>质量管理</dt>
+              <dd id="nav_1101"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1101')">质量工作总结</span></a></dd>
+              <dd id="nav_1102"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1102')">质量月报</span></a></dd>
+              <dd id="nav_1103"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1103')">订货周期</span></a></dd>
+              <dd id="nav_1104"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1104')">客户风险等级评价</span></a></dd>
+              <dd id="nav_1105"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1105')">客户反馈缺陷分析</span></a></dd>
           </dl>
 
           <dl id="nav_6">

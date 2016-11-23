@@ -67,6 +67,14 @@
         </table>
         <table tableName="driftlog" domainObjectName="DriftLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
+        <table tableName="internal" domainObjectName="InternalVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="internallog" domainObjectName="InternalLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="external" domainObjectName="ExternalVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="externallog" domainObjectName="ExternalLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
         <table tableName="video" domainObjectName="VideoVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
         <table tableName="videolog" domainObjectName="VideoLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
