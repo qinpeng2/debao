@@ -6,8 +6,8 @@ import com.debao.defiles.common.util.HtmlParams;
 import com.debao.defiles.common.util.UUIDHelper;
 import com.debao.defiles.constant.CapaSearchConditions;
 import com.debao.defiles.controller.user.LogonController;
+import com.debao.defiles.request.BaseSearchRequest;
 import com.debao.defiles.request.CapaRequest;
-import com.debao.defiles.request.CapaSearchRequest;
 import com.debao.defiles.services.file.CapaService;
 import com.debao.defiles.vo.CapaVO;
 import com.debao.defiles.vo.UserVO;
@@ -55,7 +55,7 @@ public class CapaController {
 
   @RequestMapping(value = "editCapa.html", method = RequestMethod.GET)
   public String editCapa(HttpServletRequest req, ModelMap map, Integer fileid,
-                          CapaSearchRequest searchReq) {
+                          BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -73,7 +73,7 @@ public class CapaController {
 
   @RequestMapping(value = "processCapaEdit.html", method = RequestMethod.POST)
   public String processCapaEdit(HttpServletRequest req, ModelMap map, CapaRequest capaReq,
-                                 CapaSearchRequest searchReq) throws ParseException {
+                                 BaseSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -201,7 +201,7 @@ public class CapaController {
   }
 
   @RequestMapping(value = "capalist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String capaList(HttpServletRequest request, ModelMap map, CapaSearchRequest searchReq) {
+  public String capaList(HttpServletRequest request, ModelMap map, BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
@@ -276,7 +276,7 @@ public class CapaController {
 
   @RequestMapping(value = "removeCapa.html", method = RequestMethod.GET)
   public String removeCapa(HttpServletRequest request, ModelMap map, Integer fileid,
-                            CapaSearchRequest searchReq) {
+                            BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {

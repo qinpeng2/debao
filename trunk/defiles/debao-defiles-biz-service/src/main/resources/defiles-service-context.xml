@@ -13,11 +13,19 @@
 
     <bean id="capaService" class="com.debao.defiles.services.file.impl.CapaServiceImpl"/>
 
+    <bean id="auditService" class="com.debao.defiles.services.file.impl.AuditServiceImpl"/>
+
     <bean id="driftService" class="com.debao.defiles.services.file.impl.DriftServiceImpl"/>
 
     <bean id="internalService" class="com.debao.defiles.services.file.impl.InternalServiceImpl"/>
 
     <bean id="externalService" class="com.debao.defiles.services.file.impl.ExternalServiceImpl"/>
+
+    <bean id="supplyService" class="com.debao.defiles.services.file.impl.SupplyServiceImpl"/>
+
+    <bean id="feedbackService" class="com.debao.defiles.services.file.impl.FeedbackServiceImpl"/>
+
+    <bean id="qualityService" class="com.debao.defiles.services.file.impl.QualityServiceImpl"/>
 
     <bean id="videoService" class="com.debao.defiles.services.file.impl.VideoServiceImpl"/>
     

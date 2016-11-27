@@ -1,7 +1,7 @@
 package com.debao.defiles.vo.query;
 
-import com.debao.defiles.vo.FileLogVO;
+import com.debao.defiles.vo.CapaLogVO;
 
-public class CapaLogQueryVO extends FileLogVO{
+public class CapaLogQueryVO extends CapaLogVO {
 	
 }

@@ -45,6 +45,7 @@
         </table>
         <!--<table tableName="ifund_budget" domainObjectName="BudgetVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 			enableSelectByExample="false" selectByExampleQueryId="false">
         </table>-->
+        <!--
 		<table tableName="category" domainObjectName="CategoryVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 			enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
 		<table tableName="file" domainObjectName="FileVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 			enableSelectByExample="false" selectByExampleQueryId="false">
@@ -77,8 +78,18 @@
         </table>
         <table tableName="video" domainObjectName="VideoVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="videolog" domainObjectName="VideoLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
+        <table tableName="videolog" domainObjectName="VideoLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
 
+        <table tableName="audit" domainObjectName="AuditVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="auditlog" domainObjectName="AuditLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="quality" domainObjectName="QualityVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="qualitylog" domainObjectName="QualityLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+        -->
+        <table tableName="supply" domainObjectName="SupplyVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="supplylog" domainObjectName="SupplyLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="feedback" domainObjectName="FeedbackVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="feedbacklog" domainObjectName="FeedbackLogVO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"          enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

@@ -6,8 +6,8 @@ import com.debao.defiles.common.util.HtmlParams;
 import com.debao.defiles.common.util.UUIDHelper;
 import com.debao.defiles.constant.DriftSearchConditions;
 import com.debao.defiles.controller.user.LogonController;
+import com.debao.defiles.request.BaseSearchRequest;
 import com.debao.defiles.request.DriftRequest;
-import com.debao.defiles.request.DriftSearchRequest;
 import com.debao.defiles.services.file.DriftService;
 import com.debao.defiles.vo.DriftVO;
 import com.debao.defiles.vo.UserVO;
@@ -55,7 +55,7 @@ public class DriftController {
 
   @RequestMapping(value = "editDrift.html", method = RequestMethod.GET)
   public String editDrift(HttpServletRequest req, ModelMap map, Integer fileid,
-                           DriftSearchRequest searchReq) {
+                           BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -73,7 +73,7 @@ public class DriftController {
 
   @RequestMapping(value = "processDriftEdit.html", method = RequestMethod.POST)
   public String processDriftEdit(HttpServletRequest req, ModelMap map, DriftRequest driftReq,
-                                  DriftSearchRequest searchReq) throws ParseException {
+                                  BaseSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -199,7 +199,7 @@ public class DriftController {
   }
 
   @RequestMapping(value = "driftlist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String driftList(HttpServletRequest request, ModelMap map, DriftSearchRequest searchReq) {
+  public String driftList(HttpServletRequest request, ModelMap map, BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
@@ -275,7 +275,7 @@ public class DriftController {
 
   @RequestMapping(value = "removeDrift.html", method = RequestMethod.GET)
   public String removeDrift(HttpServletRequest request, ModelMap map, Integer fileid,
-                             DriftSearchRequest searchReq) {
+                             BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {

@@ -1,7 +1,7 @@
 package com.debao.defiles.vo.query;
 
-import com.debao.defiles.vo.FileLogVO;
+import com.debao.defiles.vo.ExternalLogVO;
 
-public class ExternalLogQueryVO extends FileLogVO{
+public class ExternalLogQueryVO extends ExternalLogVO {
 	
 }

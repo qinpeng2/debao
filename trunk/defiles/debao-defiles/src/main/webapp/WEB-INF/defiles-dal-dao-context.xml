@@ -15,12 +15,20 @@
 	<bean id="fileLogDAO" class="com.debao.defiles.dao.impl.FileLogDAOImpl"/>
     <bean id="capaDAO" class="com.debao.defiles.dao.impl.CapaDAOImpl"/>
     <bean id="capaLogDAO" class="com.debao.defiles.dao.impl.CapaLogDAOImpl"/>
+    <bean id="auditDAO" class="com.debao.defiles.dao.impl.AuditDAOImpl"/>
+    <bean id="auditLogDAO" class="com.debao.defiles.dao.impl.AuditLogDAOImpl"/>
     <bean id="driftDAO" class="com.debao.defiles.dao.impl.DriftDAOImpl"/>
     <bean id="driftLogDAO" class="com.debao.defiles.dao.impl.DriftLogDAOImpl"/>
     <bean id="internalDAO" class="com.debao.defiles.dao.impl.InternalDAOImpl"/>
     <bean id="internalLogDAO" class="com.debao.defiles.dao.impl.InternalLogDAOImpl"/>
     <bean id="externalDAO" class="com.debao.defiles.dao.impl.ExternalDAOImpl"/>
     <bean id="externalLogDAO" class="com.debao.defiles.dao.impl.ExternalLogDAOImpl"/>
+    <bean id="supplyDAO" class="com.debao.defiles.dao.impl.SupplyDAOImpl"/>
+    <bean id="supplyLogDAO" class="com.debao.defiles.dao.impl.SupplyLogDAOImpl"/>
+    <bean id="feedbackDAO" class="com.debao.defiles.dao.impl.FeedbackDAOImpl"/>
+    <bean id="feedbackLogDAO" class="com.debao.defiles.dao.impl.FeedbackLogDAOImpl"/>
+    <bean id="qualityDAO" class="com.debao.defiles.dao.impl.QualityDAOImpl"/>
+    <bean id="qualityLogDAO" class="com.debao.defiles.dao.impl.QualityLogDAOImpl"/>
     <bean id="videoDAO" class="com.debao.defiles.dao.impl.VideoDAOImpl"/>
     <bean id="videoLogDAO" class="com.debao.defiles.dao.impl.VideoLogDAOImpl"/>
 	

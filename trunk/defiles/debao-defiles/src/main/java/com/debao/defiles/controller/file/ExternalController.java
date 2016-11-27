@@ -6,8 +6,8 @@ import com.debao.defiles.common.util.HtmlParams;
 import com.debao.defiles.common.util.UUIDHelper;
 import com.debao.defiles.constant.ExternalSearchConditions;
 import com.debao.defiles.controller.user.LogonController;
+import com.debao.defiles.request.BaseSearchRequest;
 import com.debao.defiles.request.ExternalRequest;
-import com.debao.defiles.request.ExternalSearchRequest;
 import com.debao.defiles.services.file.ExternalService;
 import com.debao.defiles.vo.ExternalVO;
 import com.debao.defiles.vo.UserVO;
@@ -55,7 +55,7 @@ public class ExternalController {
 
   @RequestMapping(value = "editExternal.html", method = RequestMethod.GET)
   public String editExternal(HttpServletRequest req, ModelMap map, Integer fileid,
-                           ExternalSearchRequest searchReq) {
+                           BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -73,7 +73,7 @@ public class ExternalController {
 
   @RequestMapping(value = "processExternalEdit.html", method = RequestMethod.POST)
   public String processExternalEdit(HttpServletRequest req, ModelMap map, ExternalRequest externalReq,
-                                  ExternalSearchRequest searchReq) throws ParseException {
+                                  BaseSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -199,7 +199,7 @@ public class ExternalController {
   }
 
   @RequestMapping(value = "externallist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String externalList(HttpServletRequest request, ModelMap map, ExternalSearchRequest searchReq) {
+  public String externalList(HttpServletRequest request, ModelMap map, BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
@@ -275,7 +275,7 @@ public class ExternalController {
 
   @RequestMapping(value = "removeExternal.html", method = RequestMethod.GET)
   public String removeExternal(HttpServletRequest request, ModelMap map, Integer fileid,
-                             ExternalSearchRequest searchReq) {
+                             BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {

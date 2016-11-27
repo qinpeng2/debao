@@ -6,8 +6,8 @@ import com.debao.defiles.common.util.HtmlParams;
 import com.debao.defiles.common.util.UUIDHelper;
 import com.debao.defiles.constant.InternalSearchConditions;
 import com.debao.defiles.controller.user.LogonController;
+import com.debao.defiles.request.BaseSearchRequest;
 import com.debao.defiles.request.InternalRequest;
-import com.debao.defiles.request.InternalSearchRequest;
 import com.debao.defiles.services.file.InternalService;
 import com.debao.defiles.vo.InternalVO;
 import com.debao.defiles.vo.UserVO;
@@ -55,7 +55,7 @@ public class InternalController {
 
   @RequestMapping(value = "editInternal.html", method = RequestMethod.GET)
   public String editInternal(HttpServletRequest req, ModelMap map, Integer fileid,
-                           InternalSearchRequest searchReq) {
+                           BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -73,7 +73,7 @@ public class InternalController {
 
   @RequestMapping(value = "processInternalEdit.html", method = RequestMethod.POST)
   public String processInternalEdit(HttpServletRequest req, ModelMap map, InternalRequest internalReq,
-                                  InternalSearchRequest searchReq) throws ParseException {
+                                  BaseSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -199,7 +199,7 @@ public class InternalController {
   }
 
   @RequestMapping(value = "internallist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String internalList(HttpServletRequest request, ModelMap map, InternalSearchRequest searchReq) {
+  public String internalList(HttpServletRequest request, ModelMap map, BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
@@ -275,7 +275,7 @@ public class InternalController {
 
   @RequestMapping(value = "removeInternal.html", method = RequestMethod.GET)
   public String removeInternal(HttpServletRequest request, ModelMap map, Integer fileid,
-                             InternalSearchRequest searchReq) {
+                             BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {

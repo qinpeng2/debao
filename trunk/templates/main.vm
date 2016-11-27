@@ -76,7 +76,8 @@
           <dd id="nav_105" class="on"><a href="internal.html" target="main"><span onClick="javascript:gourl('105')">上传内部审核</span></a></dd>
           <dd id="nav_106" class="on"><a href="external.html" target="main"><span onClick="javascript:gourl('106')">上传外部审核</span></a></dd>
           <dd id="nav_107" class="on"><a href="audit.html" target="main"><span onClick="javascript:gourl('107')">上传客户审计</span></a></dd>
-          <dd id="nav_108" class="on"><a href="supply.html" target="main"><span onClick="javascript:gourl('108')">上传供应商管理</span></a></dd>
+          <dd id="nav_108" class="on"><a href="supply.html" target="main"><span onClick="javascript:gourl('108')">上传供应商审计</span></a></dd>
+          <dd id="nav_110" class="on"><a href="feedback.html" target="main"><span onClick="javascript:gourl('110')">上传供应商反馈</span></a></dd>
           <dd id="nav_109" class="on"><a href="quality.html" target="main"><span onClick="javascript:gourl('109')">上传质量管理</span></a></dd>
           <dd id="nav_104" class="on"><a href="video.html" target="main"><span onClick="javascript:gourl('104')">上传视频</span></a></dd>
         </dl>
@@ -127,16 +128,16 @@
           <dl id="nav_10">
               <dt>供应商管理</dt>
               <dd id="nav_1001"><a href="supplylist.html" target="main"><span onClick="javascript:gourl('1001')">供应商审计</span></a></dd>
-              <dd id="nav_1002"><a href="supplylist.html" target="main"><span onClick="javascript:gourl('1002')">供应商反馈</span></a></dd>
+              <dd id="nav_1002"><a href="feedbacklist.html" target="main"><span onClick="javascript:gourl('1002')">供应商反馈</span></a></dd>
           </dl>
 
           <dl id="nav_11">
               <dt>质量管理</dt>
-              <dd id="nav_1101"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1101')">质量工作总结</span></a></dd>
-              <dd id="nav_1102"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1102')">质量月报</span></a></dd>
-              <dd id="nav_1103"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1103')">订货周期</span></a></dd>
-              <dd id="nav_1104"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1104')">客户风险等级评价</span></a></dd>
-              <dd id="nav_1105"><a href="qualitylist.html" target="main"><span onClick="javascript:gourl('1105')">客户反馈缺陷分析</span></a></dd>
+              <dd id="nav_1101"><a href="qualitylist.html?categoryid=1" target="main"><span onClick="javascript:gourl('1101')">质量工作总结</span></a></dd>
+              <dd id="nav_1102"><a href="qualitylist.html?categoryid=2" target="main"><span onClick="javascript:gourl('1102')">质量月报</span></a></dd>
+              <dd id="nav_1103"><a href="qualitylist.html?categoryid=3" target="main"><span onClick="javascript:gourl('1103')">订货周期</span></a></dd>
+              <dd id="nav_1104"><a href="qualitylist.html?categoryid=4" target="main"><span onClick="javascript:gourl('1104')">客户风险等级评价</span></a></dd>
+              <dd id="nav_1105"><a href="qualitylist.html?categoryid=5" target="main"><span onClick="javascript:gourl('1105')">客户反馈缺陷分析</span></a></dd>
           </dl>
 
           <dl id="nav_6">

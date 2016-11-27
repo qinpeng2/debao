@@ -6,8 +6,8 @@ import com.debao.defiles.common.util.HtmlParams;
 import com.debao.defiles.common.util.UUIDHelper;
 import com.debao.defiles.constant.VideoSearchConditions;
 import com.debao.defiles.controller.user.LogonController;
+import com.debao.defiles.request.BaseSearchRequest;
 import com.debao.defiles.request.VideoRequest;
-import com.debao.defiles.request.VideoSearchRequest;
 import com.debao.defiles.services.file.VideoService;
 import com.debao.defiles.vo.UserVO;
 import com.debao.defiles.vo.VideoVO;
@@ -56,7 +56,7 @@ public class VideoController {
 
   @RequestMapping(value = "editVideo.html", method = RequestMethod.GET)
   public String editVideo(HttpServletRequest req, ModelMap map, Integer videoid,
-                           VideoSearchRequest searchReq) {
+                           BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
@@ -74,7 +74,7 @@ public class VideoController {
 
   @RequestMapping(value = "processVideoEdit.html", method = RequestMethod.POST)
   public String processVideoEdit(HttpServletRequest req, ModelMap map, VideoRequest videoReq,
-                                  VideoSearchRequest searchReq) throws ParseException {
+                                  BaseSearchRequest searchReq) throws ParseException {
     String permission = LogonController.permission(req, true);
     if (permission != null && !permission.isEmpty()) {
       return permission;
@@ -202,7 +202,7 @@ public class VideoController {
 
   @RequestMapping(value = "removeVideo.html", method = RequestMethod.GET)
   public String removeVideo(HttpServletRequest request, ModelMap map, Integer videoid,
-                             VideoSearchRequest searchReq) {
+                             BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request, true);
     if (permission != null && !permission.isEmpty()) {
@@ -215,7 +215,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "videolist.html", method = {RequestMethod.POST, RequestMethod.GET})
-  public String videoList(HttpServletRequest request, ModelMap map, VideoSearchRequest searchReq) {
+  public String videoList(HttpServletRequest request, ModelMap map, BaseSearchRequest searchReq) {
 
     String permission = LogonController.permission(request);
     if (permission != null && !permission.isEmpty()) {
