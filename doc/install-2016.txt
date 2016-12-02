@@ -1,0 +1,10 @@
+ 部署步骤：
+1. 解压templates.zip里面的所有文件，到E:/project/template目录下
+2. 把传给你的 patch-R2016.sql 放在E:/project目录下
+3. 进入MySQL命令行
+cd D:/MySQL/mysql-5.5.41-win32/bin
+mysql -h 127.0.0.1 -u root -p
+输入密码root后进入:
+1) 输入命令: use defiles;
+2) 输入命令 Source E:/project/patch-R2016.sql
+4. D:/project/jetty-distribution-9.2.5.v20141112/webapps
